@@ -1,0 +1,61 @@
+{
+    "name": "APIMan",
+    "description": "Open Source API Management",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/18758-apiman.jpg",
+    "tags": [
+        "api service provider",
+        "have api",
+        "management"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/apiman\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "APIMan",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/18758-apiman.jpg",
+            "humanURL": "http:\/\/www.apiman.io",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apiman-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apiman-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/www.apiman.io\/blog\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/apiman.io\/blog\/feed.xml"
+        },
+        {
+            "type": "Documentation",
+            "url": "http:\/\/www.apiman.io\/latest\/api-manager-restdocs.html"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/apiman"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/apiman_io"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.apiman.io"
+        }
+    ]
+}
