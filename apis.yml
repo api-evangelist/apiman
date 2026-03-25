@@ -1,0 +1,41 @@
+aid: apiman
+name: Apiman
+description: >-
+  Apiman is an open source API management platform featuring a REST API,
+  manager UI, and standalone developer portal with multi-tenancy, events,
+  notifications, permissions, and approval workflows.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Developer Portal
+  - API Management
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml
+created: '2026-03-25'
+modified: '2026-03-25'
+specificationVersion: '0.19'
+apis:
+  - aid: apiman:apiman
+    name: Apiman
+    description: >-
+      Apiman is an open source API management platform with a developer portal,
+      API gateway, and management UI supporting policies, plans, and multi-tenancy.
+    humanURL: https://www.apiman.io
+    tags:
+      - Developer Portal
+      - API Management
+    properties:
+      - type: Documentation
+        url: https://www.apiman.io/api-manager/latest/index.html
+      - type: GitHub Repository
+        url: https://github.com/apiman/apiman
+common:
+  - type: Website
+    url: https://www.apiman.io
+  - type: Documentation
+    url: https://www.apiman.io/api-manager/latest/index.html
+  - type: GitHub Organization
+    url: https://github.com/apiman
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
