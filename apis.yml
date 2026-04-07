@@ -7,8 +7,8 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Developer Portal
   - API Management
+  - Developer Portal
 url: >-
   https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml
 created: '2026-03-25'
@@ -22,8 +22,8 @@ apis:
       API gateway, and management UI supporting policies, plans, and multi-tenancy.
     humanURL: https://www.apiman.io
     tags:
-      - Developer Portal
       - API Management
+      - Developer Portal
     properties:
       - type: Documentation
         url: https://www.apiman.io/api-manager/latest/index.html
