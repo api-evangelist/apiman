@@ -1,0 +1,89 @@
+vocabulary:
+  name: Apiman Vocabulary
+  description: Unified taxonomy mapping API management resources, policies, and personas for the Apiman open source platform
+  version: 1.0.0
+  updated: '2026-04-19'
+
+resources:
+  - name: API
+    description: A managed API registered in the Apiman API manager
+    properties:
+      - organizationId
+      - id
+      - name
+      - description
+      - createdBy
+      - createdOn
+      - numPublished
+      - tags
+
+  - name: Plan
+    description: An API subscription plan with associated policies controlling access
+    properties:
+      - organizationId
+      - id
+      - name
+      - description
+      - createdBy
+      - createdOn
+      - policies
+
+  - name: Policy
+    description: A rule applied to API requests or responses to enforce governance
+    values:
+      - RateLimitingPolicy
+      - QuotaPolicy
+      - IPWhitelistPolicy
+      - BasicAuthenticationPolicy
+      - CachingPolicy
+      - TransformHeadersPolicy
+      - URLRewritingPolicy
+
+  - name: Organization
+    description: A multi-tenant organizational unit grouping APIs, plans, and clients
+    properties:
+      - id
+      - name
+      - description
+      - createdBy
+      - createdOn
+
+  - name: Client
+    description: A consumer application subscribing to API plans
+    properties:
+      - organizationId
+      - id
+      - name
+      - description
+      - apiKey
+
+actions:
+  - name: Manage
+    description: Register, configure, and publish APIs through the Apiman manager
+  - name: Policy
+    description: Apply and configure policies to APIs, plans, or clients
+  - name: Subscribe
+    description: Subscribe a client to an API plan to generate API keys
+  - name: Monitor
+    description: Track API usage metrics, audit logs, and performance data
+
+personas:
+  - name: API Manager
+    description: Administrator responsible for managing APIs, plans, and policies
+  - name: API Developer
+    description: Developer consuming managed APIs via API keys and plans
+  - name: Platform Administrator
+    description: Infrastructure operator managing Apiman installation and gateways
+
+project:
+  name: Apiman
+  github: https://github.com/apiman/apiman
+  language: Java
+  license: Apache-2.0
+  stars: 885
+  topics:
+    - api-gateway
+    - api-management
+    - api-manager
+    - java
+    - jvm

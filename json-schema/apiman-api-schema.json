@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apiman/main/json-schema/apiman-api-schema.json",
+  "title": "Apiman API",
+  "description": "Schema representing an API managed by the Apiman API management platform",
+  "type": "object",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "Organization identifier owning this API"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the API"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the user who created the API"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API was created"
+    },
+    "numPublished": {
+      "type": "integer",
+      "description": "Number of published versions of this API"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags associated with the API"
+    }
+  },
+  "required": ["organizationId", "id", "name"]
+}

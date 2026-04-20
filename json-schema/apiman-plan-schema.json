@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apiman/main/json-schema/apiman-plan-schema.json",
+  "title": "Apiman Plan",
+  "description": "Schema representing an API plan in Apiman with associated policies",
+  "type": "object",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "Organization identifier owning this plan"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the plan"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the plan"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the plan"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the user who created the plan"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the plan was created"
+    },
+    "policies": {
+      "type": "array",
+      "description": "Policies applied to this plan",
+      "items": {
+        "type": "object",
+        "properties": {
+          "policyDefinitionId": { "type": "string" },
+          "configuration": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["organizationId", "id", "name"]
+}

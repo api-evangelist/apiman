@@ -1,0 +1,10 @@
+{
+  "organizationId": "my-organization",
+  "id": "my-api",
+  "name": "My API",
+  "description": "A sample REST API managed by Apiman for demonstration purposes.",
+  "createdBy": "admin",
+  "createdOn": "2026-01-15T10:00:00.000Z",
+  "numPublished": 2,
+  "tags": ["rest", "demo", "sample"]
+}

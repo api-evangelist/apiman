@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "apiman": "https://www.apiman.io/vocab/",
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "description": "schema:description",
+    "organizationId": "apiman:organizationId",
+    "createdBy": "dcterms:creator",
+    "createdOn": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "numPublished": "apiman:numPublished",
+    "tags": "schema:keywords",
+    "policies": "apiman:policies",
+    "policyDefinitionId": "apiman:policyDefinitionId",
+    "configuration": "apiman:configuration"
+  }
+}

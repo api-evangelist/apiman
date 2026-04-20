@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apiman/main/json-structure/apiman-api-structure.json",
+  "title": "Apiman API",
+  "description": "Structure representing an API managed by the Apiman API management platform",
+  "type": "object",
+  "properties": {
+    "organizationId": { "type": "string", "description": "Organization identifier" },
+    "id": { "type": "string", "description": "Unique identifier for the API" },
+    "name": { "type": "string", "description": "Name of the API" },
+    "description": { "type": "string", "description": "Description of the API" },
+    "createdBy": { "type": "string", "description": "Creator username" },
+    "createdOn": { "type": "datetime", "description": "Creation timestamp" },
+    "numPublished": { "type": "int32", "description": "Number of published versions" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags associated with the API"
+    }
+  }
+}

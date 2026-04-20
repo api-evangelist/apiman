@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apiman/main/json-structure/apiman-plan-structure.json",
+  "title": "Apiman Plan",
+  "description": "Structure representing an API plan in Apiman with associated policies",
+  "type": "object",
+  "properties": {
+    "organizationId": { "type": "string", "description": "Organization identifier" },
+    "id": { "type": "string", "description": "Unique identifier for the plan" },
+    "name": { "type": "string", "description": "Name of the plan" },
+    "description": { "type": "string", "description": "Description of the plan" },
+    "createdBy": { "type": "string", "description": "Creator username" },
+    "createdOn": { "type": "datetime", "description": "Creation timestamp" },
+    "policies": {
+      "type": "array",
+      "description": "Policies applied to this plan",
+      "items": {
+        "type": "object",
+        "properties": {
+          "policyDefinitionId": { "type": "string" },
+          "configuration": { "type": "string" }
+        }
+      }
+    }
+  }
+}
