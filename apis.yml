@@ -42,7 +42,7 @@ apis:
         url: json-schema/apiman-api-schema.json
       - type: JSONSchema
         url: json-schema/apiman-plan-schema.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/apiman-context.jsonld
 common:
   - type: Website
