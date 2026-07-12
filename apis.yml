@@ -45,6 +45,8 @@ apis:
       - type: JSONLD
         url: json-ld/apiman-context.jsonld
 common:
+  - type: DomainSecurity
+    url: security/apiman-domain-security.yml
   - type: Website
     url: https://www.apiman.io
   - type: Documentation
@@ -85,6 +87,8 @@ common:
         description: High-performance async API gateway implementation using Eclipse Vert.x.
       - name: WildFly Overlay
         description: Apiman overlay for WildFly/EAP application server deployments.
+  - url: https://www.apiman.io/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
