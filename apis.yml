@@ -45,6 +45,8 @@ apis:
       - type: JSONLD
         url: json-ld/apiman-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/apiman-agentic-access.yml
   - type: DomainSecurity
     url: security/apiman-domain-security.yml
   - type: Website
