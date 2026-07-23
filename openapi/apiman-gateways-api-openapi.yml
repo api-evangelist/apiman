@@ -1,0 +1,203 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Gateways API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Gateways
+paths:
+  /gateways:
+    get:
+      tags:
+      - Gateways
+      operationId: list
+      responses:
+        '200':
+          description: If the gateways are successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GatewaySummaryBean'
+    put:
+      tags:
+      - Gateways
+      operationId: test
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGatewayBean'
+      responses:
+        '200':
+          description: If the test is performed (regardless of the outcome of the test).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayTestResultBean'
+    post:
+      tags:
+      - Gateways
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGatewayBean'
+      responses:
+        '200':
+          description: If the Gateway is created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayBean'
+  /gateways/{gatewayId}:
+    get:
+      tags:
+      - Gateways
+      operationId: get_1
+      parameters:
+      - name: gatewayId
+        in: path
+        description: The ID of the Gateway to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: the Gateway is returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayBean'
+    put:
+      tags:
+      - Gateways
+      operationId: update_1
+      parameters:
+      - name: gatewayId
+        in: path
+        description: The ID of the Gateway to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGatewayBean'
+      responses:
+        '204':
+          description: If the update is successful.
+    delete:
+      tags:
+      - Gateways
+      operationId: delete_1
+      parameters:
+      - name: gatewayId
+        in: path
+        description: The ID of the Gateway to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the delete is successful.
+  /gateways/{gatewayId}/endpoint:
+    get:
+      tags:
+      - Gateways
+      operationId: getGatewayEndpoint
+      parameters:
+      - name: gatewayId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayEndpointSummaryBean'
+      deprecated: true
+components:
+  schemas:
+    GatewayEndpointSummaryBean:
+      type: object
+      properties:
+        endpoint:
+          type: string
+    UpdateGatewayBean:
+      type: object
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
+          type: string
+    GatewayBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
+          type: string
+    NewGatewayBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
+          type: string
+    GatewaySummaryBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+    GatewayTestResultBean:
+      type: object
+      properties:
+        success:
+          type: boolean
+        detail:
+          type: string

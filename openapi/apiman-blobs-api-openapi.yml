@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Blobs API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Blobs
+paths:
+  /blobs/{uid}:
+    get:
+      tags:
+      - Blobs
+      operationId: getBlob
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            '*/*': {}
+  /blobs:
+    post:
+      tags:
+      - Blobs
+      operationId: uploadBlob
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultipartFormDataInput'
+        required: true
+      responses:
+        '201':
+          description: If your upload has been accepted
+components:
+  schemas:
+    MultipartFormDataInput:
+      type: object
+      properties:
+        formData:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InputPart'
+        formDataMap:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/InputPart'
+        preamble:
+          type: string
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputPart'
+    InputPart:
+      type: object
+      properties:
+        contentTypeFromMessage:
+          type: boolean
+        bodyAsString:
+          type: string
+        mediaType:
+          type: object
+          properties:
+            type:
+              type: string
+            subtype:
+              type: string
+            parameters:
+              type: object
+              additionalProperties:
+                type: string
+            wildcardType:
+              type: boolean
+            wildcardSubtype:
+              type: boolean
+        headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string

@@ -1,0 +1,182 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Roles API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Roles
+paths:
+  /roles:
+    get:
+      tags:
+      - Roles
+      operationId: list_3
+      responses:
+        '200':
+          description: If the role list is returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleBean'
+    post:
+      tags:
+      - Roles
+      operationId: create_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRoleBean'
+      responses:
+        '200':
+          description: If the role is created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleBean'
+  /roles/{roleId}:
+    get:
+      tags:
+      - Roles
+      operationId: get_4
+      parameters:
+      - name: roleId
+        in: path
+        description: The Role ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the role is returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleBean'
+    put:
+      tags:
+      - Roles
+      operationId: update_3
+      parameters:
+      - name: roleId
+        in: path
+        description: The Role ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleBean'
+      responses:
+        '204':
+          description: If the role is updated successfully.
+    delete:
+      tags:
+      - Roles
+      operationId: delete_4
+      parameters:
+      - name: roleId
+        in: path
+        description: The Role ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the role is deleted.
+components:
+  schemas:
+    UpdateRoleBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        autoGrant:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - orgView
+            - orgEdit
+            - orgAdmin
+            - apiView
+            - apiEdit
+            - apiAdmin
+            - clientView
+            - clientEdit
+            - clientAdmin
+            - planView
+            - planEdit
+            - planAdmin
+    NewRoleBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        autoGrant:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - orgView
+            - orgEdit
+            - orgAdmin
+            - apiView
+            - apiEdit
+            - apiAdmin
+            - clientView
+            - clientEdit
+            - clientAdmin
+            - planView
+            - planEdit
+            - planAdmin
+    RoleBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        autoGrant:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - orgView
+            - orgEdit
+            - orgAdmin
+            - apiView
+            - apiEdit
+            - apiAdmin
+            - clientView
+            - clientEdit
+            - clientAdmin
+            - planView
+            - planEdit
+            - planAdmin

@@ -1,0 +1,4298 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Organizations API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Organizations
+paths:
+  /organizations/{organizationId}/apis:
+    get:
+      tags:
+      - Organizations
+      summary: List APIs
+      operationId: listApis
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of APIs is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSummaryBean'
+        '404':
+          description: If the Organization does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Create API
+      operationId: createApi
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewApiBean'
+        required: true
+      responses:
+        '200':
+          description: If the API is successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBeanDto'
+        '404':
+          description: If the Organization does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/policies:
+    get:
+      tags:
+      - Organizations
+      summary: List All API Policies
+      operationId: listApiPolicies_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Policies is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicySummaryBean'
+        '404':
+          description: If the API does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Add API Policy
+      operationId: createApiPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPolicyBean'
+      responses:
+        '200':
+          description: Full details about the newly added Policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions:
+    get:
+      tags:
+      - Organizations
+      summary: List API Versions
+      operationId: listApiVersions_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of API versions is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiVersionSummaryBean'
+    post:
+      tags:
+      - Organizations
+      summary: Create API Version
+      operationId: createApiVersion
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewApiVersionBean'
+      responses:
+        '200':
+          description: If the API version is created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionBeanDto'
+        '404':
+          description: If the API does not exist.
+        '409':
+          description: If the API version already exists.
+  /organizations/{organizationId}/clients:
+    get:
+      tags:
+      - Organizations
+      summary: List Clients
+      operationId: listClients
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Clients is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientSummaryBean'
+        '404':
+          description: If the Organization does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Create Client
+      description: Use this endpoint to create a new Client.It is important to also create an initial version of the Client (e.g. 1.0). This can either be done by including the 'initialVersion' property in the request, or by immediately following up with a call to Create Client Version If the former is done, then a first  Client version will be created automatically by this endpoint.
+      operationId: createClient
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewClientBean'
+      responses:
+        '200':
+          description: If the Client is successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientBean'
+        '404':
+          description: If the Organization does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/policies:
+    get:
+      tags:
+      - Organizations
+      summary: List All Client Policies
+      operationId: listClientPolicies
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Policies is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicySummaryBean'
+        '404':
+          description: If the Client does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Add Client Policy
+      operationId: createClientPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPolicyBean'
+      responses:
+        '200':
+          description: If the Policy is successfully added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+        '404':
+          description: If the Client does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions:
+    get:
+      tags:
+      - Organizations
+      summary: List Client Versions
+      operationId: listClientVersions
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Client versions is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientVersionSummaryBean'
+    post:
+      tags:
+      - Organizations
+      summary: Create Client Version
+      operationId: createClientVersion
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewClientVersionBean'
+      responses:
+        '200':
+          description: If the Client version is created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientVersionBean'
+        '404':
+          description: If the Client does not exist.
+        '409':
+          description: If the Client version already exists.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/contracts:
+    get:
+      tags:
+      - Organizations
+      summary: List All Contracts for a Client
+      operationId: getClientVersionContracts
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Contracts is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContractSummaryBean'
+        '404':
+          description: If the Client is not found.
+    post:
+      tags:
+      - Organizations
+      summary: Create an API Contract
+      description: Create a Contract between the Client and an API. In order to create a Contract, the caller must specify the Organization, ID, and Version of the API.Additionally, the caller must specify the ID of the plan it wants to use for the contract with the API.
+      operationId: createContract
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewContractBean'
+      responses:
+        '200':
+          description: If the Contract is successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractBean'
+        '404':
+          description: If the Client version does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Break All Contracts
+      operationId: deleteAllContracts
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the operation is successful.
+        '404':
+          description: If the Client does not exist.
+  /organizations:
+    post:
+      tags:
+      - Organizations
+      summary: Create Organization
+      description: Create a new Organization. This can be considered a type of namespace. APIs, Clients and Plans are defined within an organization. Using other API calls, you can add users to an organization and assign them fine-grained permissions
+      operationId: createOrg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrganizationBean'
+      responses:
+        '200':
+          description: If the Organization was successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationBean'
+  /organizations/{organizationId}/plans:
+    get:
+      tags:
+      - Organizations
+      summary: List Plans
+      operationId: listPlans
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Plans is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanSummaryBean'
+        '404':
+          description: If the Organization does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Create Plan
+      operationId: createPlan
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPlanBean'
+      responses:
+        '200':
+          description: If the Plan is successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanBean'
+        '404':
+          description: If the Organization does not exist.
+  /organizations/{organizationId}/plans/{planId}/versions/{version}/policies:
+    get:
+      tags:
+      - Organizations
+      summary: List All Plan Policies
+      operationId: listPlanPolicies_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Policies is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicySummaryBean'
+        '404':
+          description: If the Plan does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Add Plan Policy
+      operationId: createPlanPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPolicyBean'
+      responses:
+        '200':
+          description: If the Policy is successfully added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+        '404':
+          description: If the Plan does not exist.
+  /organizations/{organizationId}/plans/{planId}/versions:
+    get:
+      tags:
+      - Organizations
+      summary: List Plan Versions
+      operationId: listPlanVersions
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of Plan versions is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanVersionSummaryBean'
+    post:
+      tags:
+      - Organizations
+      summary: Create Plan Version
+      operationId: createPlanVersion
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPlanVersionBean'
+      responses:
+        '200':
+          description: If the Plan version is created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanVersionBean'
+        '404':
+          description: If the Plan does not exist.
+        '409':
+          description: If the Plan version already exists.
+  /organizations/{organizationId}/apis/{apiId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get API By ID
+      operationId: getApi
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiBeanDto'
+        '404':
+          description: If the API does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update API
+      operationId: updateApi
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApiBean'
+      responses:
+        '204':
+          description: If the API is updated successfully.
+        '404':
+          description: If the API does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Delete API
+      operationId: deleteApi
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the API is updated successfully.
+        '404':
+          description: If the API does not exist.
+        '409':
+          description: If the API cannot be deleted.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/definition:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Definition
+      operationId: getApiDefinition_2
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API definition is successfully returned.
+        '404':
+          description: If the API version does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update API Definition
+      operationId: updateApiDefinition
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the API definition was successfully updated.
+        '404':
+          description: If the API does not exist.
+    post:
+      tags:
+      - Organizations
+      summary: Update API Definition from URL
+      operationId: updateApiDefinitionFromURL
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewApiDefinitionBean'
+      responses:
+        '204':
+          description: If the API definition was successfully updated.
+        '404':
+          description: If the API does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Remove API Definition
+      operationId: deleteApiDefinition
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the API definition was successfully deleted.
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/image:
+    delete:
+      tags:
+      - Organizations
+      summary: Delete API Image
+      operationId: deleteApiImage
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the API is updated successfully.
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/policies/{policyId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Policy
+      operationId: getApiPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: If the Policy is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+        '404':
+          description: If the API does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update API Policy
+      operationId: updateApiPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePolicyBean'
+      responses:
+        '204':
+          description: If the Policy was successfully updated.
+        '404':
+          description: If the Policy does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Remove API Policy
+      operationId: deleteApiPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: If the Policy was successfully deleted.
+        '404':
+          description: If the Policy does not exist.
+  /organizations/{organizationId}/clients/{clientId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Client By ID
+      description: Use this endpoint to retrieve information about a single Client by ID. This only returns information about the Client, not any particular version of the client.
+      operationId: getClient
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Client is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientBean'
+        '404':
+          description: If the Client does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update Client
+      operationId: updateClient
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientBean'
+      responses:
+        '204':
+          description: If the Client is updated successfully.
+        '404':
+          description: If the Client does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Delete a client
+      operationId: deleteClient
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID the client exists within
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The ClientApp ID to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the Organization was successfully deleted
+        '409':
+          description: If the delete preconditions have not been met (i.e. sub-elements are still active, such as still-registered ClientVersions).
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/policies/{policyId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Client Policy
+      operationId: getClientPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: If the Policy is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+        '404':
+          description: If the Client does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update Client Policy
+      operationId: updateClientPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePolicyBean'
+      responses:
+        '204':
+          description: If the Policy was successfully updated.
+        '404':
+          description: If the Organization, Client, or Policy does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Remove Client Policy
+      operationId: deleteClientPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: If the Policy was successfully deleted.
+        '404':
+          description: If the Policy does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/contracts/{contractId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Contract
+      description: Detailed information about a single API Contract for a Client
+      operationId: getContract
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: contractId
+        in: path
+        description: The ID of the Contract.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: If the Contract is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractBean'
+        '404':
+          description: If the Contract is not found.
+    delete:
+      tags:
+      - Organizations
+      summary: Break Contract
+      operationId: deleteContract
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: contractId
+        in: path
+        description: The Contract ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: If the Contract is successfully broken.
+        '404':
+          description: If the Contract does not exist.
+  /organizations/{organizationId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Organization By ID
+      operationId: getOrg
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Organization was successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationBean'
+        '404':
+          description: If the Organization does not exist
+    put:
+      tags:
+      - Organizations
+      summary: Update Organization By ID
+      description: Updates meta-information about a single Organization
+      operationId: updateOrg
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationBean'
+      responses:
+        '200':
+          description: If the Organization meta-data is successfully updated.
+        '404':
+          description: If the Organization does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Delete an organization
+      operationId: deleteOrg
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the Organization was successfully deleted
+        '409':
+          description: If the delete preconditions have not been met (i.e. sub-elements are still active, such as still-published APIs).
+  /organizations/{organizationId}/plans/{planId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Plan By ID
+      operationId: getPlan
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Plan is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanBean'
+        '404':
+          description: If the Plan does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update Plan
+      operationId: updatePlan
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePlanBean'
+      responses:
+        '204':
+          description: If the Plan is updated successfully.
+        '404':
+          description: If the Plan does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Delete Plan
+      operationId: deletePlan
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the Plan was successfully deleted
+        '404':
+          description: If the Plan does not exist.
+        '409':
+          description: If the Plan cannot be deleted.
+  /organizations/{organizationId}/plans/{planId}/versions/{version}/policies/{policyId}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Plan Policy
+      operationId: getPlanPolicy_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: If the Policy is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+        '404':
+          description: If the Plan does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update Plan Policy
+      operationId: updatePlanPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePolicyBean'
+      responses:
+        '204':
+          description: If the Policy was successfully updated.
+        '404':
+          description: If the Policy does not exist.
+    delete:
+      tags:
+      - Organizations
+      summary: Remove Plan Policy
+      operationId: deletePlanPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: If the Policy was successfully deleted.
+        '404':
+          description: If the Policy does not exist.
+  /organizations/{organizationId}/apis/{apiId}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Activity
+      operationId: getApiActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity should be returned.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the audit information is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/plans/{planId}/policyChain:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Policy Chain
+      operationId: getApiPolicyChain
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Policy Chain is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChainBean'
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/apiregistry/json:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Registry (JSON)
+      operationId: getApiRegistryJSON
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: download
+        in: query
+        description: Query parameter set to true in order to generate a download link.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API Registry information is successfully returned.
+        '404':
+          description: If the Client does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/apiregistry/xml:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Registry (XML)
+      operationId: getApiRegistryXML
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: download
+        in: query
+        description: Query parameter set to true in order to generate a download link.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API Registry information is successfully returned.
+        '404':
+          description: If the Client does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Version
+      operationId: getApiVersion_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API version is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionBeanDto'
+        '404':
+          description: If the API version does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update API Version
+      operationId: updateApiVersion
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApiVersionBean'
+      responses:
+        '204':
+          description: If the API version information was successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionBeanDto'
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Version Activity
+      operationId: getApiVersionActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity data to return.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Audit activity entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: API version does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/contracts:
+    get:
+      tags:
+      - Organizations
+      summary: List API Contracts
+      operationId: getApiVersionContracts
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of Contracts to return.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of Contracts per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the list of Contracts is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContractSummaryBean'
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/endpoint:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Endpoint
+      operationId: getApiVersionEndpointInfo_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the endpoint information is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionEndpointSummaryBean'
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/plans:
+    get:
+      tags:
+      - Organizations
+      summary: List API Plans
+      operationId: getApiVersionPlans_1
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API plans are successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiPlanSummaryBean'
+        '404':
+          description: If the API cannot be found.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/status:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Version Status
+      operationId: getApiVersionStatus
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the status information is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionStatusBean'
+        '404':
+          description: If the API version does not exist.
+  /organizations/{organizationId}/clients/{clientId}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get Client Activity
+      description: audit activity information about the Client.
+      operationId: getClientActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity should be returned.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the audit information is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: If the Client does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/apikey:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Key
+      operationId: getClientApiKey
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client Version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Client's API Key is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyBean'
+        '404':
+          description: If the Client does not exist.
+    put:
+      tags:
+      - Organizations
+      summary: Update API Key
+      description: Update the API Key for the given client. You can either provide your own custom (must be unique) API Key, or you can send an empty request and Apiman will generate a new API key for you. If the client is registered with one or more gateways, this call will fail (API Key can only be modified if the client is not currently registered).
+      operationId: updateClientApiKey
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client Version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyBean'
+      responses:
+        '200':
+          description: If the Client's API Key is successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyBean'
+        '404':
+          description: If the Client does not exist.
+        '409':
+          description: If the Client has the wrong status.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/metrics/apiUsage:
+    get:
+      tags:
+      - Organizations
+      summary: Get Client Usage Metrics (per API)
+      operationId: getClientUsagePerApi
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The client version.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientUsagePerApiBean'
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Client Version
+      operationId: getClientVersion
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Client version is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientVersionBean'
+        '404':
+          description: If the Client version does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get Client Version Activity
+      operationId: getClientVersionActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity data to return.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the audit activity entries are successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: If the Client version does not exist.
+  /organizations/{organizationId}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get Organization Activity
+      description: Returns audit activity information for a single Organization. The audit information that is returned represents all the activity associated with the specified Organization.
+      operationId: getOrgActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity results to return.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the audit information is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: If the Organization does not exist.
+  /organizations/{organizationId}/plans/{planId}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get Plan Activity
+      operationId: getPlanActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity should be returned.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the audit information is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: If the Plan does not exist.
+  /organizations/{organizationId}/plans/{planId}/versions/{version}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Plan Version
+      operationId: getPlanVersion
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the Plan version is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanVersionBean'
+        '404':
+          description: If the Plan version does not exist.
+  /organizations/{organizationId}/plans/{planId}/versions/{version}/activity:
+    get:
+      tags:
+      - Organizations
+      summary: Get Plan Version Activity
+      operationId: getPlanVersionActivity
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Which page of activity data to return.
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: The number of entries per page to return.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the audit activity entries are successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+        '404':
+          description: If the Plan version does not exist.
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/responseStats:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Response Statistics (Histogram)
+      operationId: getResponseStats
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: interval
+        in: query
+        description: A valid interval (month, week, day, hour, minute)
+        schema:
+          type: string
+          enum:
+          - month
+          - week
+          - day
+          - hour
+          - minute
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseStatsHistogramBean'
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/clientResponseStats:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Response Statistics (per Client)
+      operationId: getResponseStatsPerClient
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseStatsPerClientBean'
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/planResponseStats:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Response Statistics (per Plan)
+      operationId: getResponseStatsPerPlan
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseStatsPerPlanBean'
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/summaryResponseStats:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Response Statistics (Summary)
+      operationId: getResponseStatsSummary
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseStatsSummaryBean'
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/usage:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Usage Metrics
+      operationId: getUsage
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: interval
+        in: query
+        description: A valid interval (month, week, day, hour, minute)
+        schema:
+          type: string
+          enum:
+          - month
+          - week
+          - day
+          - hour
+          - minute
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageHistogramBean'
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/clientUsage:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Usage Metrics (per Client)
+      operationId: getUsagePerClient
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsagePerClientBean'
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/metrics/planUsage:
+    get:
+      tags:
+      - Organizations
+      summary: Get API Usage Metrics (per Plan)
+      operationId: getUsagePerPlan
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start of a valid date range.
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end of a valid date range.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the metrics data is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsagePerPlanBean'
+  /organizations/{organizationId}/roles:
+    post:
+      tags:
+      - Organizations
+      summary: Grant Membership(s)
+      operationId: grant
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantRolesBean'
+      responses:
+        '204':
+          description: If the membership(s) were successfully granted.
+  /organizations/{organizationId}/members:
+    get:
+      tags:
+      - Organizations
+      summary: List Organization Members
+      operationId: listMembers
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the list of members is returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MemberBean'
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/contracts/{contractId}/policies/{policyId}:
+    post:
+      tags:
+      - Organizations
+      summary: Probe a policy associated with a contract
+      operationId: probeContractPolicy
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      - name: contractId
+        in: path
+        description: The contract ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: policyId
+        in: path
+        description: The policy ID (policy you want to probe)
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The probe payload (refer to the documentation of the probe you want to use for the correct format).
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Probe executed successfully
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/reorderApiPlans:
+    put:
+      tags:
+      - Organizations
+      summary: Reorder API plans
+      description: Reorder API plans, which affects the order they are displayed in the API Developer Portal.
+      operationId: reorderApiPlans
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPlanOrderDto'
+      responses:
+        '200':
+          description: Reordering of plans was successful.
+        '404':
+          description: If the Organization, API or Api Version cannot be found
+        '401':
+          description: If invalid data is provided, such as plans that exist but have not been attached to the API
+  /organizations/{organizationId}/apis/{apiId}/versions/{version}/reorderPolicies:
+    post:
+      tags:
+      - Organizations
+      summary: Re-Order API Policies
+      operationId: reorderApiPolicies
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The API version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyChainBean'
+      responses:
+        '204':
+          description: If the re-ordering of Policies was successful.
+        '404':
+          description: If the API does not exist.
+  /organizations/{organizationId}/clients/{clientId}/versions/{version}/reorderPolicies:
+    post:
+      tags:
+      - Organizations
+      summary: Re-Order Client Policies
+      operationId: reorderClientPolicies
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: clientId
+        in: path
+        description: The Client ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Client version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyChainBean'
+      responses:
+        '204':
+          description: If the re-ordering of Policies was successful.
+        '404':
+          description: If the Client does not exist.
+  /organizations/{organizationId}/plans/{planId}/versions/{version}/reorderPolicies:
+    post:
+      tags:
+      - Organizations
+      summary: Re-Order Plan Policies
+      operationId: reorderPlanPolicies
+      parameters:
+      - name: organizationId
+        in: path
+        description: The Organization ID.
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: The Plan version.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyChainBean'
+      responses:
+        '204':
+          description: If the re-ordering of Policies was successful.
+        '404':
+          description: If the Plan does not exist.
+  /organizations/{organizationId}/roles/{roleId}/{userId}:
+    delete:
+      tags:
+      - Organizations
+      summary: Revoke Single Membership
+      operationId: revoke
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: roleId
+        in: path
+        description: The role ID.
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: The user ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the membership was successfully revoked.
+  /organizations/{organizationId}/members/{userId}:
+    delete:
+      tags:
+      - Organizations
+      summary: Revoke All Memberships
+      operationId: revokeAll
+      parameters:
+      - name: organizationId
+        in: path
+        description: The organization ID.
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: The user ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the user's memberships were successfully revoked.
+        '404':
+          description: If the user does not exist.
+  /organizations/{organizationId}/apis/{apiId}/tags:
+    put:
+      tags:
+      - Organizations
+      summary: Tag an API
+      operationId: tagApi
+      parameters:
+      - name: organizationId
+        in: path
+        description: Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: API ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyValueTagDto'
+      responses:
+        '200':
+          description: Tag was created successfully.
+components:
+  schemas:
+    ApiPlanOrderDto:
+      type: object
+      properties:
+        order:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanOrderEntryDto'
+    ResponseStatsPerPlanBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ResponseStatsDataPoint'
+    UpdateApiPlanDto:
+      required:
+      - planId
+      - version
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    PolicyBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: The type of policy
+          enum:
+          - Client
+          - Plan
+          - Api
+        organizationId:
+          type: string
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        configuration:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/PolicyDefinitionBean'
+        orderIndex:
+          type: integer
+          format: int32
+    ClientBean:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+    UsageHistogramBean:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageDataPoint'
+    NewPlanBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        initialVersion:
+          type: string
+    ApiKeyBean:
+      type: object
+      properties:
+        apiKey:
+          type: string
+    UpdatePolicyBean:
+      type: object
+      properties:
+        configuration:
+          type: string
+      description: Update a policy
+    ApiVersionBeanDto:
+      required:
+      - api
+      - createdBy
+      - createdOn
+      - definitionType
+      - endpointContentType
+      - endpointType
+      - id
+      - modifiedBy
+      - modifiedOn
+      - publicDiscoverability
+      - publishedOn
+      - retiredOn
+      - status
+      - version
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        api:
+          $ref: '#/components/schemas/ApiBeanDto'
+        version:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        endpointProperties:
+          type: object
+          additionalProperties:
+            type: string
+        gateways:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiGatewayBean'
+        publicAPI:
+          type: boolean
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBeanDto'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        publishedOn:
+          type: string
+          format: date-time
+        retiredOn:
+          type: string
+          format: date-time
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        definitionUrl:
+          type: string
+        extendedDescription:
+          type: string
+    PlanVersionSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Locked
+        version:
+          type: string
+    ApiSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    StatusItemBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        done:
+          type: boolean
+        optional:
+          type: boolean
+        remediation:
+          type: string
+    UpdatePlanBean:
+      type: object
+      properties:
+        description:
+          type: string
+    ApiVersionEndpointSummaryBean:
+      type: object
+      properties:
+        managedEndpoint:
+          type: string
+    ApiPlanBeanDto:
+      required:
+      - planId
+      - version
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    PlanSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    PolicySummaryBean:
+      type: object
+      properties:
+        policyDefinitionId:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+    NewClientVersionBean:
+      type: object
+      properties:
+        version:
+          type: string
+        clone:
+          type: boolean
+        cloneVersion:
+          type: string
+        apiKey:
+          type: string
+    NewPolicyBean:
+      type: object
+      properties:
+        definitionId:
+          type: string
+        configuration:
+          type: string
+      description: Payload for creating a new policy for a Plan, API, or Client
+    NewClientBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        initialVersion:
+          type: string
+    ApiVersionBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        api:
+          $ref: '#/components/schemas/ApiBean'
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        endpointProperties:
+          type: object
+          additionalProperties:
+            type: string
+        gateways:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiGatewayBean'
+        publicAPI:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBean'
+        version:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        publishedOn:
+          type: string
+          format: date-time
+        retiredOn:
+          type: string
+          format: date-time
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        definitionUrl:
+          type: string
+        extendedDescription:
+          type: string
+        definition:
+          $ref: '#/components/schemas/ApiDefinitionBean'
+    UsagePerClientBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+    ApiBean:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTag'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        numPublished:
+          type: integer
+          format: int32
+    ResponseStatsPerClientBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ResponseStatsDataPoint'
+    ResponseStatsHistogramBean:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseStatsDataPoint'
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    ClientUsagePerApiBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+    ContractSummaryBean:
+      type: object
+      properties:
+        contractId:
+          type: integer
+          format: int64
+        clientOrganizationId:
+          type: string
+        clientOrganizationName:
+          type: string
+        clientId:
+          type: string
+        clientName:
+          type: string
+        clientVersion:
+          type: string
+        apiOrganizationId:
+          type: string
+        apiOrganizationName:
+          type: string
+        apiId:
+          type: string
+        apiName:
+          type: string
+        apiVersion:
+          type: string
+        apiDescription:
+          type: string
+        planName:
+          type: string
+        planId:
+          type: string
+        planVersion:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - AwaitingApproval
+          - Created
+          - Rejected
+    PolicyDefinitionBean:
+      type: object
+      properties:
+        id:
+          type: string
+        policyImpl:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        templates:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
+        pluginId:
+          type: integer
+          format: int64
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        form:
+          type: string
+        deleted:
+          type: boolean
+    UpdateApiVersionBean:
+      type: object
+      properties:
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        endpointProperties:
+          type: object
+          additionalProperties:
+            type: string
+        gateways:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiGatewayBean'
+        parsePayload:
+          type: boolean
+        publicAPI:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateApiPlanDto'
+        extendedDescription:
+          type: string
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    PlanVersionBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        plan:
+          $ref: '#/components/schemas/PlanBean'
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Locked
+        version:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        lockedOn:
+          type: string
+          format: date-time
+    MemberRoleBean:
+      type: object
+      properties:
+        roleId:
+          type: string
+        roleName:
+          type: string
+    ApiDefinitionBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        apiVersion:
+          $ref: '#/components/schemas/ApiVersionBean'
+        data:
+          type: array
+          items:
+            type: string
+            format: byte
+    AuditEntryBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        who:
+          type: string
+        organizationId:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Organization
+          - Client
+          - Plan
+          - Api
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        what:
+          type: string
+          enum:
+          - Create
+          - Update
+          - Delete
+          - Clone
+          - Grant
+          - Revoke
+          - Publish
+          - Retire
+          - Register
+          - Unregister
+          - AddPolicy
+          - RemovePolicy
+          - UpdatePolicy
+          - ReorderPolicies
+          - CreateContract
+          - BreakContract
+          - Lock
+          - UpdateDefinition
+          - DeleteDefinition
+        data:
+          type: string
+    UsageDataPoint:
+      type: object
+      properties:
+        label:
+          type: string
+        count:
+          type: integer
+          format: int64
+    ResponseStatsSummaryBean:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        failures:
+          type: integer
+          format: int64
+        errors:
+          type: integer
+          format: int64
+    MemberBean:
+      type: object
+      properties:
+        userId:
+          type: string
+        userName:
+          type: string
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberRoleBean'
+    ClientVersionBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        client:
+          $ref: '#/components/schemas/ClientBean'
+        status:
+          type: string
+          enum:
+          - Created
+          - AwaitingApproval
+          - Ready
+          - Registered
+          - Retired
+        version:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        publishedOn:
+          type: string
+          format: date-time
+        retiredOn:
+          type: string
+          format: date-time
+        apikey:
+          type: string
+    ApiPlanSummaryBean:
+      type: object
+      properties:
+        planId:
+          type: string
+        planName:
+          type: string
+        planDescription:
+          type: string
+        version:
+          type: string
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        requiresApproval:
+          type: boolean
+    ApiBeanDto:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTag'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        numPublished:
+          type: integer
+          format: int32
+    ApiVersionSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        extendedDescription:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        version:
+          type: string
+        publicAPI:
+          type: boolean
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        apiTags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    SearchResultsBeanAuditEntryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEntryBean'
+        totalSize:
+          type: integer
+          format: int32
+    PlanBean:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+    ApiGatewayBean:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+    ResponseStatsDataPoint:
+      type: object
+      properties:
+        label:
+          type: string
+        total:
+          type: integer
+          format: int64
+        failures:
+          type: integer
+          format: int64
+        errors:
+          type: integer
+          format: int64
+    NewApiDefinitionBean:
+      type: object
+      properties:
+        definitionUrl:
+          type: string
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+    OrganizationBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+    ClientSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numContracts:
+          type: integer
+          format: int32
+    ApiPlanOrderEntryDto:
+      required:
+      - apiVersionId
+      - planId
+      - version
+      type: object
+      properties:
+        apiVersionId:
+          type: integer
+          format: int64
+        planId:
+          type: string
+        version:
+          type: string
+    ApiPlanBean:
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    ContractBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        client:
+          $ref: '#/components/schemas/ClientVersionBean'
+        api:
+          $ref: '#/components/schemas/ApiVersionBean'
+        plan:
+          $ref: '#/components/schemas/PlanVersionBean'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - AwaitingApproval
+          - Created
+          - Rejected
+    PolicyChainBean:
+      type: object
+      properties:
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicySummaryBean'
+      description: Models an ordered list of policies that would be applied if an API were invoked via a particular plan
+    UpdateOrganizationBean:
+      type: object
+      properties:
+        description:
+          type: string
+    ApiVersionStatusBean:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusItemBean'
+    UpdateApiBean:
+      type: object
+      properties:
+        description:
+          type: string
+        image:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    UsagePerPlanBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+    PolicyDefinitionTemplateBean:
+      type: object
+      properties:
+        language:
+          type: string
+        template:
+          type: string
+    NewPlanVersionBean:
+      type: object
+      properties:
+        version:
+          type: string
+        clone:
+          type: boolean
+        cloneVersion:
+          type: string
+    ClientVersionSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - AwaitingApproval
+          - Ready
+          - Registered
+          - Retired
+        version:
+          type: string
+        apiKey:
+          type: string
+    NewApiVersionBean:
+      required:
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+        clone:
+          type: boolean
+        cloneVersion:
+          type: string
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        publicAPI:
+          type: boolean
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBean'
+        definitionUrl:
+          type: string
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        extendedDescription:
+          type: string
+      description: Initial information to create a new API version.
+    NewApiBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        extendedDescription:
+          type: string
+        initialVersion:
+          type: string
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        publicAPI:
+          type: boolean
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBean'
+        definitionUrl:
+          type: string
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    UpdateClientBean:
+      type: object
+      properties:
+        description:
+          type: string
+    KeyValueTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        key:
+          type: string
+        value:
+          type: string
+    NewContractBean:
+      type: object
+      properties:
+        apiOrgId:
+          type: string
+        apiId:
+          type: string
+        apiVersion:
+          type: string
+        planId:
+          type: string
+      description: Required information to create a new Contract.
+    GrantRolesBean:
+      type: object
+      properties:
+        userId:
+          type: string
+        roleIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    NewOrganizationBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string

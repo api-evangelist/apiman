@@ -1,0 +1,399 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Search API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Search
+paths:
+  /search/apiCatalog/namespaces:
+    get:
+      tags:
+      - Search
+      operationId: getApiNamespaces
+      responses:
+        '200':
+          description: If the namespaces were successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiNamespaceBean'
+  /search/apiCatalog/entries:
+    post:
+      tags:
+      - Search
+      operationId: searchApiCatalog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        '200':
+          description: If the search is successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAvailableApiBean'
+  /search/apis:
+    post:
+      tags:
+      - Search
+      operationId: searchApis_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        '200':
+          description: If the search is successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
+  /search/clients:
+    post:
+      tags:
+      - Search
+      operationId: searchClients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        '200':
+          description: If the search is successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanClientSummaryBean'
+  /search/organizations:
+    post:
+      tags:
+      - Search
+      operationId: searchOrgs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        '200':
+          description: If the search is successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanOrganizationSummaryBean'
+  /search/roles:
+    post:
+      tags:
+      - Search
+      operationId: searchRoles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        '200':
+          description: If the search completes successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanRoleBean'
+  /search/users:
+    post:
+      tags:
+      - Search
+      operationId: searchUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        '200':
+          description: If the search is successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanUserSearchResult'
+components:
+  schemas:
+    SearchCriteriaFilterBean:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        operator:
+          type: string
+          enum:
+          - bool_eq
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - like
+    ClientSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numContracts:
+          type: integer
+          format: int32
+    SearchCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+    PagingBean:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    SearchResultsBeanAvailableApiBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableApiBean'
+        totalSize:
+          type: integer
+          format: int32
+    AvailableApiBean:
+      type: object
+      properties:
+        id:
+          type: string
+        icon:
+          type: string
+        endpoint:
+          type: string
+        routeEndpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        name:
+          type: string
+        description:
+          type: string
+        definitionUrl:
+          type: string
+        routeDefinitionUrl:
+          type: string
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        namespace:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        internal:
+          type: boolean
+    RoleBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        autoGrant:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - orgView
+            - orgEdit
+            - orgAdmin
+            - apiView
+            - apiEdit
+            - apiAdmin
+            - clientView
+            - clientEdit
+            - clientAdmin
+            - planView
+            - planEdit
+            - planAdmin
+    SearchResultsBeanOrganizationSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    OrganizationSummaryBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numClients:
+          type: integer
+          format: int32
+        numApis:
+          type: integer
+          format: int32
+        numMembers:
+          type: integer
+          format: int32
+    UserSearchResult:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+    ApiSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    SearchResultsBeanClientSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    SearchResultsBeanUserSearchResult:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSearchResult'
+        totalSize:
+          type: integer
+          format: int32
+    SearchResultsBeanApiSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    ApiNamespaceBean:
+      type: object
+      properties:
+        name:
+          type: string
+        ownedByUser:
+          type: boolean
+        current:
+          type: boolean
+    SearchResultsBeanRoleBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleBean'
+        totalSize:
+          type: integer
+          format: int32

@@ -1,0 +1,250 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Developers API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Developers
+paths:
+  /developers:
+    get:
+      tags:
+      - Developers
+      operationId: getDevelopers
+      responses:
+        '200':
+          description: If the developer list was successfully returned
+        '403':
+          description: If the access is not allowed
+      deprecated: true
+    post:
+      tags:
+      - Developers
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeveloperBean'
+      responses:
+        '200':
+          description: If the developer was successfully created
+        '403':
+          description: If the access is not allowed
+      deprecated: true
+  /developers/{developerId}:
+    get:
+      tags:
+      - Developers
+      operationId: get
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the developer was successfully returned
+        '403':
+          description: If the access is not allowed
+        '404':
+          description: If the developer does not exist.
+      deprecated: true
+    put:
+      tags:
+      - Developers
+      operationId: update
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeveloperBean'
+      responses:
+        '204':
+          description: If the developer was successfully updated
+        '403':
+          description: If the access is not allowed
+        '404':
+          description: If the developer does not exist.
+      deprecated: true
+    delete:
+      tags:
+      - Developers
+      operationId: delete
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the developer was successfully deleted
+        '403':
+          description: If the access is not allowed
+        '404':
+          description: If the developer does not exist.
+      deprecated: true
+  /developers/{developerId}/apis:
+    get:
+      tags:
+      - Developers
+      operationId: getAllApiVersions
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the the list was successfully returned
+        '403':
+          description: If the access is not allowed
+        '404':
+          description: If the developer does not exist.
+      deprecated: true
+  /developers/{developerId}/contracts:
+    get:
+      tags:
+      - Developers
+      operationId: getAllClientContracts
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the the list was successfully returned
+        '403':
+          description: If the access is not allowed
+        '404':
+          description: If the developer does not exist.
+      deprecated: true
+  /developers/{developerId}/clients:
+    get:
+      tags:
+      - Developers
+      operationId: getAllClientVersions
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the the list was successfully returned
+        '403':
+          description: If the access is not allowed
+        '404':
+          description: If the developer does not exist.
+      deprecated: true
+  /developers/apis:
+    get:
+      tags:
+      - Developers
+      operationId: getAllPublicApiVersions
+      responses:
+        '200':
+          description: If the list of public apis was successfully returned
+        '403':
+          description: If the access is not allowed
+      deprecated: true
+  /developers/{developerId}/organizations/{organizationId}/apis/{apiId}/versions/{version}/definition:
+    get:
+      tags:
+      - Developers
+      operationId: getApiDefinition_1
+      parameters:
+      - name: developerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: organizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API definition is successfully returned.
+        '404':
+          description: If the API version does not exist.
+      deprecated: true
+  /developers/organizations/{organizationId}/apis/{apiId}/versions/{version}/definition:
+    get:
+      tags:
+      - Developers
+      operationId: getPublicApiDefinition
+      parameters:
+      - name: organizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API definition is successfully returned.
+        '404':
+          description: If the API version does not exist.
+      deprecated: true
+components:
+  schemas:
+    DeveloperMappingBean:
+      type: object
+      properties:
+        clientId:
+          type: string
+        organizationId:
+          type: string
+    DeveloperBean:
+      type: object
+      properties:
+        id:
+          type: string
+        clients:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DeveloperMappingBean'
+    UpdateDeveloperBean:
+      type: object
+      properties:
+        clients:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DeveloperMappingBean'

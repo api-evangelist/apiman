@@ -1,0 +1,1101 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Devportal API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Devportal
+paths:
+  /devportal/organizations:
+    post:
+      tags:
+      - Devportal
+      summary: Create home org for developer
+      description: Create a 'home' organization on behalf of the portal user (they may not normally have permissions to do this themselves).
+      operationId: createHomeOrgForDeveloper
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrganizationBean'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json: {}
+  /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition:
+    get:
+      tags:
+      - Devportal
+      summary: Get an API Definition (schema) for an API Version
+      operationId: getApiDefinition
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json: {}
+            application/wsdl+xml: {}
+            application/x-yaml: {}
+  /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}:
+    get:
+      tags:
+      - Devportal
+      summary: Get a specific API Version
+      operationId: getApiVersion
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionBeanDto'
+  /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint:
+    get:
+      tags:
+      - Devportal
+      summary: Get endpoint information for an API Version
+      operationId: getApiVersionEndpointInfo
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionEndpointSummaryBean'
+  /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans:
+    get:
+      tags:
+      - Devportal
+      summary: Get all Plans for an API Version
+      operationId: getApiVersionPlans
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeveloperApiPlanSummaryDto'
+  /devportal/apis/featured:
+    get:
+      tags:
+      - Devportal
+      summary: Get all featured APIs
+      operationId: getFeaturedApis
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
+  /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}:
+    get:
+      tags:
+      - Devportal
+      summary: Get a specific policy on a plan version
+      operationId: getPlanPolicy
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID
+        required: true
+        schema:
+          type: string
+      - name: planVersion
+        in: path
+        description: The Plan Version
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+  /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies:
+    get:
+      tags:
+      - Devportal
+      summary: List all policies on an API Version
+      operationId: listApiPolicies
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiVersionPolicySummaryDto'
+  /devportal/organizations/{orgId}/apis/{apiId}/versions:
+    get:
+      tags:
+      - Devportal
+      summary: List all API Versions within an organization
+      operationId: listApiVersions
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiVersionSummaryBean'
+  /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies:
+    get:
+      tags:
+      - Devportal
+      summary: List all policies on a specific Plan Version
+      operationId: listPlanPolicies
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID
+        required: true
+        schema:
+          type: string
+      - name: planVersion
+        in: path
+        description: The Plan Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicySummaryBean'
+  /devportal/search/apis:
+    post:
+      tags:
+      - Devportal
+      summary: Search Apiman APIs
+      operationId: searchApis
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
+  /devportal/protected/organizations:
+    post:
+      tags:
+      - Devportal
+      summary: Create home org for developer
+      description: Create a 'home' organization on behalf of the portal user (they may not normally have permissions to do this themselves).
+      operationId: createHomeOrgForDeveloper_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrganizationBean'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json: {}
+  /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition:
+    get:
+      tags:
+      - Devportal
+      summary: Get an API Definition (schema) for an API Version
+      operationId: getApiDefinition_3
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json: {}
+            application/wsdl+xml: {}
+            application/x-yaml: {}
+  /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}:
+    get:
+      tags:
+      - Devportal
+      summary: Get a specific API Version
+      operationId: getApiVersion_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionBeanDto'
+  /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint:
+    get:
+      tags:
+      - Devportal
+      summary: Get endpoint information for an API Version
+      operationId: getApiVersionEndpointInfo_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionEndpointSummaryBean'
+  /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans:
+    get:
+      tags:
+      - Devportal
+      summary: Get all Plans for an API Version
+      operationId: getApiVersionPlans_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeveloperApiPlanSummaryDto'
+  /devportal/protected/apis/featured:
+    get:
+      tags:
+      - Devportal
+      summary: Get all featured APIs
+      operationId: getFeaturedApis_1
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
+  /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}:
+    get:
+      tags:
+      - Devportal
+      summary: Get a specific policy on a plan version
+      operationId: getPlanPolicy_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID
+        required: true
+        schema:
+          type: string
+      - name: planVersion
+        in: path
+        description: The Plan Version
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        description: The Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyBean'
+  /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies:
+    get:
+      tags:
+      - Devportal
+      summary: List all policies on an API Version
+      operationId: listApiPolicies_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      - name: apiVersion
+        in: path
+        description: The API Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiVersionPolicySummaryDto'
+  /devportal/protected/organizations/{orgId}/apis/{apiId}/versions:
+    get:
+      tags:
+      - Devportal
+      summary: List all API Versions within an organization
+      operationId: listApiVersions_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: apiId
+        in: path
+        description: The API ID
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiVersionSummaryBean'
+  /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies:
+    get:
+      tags:
+      - Devportal
+      summary: List all policies on a specific Plan Version
+      operationId: listPlanPolicies_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The Organization ID
+        required: true
+        schema:
+          type: string
+      - name: planId
+        in: path
+        description: The Plan ID
+        required: true
+        schema:
+          type: string
+      - name: planVersion
+        in: path
+        description: The Plan Version
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicySummaryBean'
+  /devportal/protected/search/apis:
+    post:
+      tags:
+      - Devportal
+      summary: Search Apiman APIs
+      operationId: searchApis_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteriaBean'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
+components:
+  schemas:
+    PolicyBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: The type of policy
+          enum:
+          - Client
+          - Plan
+          - Api
+        organizationId:
+          type: string
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        configuration:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/PolicyDefinitionBean'
+        orderIndex:
+          type: integer
+          format: int32
+    ApiVersionBeanDto:
+      required:
+      - api
+      - createdBy
+      - createdOn
+      - definitionType
+      - endpointContentType
+      - endpointType
+      - id
+      - modifiedBy
+      - modifiedOn
+      - publicDiscoverability
+      - publishedOn
+      - retiredOn
+      - status
+      - version
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        api:
+          $ref: '#/components/schemas/ApiBeanDto'
+        version:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        endpointProperties:
+          type: object
+          additionalProperties:
+            type: string
+        gateways:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiGatewayBean'
+        publicAPI:
+          type: boolean
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBeanDto'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        publishedOn:
+          type: string
+          format: date-time
+        retiredOn:
+          type: string
+          format: date-time
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        definitionUrl:
+          type: string
+        extendedDescription:
+          type: string
+    ApiSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    ApiVersionPolicySummaryDto:
+      type: object
+      properties:
+        policyDefinitionId:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        policyConfiguration:
+          type: string
+    ApiVersionEndpointSummaryBean:
+      type: object
+      properties:
+        managedEndpoint:
+          type: string
+    ApiPlanBeanDto:
+      required:
+      - planId
+      - version
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    SearchCriteriaFilterBean:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        operator:
+          type: string
+          enum:
+          - bool_eq
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - like
+    SearchCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+    PagingBean:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    PolicySummaryBean:
+      type: object
+      properties:
+        policyDefinitionId:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    PolicyDefinitionBean:
+      type: object
+      properties:
+        id:
+          type: string
+        policyImpl:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        templates:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
+        pluginId:
+          type: integer
+          format: int64
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        form:
+          type: string
+        deleted:
+          type: boolean
+    SearchResultsBeanApiSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    ApiVersionSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        extendedDescription:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        version:
+          type: string
+        publicAPI:
+          type: boolean
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        apiTags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    DeveloperApiPlanSummaryDto:
+      type: object
+      properties:
+        planId:
+          type: string
+        planName:
+          type: string
+        planDescription:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        planPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyBean'
+    ApiBeanDto:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTag'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        numPublished:
+          type: integer
+          format: int32
+    ApiGatewayBean:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+    OrganizationBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+    PolicyDefinitionTemplateBean:
+      type: object
+      properties:
+        language:
+          type: string
+        template:
+          type: string
+    KeyValueTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        key:
+          type: string
+        value:
+          type: string
+    NewOrganizationBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string

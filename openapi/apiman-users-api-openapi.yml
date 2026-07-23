@@ -1,0 +1,888 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Users API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Users
+paths:
+  /users/{userId}/notifications/filters:
+    post:
+      tags:
+      - Users
+      operationId: createNotificationFilter
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationFilterDto'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json: {}
+  /users/{userId}:
+    get:
+      tags:
+      - Users
+      operationId: get_5
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the user exists and information is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+    put:
+      tags:
+      - Users
+      operationId: update_4
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserBean'
+      responses:
+        '204':
+          description: If the user information is successfully updated.
+  /users/{userId}/activity:
+    get:
+      tags:
+      - Users
+      operationId: getActivity
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: If the activity is successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+  /users/{userId}/apiorgs:
+    get:
+      tags:
+      - Users
+      operationId: getApiOrganizations
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the organizations are successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationSummaryBean'
+  /users/{userId}/apis:
+    get:
+      tags:
+      - Users
+      operationId: getApis
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the API list is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiSummaryBean'
+  /users/{userId}/clientorgs:
+    get:
+      tags:
+      - Users
+      operationId: getClientOrganizations
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the organizations are successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationSummaryBean'
+  /users/{userId}/viewable-clients:
+    get:
+      tags:
+      - Users
+      operationId: getClients
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the client list is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientSummaryBean'
+  /users/{userId}/editable-clients:
+    get:
+      tags:
+      - Users
+      operationId: getEditableClients
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the client list is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientSummaryBean'
+  /users/currentuser/info:
+    get:
+      tags:
+      - Users
+      operationId: getInfo
+      responses:
+        '200':
+          description: If the information is correctly returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentUserBean'
+  /users/{userId}/notifications:
+    put:
+      tags:
+      - Users
+      operationId: markNotifications
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationActionDto'
+        required: true
+      responses:
+        '202':
+          description: If the command to mark the user's notification was accepted
+    post:
+      tags:
+      - Users
+      operationId: getNotificationsForUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationCriteriaBean'
+      responses:
+        '200':
+          description: If the notifications are successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultsBeanNotificationDtoObject'
+    head:
+      tags:
+      - Users
+      operationId: getNotificationCountForUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: includeDismissed
+        in: query
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '204':
+          description: If user's notification metadata is successfully retrieved
+  /users/{userId}/organizations:
+    get:
+      tags:
+      - Users
+      operationId: getOrganizations
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the organization list is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationSummaryBean'
+  /users/{userId}/permissions:
+    get:
+      tags:
+      - Users
+      operationId: getPermissionsForUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the permissions are successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPermissionsBean'
+  /users/{userId}/planorgs:
+    get:
+      tags:
+      - Users
+      operationId: getPlanOrganizations
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the organizations are successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationSummaryBean'
+components:
+  schemas:
+    NotificationPreferenceEntity:
+      required:
+      - type
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/UserBean'
+        type:
+          type: string
+          enum:
+          - WEB
+          - EMAIL
+        rules:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationFilterEntity'
+    UpdateUserBean:
+      type: object
+      properties:
+        fullName:
+          type: string
+        email:
+          type: string
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+    UserBean:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+        admin:
+          type: boolean
+    ApiSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    CreateNotificationFilterDto:
+      type: object
+      properties:
+        source:
+          type: string
+        notificationType:
+          type: string
+          enum:
+          - WEB
+          - EMAIL
+        expression:
+          type: string
+        enabled:
+          type: boolean
+        message:
+          type: string
+    UserDto:
+      required:
+      - email
+      - fullName
+      - joinedOn
+      - locale
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+        admin:
+          type: boolean
+    SearchCriteriaFilterBean:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        operator:
+          type: string
+          enum:
+          - bool_eq
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - like
+    SearchCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+    PagingBean:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    NotificationCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+    NotificationActionDto:
+      required:
+      - status
+      type: object
+      properties:
+        markAll:
+          type: boolean
+        notificationIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        status:
+          type: string
+          enum:
+          - OPEN
+          - USER_DISMISSED
+          - SYSTEM_DISMISSED
+    CurrentUserBean:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+        notificationPreferences:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationPreferenceEntity'
+        admin:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionBean'
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    AuditEntryBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        who:
+          type: string
+        organizationId:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Organization
+          - Client
+          - Plan
+          - Api
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        what:
+          type: string
+          enum:
+          - Create
+          - Update
+          - Delete
+          - Clone
+          - Grant
+          - Revoke
+          - Publish
+          - Retire
+          - Register
+          - Unregister
+          - AddPolicy
+          - RemovePolicy
+          - UpdatePolicy
+          - ReorderPolicies
+          - CreateContract
+          - BreakContract
+          - Lock
+          - UpdateDefinition
+          - DeleteDefinition
+        data:
+          type: string
+    UserPermissionsBean:
+      type: object
+      properties:
+        userId:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionBean'
+    NotificationFilterEntity:
+      required:
+      - expression
+      - source
+      type: object
+      properties:
+        source:
+          type: string
+        expression:
+          type: string
+        enabled:
+          type: boolean
+        message:
+          type: string
+    SearchResultsBeanNotificationDtoObject:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationDtoObject'
+        totalSize:
+          type: integer
+          format: int32
+    SearchResultsBeanAuditEntryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEntryBean'
+        totalSize:
+          type: integer
+          format: int32
+    ClientSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numContracts:
+          type: integer
+          format: int32
+    OrganizationSummaryBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numClients:
+          type: integer
+          format: int32
+        numApis:
+          type: integer
+          format: int32
+        numMembers:
+          type: integer
+          format: int32
+    NotificationDtoObject:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        category:
+          type: string
+          enum:
+          - USER_ADMINISTRATION
+          - API_ADMINISTRATION
+          - API_LIFECYCLE
+          - CLIENT_LIFECYCLE
+          - SYSTEM
+          - OTHER
+        reason:
+          type: string
+        reasonMessage:
+          type: string
+        status:
+          type: string
+          enum:
+          - OPEN
+          - USER_DISMISSED
+          - SYSTEM_DISMISSED
+        createdOn:
+          type: string
+          format: date-time
+        modifiedOn:
+          type: string
+          format: date-time
+        recipient:
+          $ref: '#/components/schemas/UserDto'
+        source:
+          type: string
+        payload:
+          type: object
+    PermissionBean:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+          - orgView
+          - orgEdit
+          - orgAdmin
+          - apiView
+          - apiEdit
+          - apiAdmin
+          - clientView
+          - clientEdit
+          - clientAdmin
+          - planView
+          - planEdit
+          - planAdmin
+        organizationId:
+          type: string

@@ -1,0 +1,157 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions Policy Definitions API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Policy Definitions
+paths:
+  /policyDefs:
+    get:
+      tags:
+      - Policy Definitions
+      operationId: list_2
+      responses:
+        '200':
+          description: If the policy definition list is successfully returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicyDefinitionSummaryBean'
+    post:
+      tags:
+      - Policy Definitions
+      operationId: create_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyDefinitionBean'
+      responses:
+        '200':
+          description: If the policy definition is added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyDefinitionBean'
+  /policyDefs/{policyDefinitionId}:
+    get:
+      tags:
+      - Policy Definitions
+      operationId: get_3
+      parameters:
+      - name: policyDefinitionId
+        in: path
+        description: The policy definition ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: If the policy definition is returned successfully.
+    put:
+      tags:
+      - Policy Definitions
+      operationId: update_2
+      parameters:
+      - name: policyDefinitionId
+        in: path
+        description: The policy definition ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdatePolicyDefinitionBean'
+      responses:
+        '204':
+          description: If the update was successful.
+    delete:
+      tags:
+      - Policy Definitions
+      operationId: delete_3
+      parameters:
+      - name: policyDefinitionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: If the policy definition is successfully deleted.
+components:
+  schemas:
+    UpdatePolicyDefinitionBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+      description: Update a new policy definition
+    PolicyDefinitionSummaryBean:
+      type: object
+      properties:
+        id:
+          type: string
+        policyImpl:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        pluginId:
+          type: integer
+          format: int64
+    PolicyDefinitionTemplateBean:
+      type: object
+      properties:
+        language:
+          type: string
+        template:
+          type: string
+    PolicyDefinitionBean:
+      type: object
+      properties:
+        id:
+          type: string
+        policyImpl:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        templates:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
+        pluginId:
+          type: integer
+          format: int64
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        form:
+          type: string
+        deleted:
+          type: boolean

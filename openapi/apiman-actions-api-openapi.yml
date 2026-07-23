@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: Actions
+paths:
+  /actions/contracts:
+    post:
+      tags:
+      - Actions
+      summary: Approve a contract
+      description: Approve a contract (assuming it requires approval). If all contracts for a given Client Version have been approved, then it will transition from `AwaitingApproval` to `Ready`, and hence can be published.
+      operationId: approveContract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractActionDto'
+      responses:
+        '204':
+          description: If the action completes successfully.
+  /actions:
+    post:
+      tags:
+      - Actions
+      summary: Execute an Entity Action
+      description: Call this endpoint in order to execute actions for apiman entities such as Plans, APIs, or Clients. The type of the action must be included in the request payload.
+      operationId: performAction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionBean'
+      responses:
+        '204':
+          description: If the action completes successfully.
+components:
+  schemas:
+    ActionBean:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - publishAPI
+          - retireAPI
+          - registerClient
+          - unregisterClient
+          - lockPlan
+        organizationId:
+          type: string
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+    ContractActionDto:
+      type: object
+      properties:
+        contractId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - AwaitingApproval
+          - Created
+          - Rejected
+        rejectionReason:
+          type: string
+        autoPromote:
+          type: boolean

@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  title: API Manager REST Actions System API
+  description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
+  version: 3.1.0-SNAPSHOT
+servers:
+- url: /apiman
+tags:
+- name: System
+paths:
+  /system/export:
+    get:
+      tags:
+      - System
+      operationId: exportData
+      parameters:
+      - name: download
+        in: query
+        description: The download ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: On successful export
+  /system/status:
+    get:
+      tags:
+      - System
+      operationId: getStatus
+      responses:
+        '200':
+          description: Service is available.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStatusBean'
+  /system/import:
+    post:
+      tags:
+      - System
+      operationId: importData
+      responses:
+        '200':
+          description: On successful import
+components:
+  schemas:
+    SystemStatusBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        moreInfo:
+          type: string
+        version:
+          type: string
+        builtOn:
+          type: string
+        up:
+          type: boolean
