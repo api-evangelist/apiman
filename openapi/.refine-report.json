@@ -1,0 +1,42 @@
+{
+  "provider": "apiman",
+  "sources": [
+    "apiman-actions-api-openapi.yml",
+    "apiman-blobs-api-openapi.yml",
+    "apiman-developers-api-openapi.yml",
+    "apiman-devportal-api-openapi.yml",
+    "apiman-downloads-api-openapi.yml",
+    "apiman-events-api-openapi.yml",
+    "apiman-experimental-api-openapi.yml",
+    "apiman-gateways-api-openapi.yml",
+    "apiman-organizations-api-openapi.yml",
+    "apiman-plugins-api-openapi.yml",
+    "apiman-policy-definitions-api-openapi.yml",
+    "apiman-roles-api-openapi.yml",
+    "apiman-search-api-openapi.yml",
+    "apiman-system-api-openapi.yml",
+    "apiman-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "apiman-actions-api-openapi.yml",
+    "apiman-blobs-api-openapi.yml",
+    "apiman-developers-api-openapi.yml",
+    "apiman-devportal-api-openapi.yml",
+    "apiman-downloads-api-openapi.yml",
+    "apiman-events-api-openapi.yml",
+    "apiman-experimental-api-openapi.yml",
+    "apiman-gateways-api-openapi.yml",
+    "apiman-organizations-api-openapi.yml",
+    "apiman-plugins-api-openapi.yml",
+    "apiman-policy-definitions-api-openapi.yml",
+    "apiman-roles-api-openapi.yml",
+    "apiman-search-api-openapi.yml",
+    "apiman-system-api-openapi.yml",
+    "apiman-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

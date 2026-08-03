@@ -2,6 +2,13 @@
   "repo": "apiman",
   "feeds": [
     {
+      "source": "https://www.apiman.io/blog/feed.xml",
+      "feed_url": "https://www.apiman.io/blog/feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.apiman.io/blog",
       "feed_url": "https://www.apiman.io/blog/feed.xml",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
-  "post_count": 12
+  "fetched": "2026-08-01T15:49:00Z",
+  "post_count": 17
 }
