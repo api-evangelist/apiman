@@ -206,6 +206,8 @@ apis:
   - type: OpenAPI
     url: openapi/apiman-users-api-openapi.yml
 common:
+  - type: Support
+    url: https://www.apiman.io/support.html
   - type: AgenticAccess
     url: agentic-access/apiman-agentic-access.yml
   - type: DomainSecurity
