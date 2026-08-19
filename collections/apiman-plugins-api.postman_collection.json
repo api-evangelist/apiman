@@ -1,0 +1,723 @@
+{
+  "item": [
+    {
+      "id": "45481be5-6fd5-4f95-bcbe-784cefd49b48",
+      "name": "Plugins",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74aa8808-9f74-4b94-8bdc-f74bb1f89feb",
+          "name": "list 1",
+          "request": {
+            "name": "list 1",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b9b7319-0cf9-45e3-840d-37d93c13beba",
+              "name": "If the list of plugins is successfully returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4437,\n    \"groupId\": \"string\",\n    \"artifactId\": \"string\",\n    \"version\": \"string\",\n    \"classifier\": \"string\",\n    \"type\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1953-04-07T14:47:02.580Z\"\n  },\n  {\n    \"id\": 3739,\n    \"groupId\": \"string\",\n    \"artifactId\": \"string\",\n    \"version\": \"string\",\n    \"classifier\": \"string\",\n    \"type\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1986-11-23T09:16:38.394Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fb74d45-76dc-46e5-8614-dfb87e5f2d22",
+          "name": "create 2",
+          "request": {
+            "name": "create 2",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupId\": \"<string>\",\n  \"artifactId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"classifier\": \"<string>\",\n  \"type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"upgrade\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ddfeb57e-edb6-43f4-b96d-4988a1dc2c4b",
+              "name": "If the plugin was added successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"artifactId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"classifier\": \"<string>\",\n  \"type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"upgrade\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6204,\n  \"groupId\": \"string\",\n  \"artifactId\": \"string\",\n  \"version\": \"string\",\n  \"classifier\": \"string\",\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdBy\": \"string\",\n  \"createdOn\": \"1953-02-04T05:53:32.240Z\",\n  \"deleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b9f695e-d87d-41a4-8374-2bcaecbf4f25",
+          "name": "get 2",
+          "request": {
+            "name": "get 2",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "pluginId",
+                  "description": "(Required) The plugin ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff471cb9-5d2f-47b3-941e-7e7ded924adb",
+              "name": "If the plugin exists and is returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6204,\n  \"groupId\": \"string\",\n  \"artifactId\": \"string\",\n  \"version\": \"string\",\n  \"classifier\": \"string\",\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdBy\": \"string\",\n  \"createdOn\": \"1953-02-04T05:53:32.240Z\",\n  \"deleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9a9b384-0b7f-43bc-9133-d0477454c3a4",
+          "name": "delete 2",
+          "request": {
+            "name": "delete 2",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "pluginId",
+                  "description": "(Required) The plugin ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca8375ef-d256-460e-bfb2-52ac039749a6",
+              "name": "If the plugin was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e59b6d9d-77bc-43fc-af74-dd34abd5d415",
+          "name": "get Available Plugins",
+          "request": {
+            "name": "get Available Plugins",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                "availablePlugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86a67b5e-3bfe-4660-b105-9a44b1ce5bde",
+              "name": "If the plugins are returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    "availablePlugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4437,\n    \"groupId\": \"string\",\n    \"artifactId\": \"string\",\n    \"version\": \"string\",\n    \"classifier\": \"string\",\n    \"type\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1953-04-07T14:47:02.580Z\"\n  },\n  {\n    \"id\": 3739,\n    \"groupId\": \"string\",\n    \"artifactId\": \"string\",\n    \"version\": \"string\",\n    \"classifier\": \"string\",\n    \"type\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1986-11-23T09:16:38.394Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "468f4f73-26a5-402c-87aa-3aade4259640",
+              "name": "If the user is not an admin.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    "availablePlugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92d5bf78-4b80-4a1d-a78f-683a08e7235b",
+          "name": "get Policy Defs",
+          "request": {
+            "name": "get Policy Defs",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId",
+                "policyDefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "pluginId",
+                  "description": "(Required) The plugin ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b727f3e1-661a-49e3-91ba-7f1267b52701",
+              "name": "If the list of policy definitions is returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "policyDefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"policyImpl\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"formType\": \"Default\",\n    \"pluginId\": 8859\n  },\n  {\n    \"id\": \"string\",\n    \"policyImpl\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"formType\": \"Default\",\n    \"pluginId\": 5605\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e0bc711-57af-4980-abf5-49abd821ed55",
+              "name": "If the plugin does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "policyDefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b89dc75c-8007-41d2-b336-eb5869436949",
+          "name": "get Policy Form",
+          "request": {
+            "name": "get Policy Form",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId",
+                "policyDefs",
+                ":policyDefId",
+                "form"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "pluginId",
+                  "description": "(Required) The plugin ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyDefId",
+                  "description": "(Required) The policy definition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d596bc97-0c95-4a8d-bcd3-58009909599a",
+              "name": "If the form is returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "policyDefs",
+                    ":policyDefId",
+                    "form"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyDefId",
+                      "description": "(Required) The policy definition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc5d744a-6391-47f7-91a0-b4a255f568a8",
+              "name": "If the form does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "policyDefs",
+                    ":policyDefId",
+                    "form"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyDefId",
+                      "description": "(Required) The policy definition ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/apiman",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d962c942-95c9-4c21-bd80-3a2fed2f07dc",
+    "name": "API Manager REST Actions Plugins API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.",
+      "type": "text/plain"
+    }
+  }
+}

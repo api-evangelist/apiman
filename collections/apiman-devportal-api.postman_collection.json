@@ -1,0 +1,2558 @@
+{
+  "item": [
+    {
+      "id": "5aac23a9-3f04-453b-bae2-74ceeeac4c8e",
+      "name": "Devportal",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d00d4adc-3802-41f1-806b-df4d24e4ab54",
+          "name": "Create home org for developer",
+          "request": {
+            "name": "Create home org for developer",
+            "description": {
+              "content": "Create a 'home' organization on behalf of the portal user (they may not normally have permissions to do this themselves).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devportal",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69442710-99ae-4b7a-9676-3f97720d1b95",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7518f0f-4525-48d7-9096-bca925201145",
+          "name": "Get an API Definition (schema) for an API Version",
+          "request": {
+            "name": "Get an API Definition (schema) for an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "definition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5bba413-507e-4578-bf13-39272a6be5b4",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ab2e56b-89fa-4106-805c-7429c124c263",
+          "name": "Get a specific API Version",
+          "request": {
+            "name": "Get a specific API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "deb8a09a-8012-4608-a017-876beb5b647c",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api\": {\n    \"organization\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1991-10-12T10:56:48.053Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedOn\": \"1952-04-08T05:47:25.820Z\"\n    },\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"image\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      {\n        \"id\": 3398,\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"id\": 8811,\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1977-02-25T05:15:25.968Z\",\n    \"numPublished\": 8466\n  },\n  \"createdBy\": \"string\",\n  \"createdOn\": \"2000-08-20T05:00:55.646Z\",\n  \"definitionType\": \"None\",\n  \"endpointContentType\": \"json\",\n  \"endpointType\": \"rest\",\n  \"id\": 7291,\n  \"modifiedBy\": \"string\",\n  \"modifiedOn\": \"1981-10-24T05:33:36.239Z\",\n  \"publicDiscoverability\": \"FULL_PLATFORM_MEMBERS\",\n  \"publishedOn\": \"2021-10-19T01:07:58.389Z\",\n  \"retiredOn\": \"1959-04-18T06:10:02.076Z\",\n  \"status\": \"Retired\",\n  \"version\": \"string\",\n  \"endpoint\": \"string\",\n  \"endpointProperties\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"gateways\": [\n    {\n      \"gatewayId\": \"string\"\n    }\n  ],\n  \"publicAPI\": true,\n  \"plans\": [\n    {\n      \"planId\": \"string\",\n      \"version\": \"string\",\n      \"requiresApproval\": false,\n      \"discoverability\": \"ORG_MEMBERS\"\n    },\n    {\n      \"planId\": \"string\",\n      \"version\": \"string\",\n      \"requiresApproval\": true,\n      \"discoverability\": \"ORG_MEMBERS\"\n    }\n  ],\n  \"parsePayload\": true,\n  \"disableKeysStrip\": false,\n  \"definitionUrl\": \"string\",\n  \"extendedDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d682fc3e-7a8b-487c-87f0-7cfa92911980",
+          "name": "Get endpoint information for an API Version",
+          "request": {
+            "name": "Get endpoint information for an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "endpoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "946ba7a8-12a2-47fc-bbb4-856c703cbe5c",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "endpoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"managedEndpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8b11629-aa38-4374-93ec-90485d3aa4ef",
+          "name": "Get all Plans for an API Version",
+          "request": {
+            "name": "Get all Plans for an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62ec2612-a053-4331-b25c-7913a41014df",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"planId\": \"string\",\n    \"planName\": \"string\",\n    \"planDescription\": \"string\",\n    \"version\": \"string\",\n    \"requiresApproval\": false,\n    \"discoverability\": \"ANONYMOUS\",\n    \"planPolicies\": [\n      {\n        \"id\": 9670,\n        \"type\": \"Plan\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"1955-10-03T10:01:38.664Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"1947-04-08T02:13:56.160Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 3044,\n          \"formType\": \"JsonSchema\",\n          \"form\": \"string\",\n          \"deleted\": true\n        },\n        \"orderIndex\": 8500\n      },\n      {\n        \"id\": 3704,\n        \"type\": \"Api\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"2004-09-04T13:30:48.927Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"1979-06-06T12:42:06.631Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 9075,\n          \"formType\": \"Default\",\n          \"form\": \"string\",\n          \"deleted\": true\n        },\n        \"orderIndex\": 2105\n      }\n    ]\n  },\n  {\n    \"planId\": \"string\",\n    \"planName\": \"string\",\n    \"planDescription\": \"string\",\n    \"version\": \"string\",\n    \"requiresApproval\": false,\n    \"discoverability\": \"ANONYMOUS\",\n    \"planPolicies\": [\n      {\n        \"id\": 7938,\n        \"type\": \"Plan\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"1953-01-25T08:05:38.754Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"1947-04-10T18:57:29.902Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 1130,\n          \"formType\": \"JsonSchema\",\n          \"form\": \"string\",\n          \"deleted\": false\n        },\n        \"orderIndex\": 3064\n      },\n      {\n        \"id\": 2914,\n        \"type\": \"Api\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"2002-10-29T03:45:13.717Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"1969-01-12T09:18:50.582Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 8487,\n          \"formType\": \"Default\",\n          \"form\": \"string\",\n          \"deleted\": false\n        },\n        \"orderIndex\": 5691\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93cbc86b-4f9d-409d-bfc0-38afe292557e",
+          "name": "Get all featured APIs",
+          "request": {
+            "name": "Get all featured APIs",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "apis",
+                "featured"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b017434-5626-46da-841e-6cbda5feaa5b",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "apis",
+                    "featured"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"1963-01-02T01:27:36.045Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"2012-05-04T00:00:44.739Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalSize\": 185\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c27ba8c5-652f-4e5e-89b0-77ac4f586806",
+          "name": "Get a specific policy on a plan version",
+          "request": {
+            "name": "Get a specific policy on a plan version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "plans",
+                ":planId",
+                "versions",
+                ":planVersion",
+                "policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The Plan ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planVersion",
+                  "description": "(Required) The Plan Version"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "policyId",
+                  "description": "(Required) The Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ec20b1a-a07b-4546-bc0b-a5b4f623792c",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "plans",
+                    ":planId",
+                    "versions",
+                    ":planVersion",
+                    "policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The Plan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planVersion",
+                      "description": "(Required) The Plan Version"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "policyId",
+                      "description": "(Required) The Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9044,\n  \"type\": \"Api\",\n  \"organizationId\": \"string\",\n  \"entityId\": \"string\",\n  \"entityVersion\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"configuration\": \"string\",\n  \"createdBy\": \"string\",\n  \"createdOn\": \"2006-08-02T05:40:26.299Z\",\n  \"modifiedBy\": \"string\",\n  \"modifiedOn\": \"1954-10-21T09:28:32.413Z\",\n  \"definition\": {\n    \"id\": \"string\",\n    \"policyImpl\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"templates\": [\n      {\n        \"language\": \"string\",\n        \"template\": \"string\"\n      }\n    ],\n    \"pluginId\": 7350,\n    \"formType\": \"JsonSchema\",\n    \"form\": \"string\",\n    \"deleted\": false\n  },\n  \"orderIndex\": 6749\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72fec22e-d9f3-4c7a-a4f8-68d767c47496",
+          "name": "List all policies on an API Version",
+          "request": {
+            "name": "List all policies on an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "283c524e-aa10-4bad-9cf9-8b4716f9cda2",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 2130,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1977-04-24T11:26:51.101Z\",\n    \"policyConfiguration\": \"string\"\n  },\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 7784,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1988-01-22T19:39:30.064Z\",\n    \"policyConfiguration\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c72337f-566c-45c2-a30f-7b2fbc132454",
+          "name": "List all API Versions within an organization",
+          "request": {
+            "name": "List all API Versions within an organization",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0054ca1d-2f60-49bb-a40d-12f0808508db",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"extendedDescription\": \"string\",\n    \"status\": \"Published\",\n    \"version\": \"string\",\n    \"publicAPI\": true,\n    \"publicDiscoverability\": \"ORG_MEMBERS\",\n    \"apiTags\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  {\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"extendedDescription\": \"string\",\n    \"status\": \"Retired\",\n    \"version\": \"string\",\n    \"publicAPI\": true,\n    \"publicDiscoverability\": \"PORTAL\",\n    \"apiTags\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab04c872-7f99-4a5e-9e50-36fad7bca803",
+          "name": "List all policies on a specific Plan Version",
+          "request": {
+            "name": "List all policies on a specific Plan Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "organizations",
+                ":orgId",
+                "plans",
+                ":planId",
+                "versions",
+                ":planVersion",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The Plan ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planVersion",
+                  "description": "(Required) The Plan Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3c1d2db-1d6e-4811-8f9d-4e079cf1b017",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "organizations",
+                    ":orgId",
+                    "plans",
+                    ":planId",
+                    "versions",
+                    ":planVersion",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The Plan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planVersion",
+                      "description": "(Required) The Plan Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 6362,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1968-04-02T07:37:41.329Z\"\n  },\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 6178,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"2006-11-23T22:14:01.482Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cee22844-ce0f-4b07-a05a-e85701bf80a4",
+          "name": "Search Apiman APIs",
+          "request": {
+            "name": "Search Apiman APIs",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "search",
+                "apis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7485d4c2-4ec9-486e-93c3-798b293e0275",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "search",
+                    "apis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"2002-10-09T10:09:01.371Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"1950-06-30T01:04:46.775Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalSize\": 3832\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d3f2943-b9a6-4cd6-a963-e91627fd816f",
+          "name": "Create home org for developer",
+          "request": {
+            "name": "Create home org for developer",
+            "description": {
+              "content": "Create a 'home' organization on behalf of the portal user (they may not normally have permissions to do this themselves).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6c8f82b-a051-4187-be2c-b157c9167fb2",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e16de53-5b16-4a86-a4a2-4494789c1498",
+          "name": "Get an API Definition (schema) for an API Version",
+          "request": {
+            "name": "Get an API Definition (schema) for an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "definition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30913913-23b9-4eda-b3bb-4fe7e1cbc666",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "697dc5d2-7ff2-458a-993c-830ae3dbde10",
+          "name": "Get a specific API Version",
+          "request": {
+            "name": "Get a specific API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6333494-a6e7-44a1-8066-7c6cd312008c",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api\": {\n    \"organization\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"2022-06-22T10:00:28.100Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedOn\": \"2012-12-09T15:11:53.012Z\"\n    },\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"image\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      {\n        \"id\": 6715,\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"id\": 3179,\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1966-08-30T14:15:08.006Z\",\n    \"numPublished\": 5381\n  },\n  \"createdBy\": \"string\",\n  \"createdOn\": \"2025-12-30T02:36:14.580Z\",\n  \"definitionType\": \"None\",\n  \"endpointContentType\": \"json\",\n  \"endpointType\": \"rest\",\n  \"id\": 5439,\n  \"modifiedBy\": \"string\",\n  \"modifiedOn\": \"1949-03-20T03:07:41.869Z\",\n  \"publicDiscoverability\": \"FULL_PLATFORM_MEMBERS\",\n  \"publishedOn\": \"1971-10-09T10:58:53.583Z\",\n  \"retiredOn\": \"1968-05-05T20:50:37.302Z\",\n  \"status\": \"Published\",\n  \"version\": \"string\",\n  \"endpoint\": \"string\",\n  \"endpointProperties\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"gateways\": [\n    {\n      \"gatewayId\": \"string\"\n    }\n  ],\n  \"publicAPI\": true,\n  \"plans\": [\n    {\n      \"planId\": \"string\",\n      \"version\": \"string\",\n      \"requiresApproval\": true,\n      \"discoverability\": \"FULL_PLATFORM_MEMBERS\"\n    },\n    {\n      \"planId\": \"string\",\n      \"version\": \"string\",\n      \"requiresApproval\": true,\n      \"discoverability\": \"ORG_MEMBERS\"\n    }\n  ],\n  \"parsePayload\": true,\n  \"disableKeysStrip\": true,\n  \"definitionUrl\": \"string\",\n  \"extendedDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0baeb61d-cde3-46fb-945b-3ab05182ca31",
+          "name": "Get endpoint information for an API Version",
+          "request": {
+            "name": "Get endpoint information for an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "endpoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14e96dad-a208-4e36-b5e5-3e04a8df9f26",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "endpoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"managedEndpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0403d2c-d885-48e7-9ab7-2d073132a4f7",
+          "name": "Get all Plans for an API Version",
+          "request": {
+            "name": "Get all Plans for an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "965a1b72-6dc4-4310-a678-6603f2134bf8",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"planId\": \"string\",\n    \"planName\": \"string\",\n    \"planDescription\": \"string\",\n    \"version\": \"string\",\n    \"requiresApproval\": true,\n    \"discoverability\": \"PORTAL\",\n    \"planPolicies\": [\n      {\n        \"id\": 104,\n        \"type\": \"Api\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"1988-09-08T12:10:35.910Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"1975-06-19T12:45:29.285Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 5789,\n          \"formType\": \"Default\",\n          \"form\": \"string\",\n          \"deleted\": true\n        },\n        \"orderIndex\": 9509\n      },\n      {\n        \"id\": 6041,\n        \"type\": \"Client\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"1959-02-18T04:34:47.857Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"2023-07-22T00:00:58.598Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 8128,\n          \"formType\": \"JsonSchema\",\n          \"form\": \"string\",\n          \"deleted\": true\n        },\n        \"orderIndex\": 9474\n      }\n    ]\n  },\n  {\n    \"planId\": \"string\",\n    \"planName\": \"string\",\n    \"planDescription\": \"string\",\n    \"version\": \"string\",\n    \"requiresApproval\": true,\n    \"discoverability\": \"ORG_MEMBERS\",\n    \"planPolicies\": [\n      {\n        \"id\": 1720,\n        \"type\": \"Plan\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"2005-03-16T05:11:06.279Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"1991-06-03T22:44:04.046Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 6422,\n          \"formType\": \"JsonSchema\",\n          \"form\": \"string\",\n          \"deleted\": true\n        },\n        \"orderIndex\": 7230\n      },\n      {\n        \"id\": 880,\n        \"type\": \"Plan\",\n        \"organizationId\": \"string\",\n        \"entityId\": \"string\",\n        \"entityVersion\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"configuration\": \"string\",\n        \"createdBy\": \"string\",\n        \"createdOn\": \"1980-09-19T23:55:38.790Z\",\n        \"modifiedBy\": \"string\",\n        \"modifiedOn\": \"2017-05-25T09:40:32.267Z\",\n        \"definition\": {\n          \"id\": \"string\",\n          \"policyImpl\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"icon\": \"string\",\n          \"templates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pluginId\": 3925,\n          \"formType\": \"Default\",\n          \"form\": \"string\",\n          \"deleted\": true\n        },\n        \"orderIndex\": 7640\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7549c291-461f-41da-9331-553100f691b8",
+          "name": "Get all featured APIs",
+          "request": {
+            "name": "Get all featured APIs",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "apis",
+                "featured"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0815b616-401e-4235-9e66-0def01d10a23",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "apis",
+                    "featured"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"2002-10-09T10:09:01.371Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"1950-06-30T01:04:46.775Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalSize\": 3832\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b149fde-9de1-49df-bb06-0c78e1f7f63f",
+          "name": "Get a specific policy on a plan version",
+          "request": {
+            "name": "Get a specific policy on a plan version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "plans",
+                ":planId",
+                "versions",
+                ":planVersion",
+                "policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The Plan ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planVersion",
+                  "description": "(Required) The Plan Version"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "policyId",
+                  "description": "(Required) The Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c15ebbef-8802-4d81-87f4-715209371dda",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "plans",
+                    ":planId",
+                    "versions",
+                    ":planVersion",
+                    "policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The Plan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planVersion",
+                      "description": "(Required) The Plan Version"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "policyId",
+                      "description": "(Required) The Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9044,\n  \"type\": \"Api\",\n  \"organizationId\": \"string\",\n  \"entityId\": \"string\",\n  \"entityVersion\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"configuration\": \"string\",\n  \"createdBy\": \"string\",\n  \"createdOn\": \"2006-08-02T05:40:26.299Z\",\n  \"modifiedBy\": \"string\",\n  \"modifiedOn\": \"1954-10-21T09:28:32.413Z\",\n  \"definition\": {\n    \"id\": \"string\",\n    \"policyImpl\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"templates\": [\n      {\n        \"language\": \"string\",\n        \"template\": \"string\"\n      }\n    ],\n    \"pluginId\": 7350,\n    \"formType\": \"JsonSchema\",\n    \"form\": \"string\",\n    \"deleted\": false\n  },\n  \"orderIndex\": 6749\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8074c3b-9719-43c1-b3c8-c6e6cdbc558b",
+          "name": "List all policies on an API Version",
+          "request": {
+            "name": "List all policies on an API Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions",
+                ":apiVersion",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiVersion",
+                  "description": "(Required) The API Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cccdc200-4b53-4442-8b38-2994714865c0",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions",
+                    ":apiVersion",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiVersion",
+                      "description": "(Required) The API Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 2130,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1977-04-24T11:26:51.101Z\",\n    \"policyConfiguration\": \"string\"\n  },\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 7784,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1988-01-22T19:39:30.064Z\",\n    \"policyConfiguration\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ebce707-6550-4dc6-a02d-e0eb548a54c8",
+          "name": "List all API Versions within an organization",
+          "request": {
+            "name": "List all API Versions within an organization",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "apis",
+                ":apiId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) The API ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "605b30b7-1bc1-48d6-9daa-532e71fcf26f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "apis",
+                    ":apiId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) The API ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"extendedDescription\": \"string\",\n    \"status\": \"Retired\",\n    \"version\": \"string\",\n    \"publicAPI\": true,\n    \"publicDiscoverability\": \"ANONYMOUS\",\n    \"apiTags\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  {\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"extendedDescription\": \"string\",\n    \"status\": \"Retired\",\n    \"version\": \"string\",\n    \"publicAPI\": true,\n    \"publicDiscoverability\": \"PORTAL\",\n    \"apiTags\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5094cb14-a632-4411-b2d3-7caf5e710f82",
+          "name": "List all policies on a specific Plan Version",
+          "request": {
+            "name": "List all policies on a specific Plan Version",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "organizations",
+                ":orgId",
+                "plans",
+                ":planId",
+                "versions",
+                ":planVersion",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) The Organization ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The Plan ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planVersion",
+                  "description": "(Required) The Plan Version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae1f1438-3ec1-41d6-a2cf-82963edf5d51",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "organizations",
+                    ":orgId",
+                    "plans",
+                    ":planId",
+                    "versions",
+                    ":planVersion",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) The Organization ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The Plan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planVersion",
+                      "description": "(Required) The Plan Version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 6362,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"1968-04-02T07:37:41.329Z\"\n  },\n  {\n    \"policyDefinitionId\": \"string\",\n    \"id\": 6178,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"createdBy\": \"string\",\n    \"createdOn\": \"2006-11-23T22:14:01.482Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2d22533-a3ba-49dc-a224-f0a1af57dc16",
+          "name": "Search Apiman APIs",
+          "request": {
+            "name": "Search Apiman APIs",
+            "description": {},
+            "url": {
+              "path": [
+                "devportal",
+                "protected",
+                "search",
+                "apis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15cd3f4b-bd2a-452a-bbcc-b605e3ea15e8",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devportal",
+                    "protected",
+                    "search",
+                    "apis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"2002-10-09T10:09:01.371Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"1950-06-30T01:04:46.775Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalSize\": 3832\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/apiman",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "111671a3-1cf6-4d6f-839c-b03dddd7b965",
+    "name": "API Manager REST Actions Devportal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.",
+      "type": "text/plain"
+    }
+  }
+}

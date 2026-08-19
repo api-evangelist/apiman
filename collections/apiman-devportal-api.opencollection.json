@@ -1,0 +1,596 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Devportal API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devportal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create home org for developer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/devportal/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a 'home' organization on behalf of the portal user (they may not normally have permissions to do this themselves)."
+        },
+        {
+          "info": {
+            "name": "Get an API Definition (schema) for an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/apis/:apiId/versions/:apiVersion/definition",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get an API Definition (schema) for an API Version"
+        },
+        {
+          "info": {
+            "name": "Get a specific API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/apis/:apiId/versions/:apiVersion",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get a specific API Version"
+        },
+        {
+          "info": {
+            "name": "Get endpoint information for an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/apis/:apiId/versions/:apiVersion/endpoint",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get endpoint information for an API Version"
+        },
+        {
+          "info": {
+            "name": "Get all Plans for an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/apis/:apiId/versions/:apiVersion/plans",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get all Plans for an API Version"
+        },
+        {
+          "info": {
+            "name": "Get all featured APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/apis/featured"
+          },
+          "docs": "Get all featured APIs"
+        },
+        {
+          "info": {
+            "name": "Get a specific policy on a plan version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/plans/:planId/versions/:planVersion/policies/:policyId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID"
+              },
+              {
+                "name": "planVersion",
+                "value": "",
+                "type": "path",
+                "description": "The Plan Version"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID"
+              }
+            ]
+          },
+          "docs": "Get a specific policy on a plan version"
+        },
+        {
+          "info": {
+            "name": "List all policies on an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/apis/:apiId/versions/:apiVersion/policies",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "List all policies on an API Version"
+        },
+        {
+          "info": {
+            "name": "List all API Versions within an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/apis/:apiId/versions",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              }
+            ]
+          },
+          "docs": "List all API Versions within an organization"
+        },
+        {
+          "info": {
+            "name": "List all policies on a specific Plan Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/organizations/:orgId/plans/:planId/versions/:planVersion/policies",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID"
+              },
+              {
+                "name": "planVersion",
+                "value": "",
+                "type": "path",
+                "description": "The Plan Version"
+              }
+            ]
+          },
+          "docs": "List all policies on a specific Plan Version"
+        },
+        {
+          "info": {
+            "name": "Search Apiman APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/devportal/search/apis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search Apiman APIs"
+        },
+        {
+          "info": {
+            "name": "Create home org for developer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/devportal/protected/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a 'home' organization on behalf of the portal user (they may not normally have permissions to do this themselves)."
+        },
+        {
+          "info": {
+            "name": "Get an API Definition (schema) for an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/apis/:apiId/versions/:apiVersion/definition",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get an API Definition (schema) for an API Version"
+        },
+        {
+          "info": {
+            "name": "Get a specific API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/apis/:apiId/versions/:apiVersion",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get a specific API Version"
+        },
+        {
+          "info": {
+            "name": "Get endpoint information for an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/apis/:apiId/versions/:apiVersion/endpoint",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get endpoint information for an API Version"
+        },
+        {
+          "info": {
+            "name": "Get all Plans for an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/apis/:apiId/versions/:apiVersion/plans",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "Get all Plans for an API Version"
+        },
+        {
+          "info": {
+            "name": "Get all featured APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/apis/featured"
+          },
+          "docs": "Get all featured APIs"
+        },
+        {
+          "info": {
+            "name": "Get a specific policy on a plan version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/plans/:planId/versions/:planVersion/policies/:policyId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID"
+              },
+              {
+                "name": "planVersion",
+                "value": "",
+                "type": "path",
+                "description": "The Plan Version"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID"
+              }
+            ]
+          },
+          "docs": "Get a specific policy on a plan version"
+        },
+        {
+          "info": {
+            "name": "List all policies on an API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/apis/:apiId/versions/:apiVersion/policies",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              },
+              {
+                "name": "apiVersion",
+                "value": "",
+                "type": "path",
+                "description": "The API Version"
+              }
+            ]
+          },
+          "docs": "List all policies on an API Version"
+        },
+        {
+          "info": {
+            "name": "List all API Versions within an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/apis/:apiId/versions",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID"
+              }
+            ]
+          },
+          "docs": "List all API Versions within an organization"
+        },
+        {
+          "info": {
+            "name": "List all policies on a specific Plan Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/devportal/protected/organizations/:orgId/plans/:planId/versions/:planVersion/policies",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID"
+              },
+              {
+                "name": "planVersion",
+                "value": "",
+                "type": "path",
+                "description": "The Plan Version"
+              }
+            ]
+          },
+          "docs": "List all policies on a specific Plan Version"
+        },
+        {
+          "info": {
+            "name": "Search Apiman APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/devportal/protected/search/apis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search Apiman APIs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

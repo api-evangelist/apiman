@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Roles API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/roles"
+          }
+        },
+        {
+          "info": {
+            "name": "create_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The Role ID"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The Role ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "delete_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The Role ID"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

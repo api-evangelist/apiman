@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Downloads API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "download",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/downloads/:downloadId",
+            "params": [
+              {
+                "name": "downloadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

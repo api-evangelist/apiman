@@ -1,0 +1,2868 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Organizations API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ]
+          },
+          "docs": "List APIs"
+        },
+        {
+          "info": {
+            "name": "Create API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/apis",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create API"
+        },
+        {
+          "info": {
+            "name": "List All API Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "List All API Policies"
+        },
+        {
+          "info": {
+            "name": "Add API Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add API Policy"
+        },
+        {
+          "info": {
+            "name": "List API Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ]
+          },
+          "docs": "List API Versions"
+        },
+        {
+          "info": {
+            "name": "Create API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create API Version"
+        },
+        {
+          "info": {
+            "name": "List Clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ]
+          },
+          "docs": "List Clients"
+        },
+        {
+          "info": {
+            "name": "Create Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/clients",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new Client.It is important to also create an initial version of the Client (e.g. 1.0). This can either be done by including the 'initialVersion' property in the request, or by immediately following up with a call to Create Client Version If the former is done, then a first  Client version will be created automatically by this endpoint."
+        },
+        {
+          "info": {
+            "name": "List All Client Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ]
+          },
+          "docs": "List All Client Policies"
+        },
+        {
+          "info": {
+            "name": "Add Client Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Client Policy"
+        },
+        {
+          "info": {
+            "name": "List Client Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              }
+            ]
+          },
+          "docs": "List Client Versions"
+        },
+        {
+          "info": {
+            "name": "Create Client Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Client Version"
+        },
+        {
+          "info": {
+            "name": "List All Contracts for a Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/contracts",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ]
+          },
+          "docs": "List All Contracts for a Client"
+        },
+        {
+          "info": {
+            "name": "Create an API Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/contracts",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Contract between the Client and an API. In order to create a Contract, the caller must specify the Organization, ID, and Version of the API.Additionally, the caller must specify the ID of the plan it wants to use for the contract with the API."
+        },
+        {
+          "info": {
+            "name": "Break All Contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/contracts",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ]
+          },
+          "docs": "Break All Contracts"
+        },
+        {
+          "info": {
+            "name": "Create Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Organization. This can be considered a type of namespace. APIs, Clients and Plans are defined within an organization. Using other API calls, you can add users to an organization and assign them fine-grained permissions"
+        },
+        {
+          "info": {
+            "name": "List Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ]
+          },
+          "docs": "List Plans"
+        },
+        {
+          "info": {
+            "name": "Create Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/plans",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Plan"
+        },
+        {
+          "info": {
+            "name": "List All Plan Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              }
+            ]
+          },
+          "docs": "List All Plan Policies"
+        },
+        {
+          "info": {
+            "name": "Add Plan Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Plan Policy"
+        },
+        {
+          "info": {
+            "name": "List Plan Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              }
+            ]
+          },
+          "docs": "List Plan Versions"
+        },
+        {
+          "info": {
+            "name": "Create Plan Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Plan Version"
+        },
+        {
+          "info": {
+            "name": "Get API By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ]
+          },
+          "docs": "Get API By ID"
+        },
+        {
+          "info": {
+            "name": "Update API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update API"
+        },
+        {
+          "info": {
+            "name": "Delete API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ]
+          },
+          "docs": "Delete API"
+        },
+        {
+          "info": {
+            "name": "Get API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/definition",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "Get API Definition"
+        },
+        {
+          "info": {
+            "name": "Update API Definition from URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/definition",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update API Definition from URL"
+        },
+        {
+          "info": {
+            "name": "Update API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/definition",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "Update API Definition"
+        },
+        {
+          "info": {
+            "name": "Remove API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/definition",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "Remove API Definition"
+        },
+        {
+          "info": {
+            "name": "Delete API Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/image",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ]
+          },
+          "docs": "Delete API Image"
+        },
+        {
+          "info": {
+            "name": "Get API Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ]
+          },
+          "docs": "Get API Policy"
+        },
+        {
+          "info": {
+            "name": "Update API Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update API Policy"
+        },
+        {
+          "info": {
+            "name": "Remove API Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ]
+          },
+          "docs": "Remove API Policy"
+        },
+        {
+          "info": {
+            "name": "Get Client By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve information about a single Client by ID. This only returns information about the Client, not any particular version of the client."
+        },
+        {
+          "info": {
+            "name": "Update Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Client"
+        },
+        {
+          "info": {
+            "name": "Delete a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID the client exists within"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The ClientApp ID to delete"
+              }
+            ]
+          },
+          "docs": "Delete a client"
+        },
+        {
+          "info": {
+            "name": "Get Client Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ]
+          },
+          "docs": "Get Client Policy"
+        },
+        {
+          "info": {
+            "name": "Update Client Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Client Policy"
+        },
+        {
+          "info": {
+            "name": "Remove Client Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ]
+          },
+          "docs": "Remove Client Policy"
+        },
+        {
+          "info": {
+            "name": "Get API Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/contracts/:contractId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Contract."
+              }
+            ]
+          },
+          "docs": "Detailed information about a single API Contract for a Client"
+        },
+        {
+          "info": {
+            "name": "Break Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/contracts/:contractId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "The Contract ID."
+              }
+            ]
+          },
+          "docs": "Break Contract"
+        },
+        {
+          "info": {
+            "name": "Get Organization By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization id."
+              }
+            ]
+          },
+          "docs": "Get Organization By ID"
+        },
+        {
+          "info": {
+            "name": "Update Organization By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates meta-information about a single Organization"
+        },
+        {
+          "info": {
+            "name": "Delete an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID to delete"
+              }
+            ]
+          },
+          "docs": "Delete an organization"
+        },
+        {
+          "info": {
+            "name": "Get Plan By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              }
+            ]
+          },
+          "docs": "Get Plan By ID"
+        },
+        {
+          "info": {
+            "name": "Update Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/plans/:planId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Plan"
+        },
+        {
+          "info": {
+            "name": "Delete Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/plans/:planId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              }
+            ]
+          },
+          "docs": "Delete Plan"
+        },
+        {
+          "info": {
+            "name": "Get Plan Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ]
+          },
+          "docs": "Get Plan Policy"
+        },
+        {
+          "info": {
+            "name": "Update Plan Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Plan Policy"
+        },
+        {
+          "info": {
+            "name": "Remove Plan Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The Policy ID."
+              }
+            ]
+          },
+          "docs": "Remove Plan Policy"
+        },
+        {
+          "info": {
+            "name": "Get API Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity should be returned."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page to return."
+              }
+            ]
+          },
+          "docs": "Get API Activity"
+        },
+        {
+          "info": {
+            "name": "Get API Policy Chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/plans/:planId/policyChain",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              }
+            ]
+          },
+          "docs": "Get API Policy Chain"
+        },
+        {
+          "info": {
+            "name": "Get API Registry (JSON)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/apiregistry/json",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "Query parameter set to true in order to generate a download link."
+              }
+            ]
+          },
+          "docs": "Get API Registry (JSON)"
+        },
+        {
+          "info": {
+            "name": "Get API Registry (XML)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/apiregistry/xml",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "Query parameter set to true in order to generate a download link."
+              }
+            ]
+          },
+          "docs": "Get API Registry (XML)"
+        },
+        {
+          "info": {
+            "name": "Get API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "Get API Version"
+        },
+        {
+          "info": {
+            "name": "Update API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update API Version"
+        },
+        {
+          "info": {
+            "name": "Get API Version Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity data to return."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page to return."
+              }
+            ]
+          },
+          "docs": "Get API Version Activity"
+        },
+        {
+          "info": {
+            "name": "List API Contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/contracts",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of Contracts to return."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of Contracts per page to return."
+              }
+            ]
+          },
+          "docs": "List API Contracts"
+        },
+        {
+          "info": {
+            "name": "Get API Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/endpoint",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "Get API Endpoint"
+        },
+        {
+          "info": {
+            "name": "List API Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/plans",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "List API Plans"
+        },
+        {
+          "info": {
+            "name": "Get API Version Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/status",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ]
+          },
+          "docs": "Get API Version Status"
+        },
+        {
+          "info": {
+            "name": "Get Client Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity should be returned."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page to return."
+              }
+            ]
+          },
+          "docs": "audit activity information about the Client."
+        },
+        {
+          "info": {
+            "name": "Get API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/apikey",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client Version."
+              }
+            ]
+          },
+          "docs": "Get API Key"
+        },
+        {
+          "info": {
+            "name": "Update API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/apikey",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client Version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the API Key for the given client. You can either provide your own custom (must be unique) API Key, or you can send an empty request and Apiman will generate a new API key for you. If the client is registered with one or more gateways, this call will fail (API Key can only be modified if the client is not currently registered)."
+        },
+        {
+          "info": {
+            "name": "Get Client Usage Metrics (per API)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/metrics/apiUsage",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The client version."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get Client Usage Metrics (per API)"
+        },
+        {
+          "info": {
+            "name": "Get Client Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ]
+          },
+          "docs": "Get Client Version"
+        },
+        {
+          "info": {
+            "name": "Get Client Version Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity data to return."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page to return."
+              }
+            ]
+          },
+          "docs": "Get Client Version Activity"
+        },
+        {
+          "info": {
+            "name": "Get Organization Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity results to return."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page."
+              }
+            ]
+          },
+          "docs": "Returns audit activity information for a single Organization. The audit information that is returned represents all the activity associated with the specified Organization."
+        },
+        {
+          "info": {
+            "name": "Get Plan Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity should be returned."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page to return."
+              }
+            ]
+          },
+          "docs": "Get Plan Activity"
+        },
+        {
+          "info": {
+            "name": "Get Plan Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              }
+            ]
+          },
+          "docs": "Get Plan Version"
+        },
+        {
+          "info": {
+            "name": "Get Plan Version Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/activity",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Which page of activity data to return."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries per page to return."
+              }
+            ]
+          },
+          "docs": "Get Plan Version Activity"
+        },
+        {
+          "info": {
+            "name": "Get API Response Statistics (Histogram)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/responseStats",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "A valid interval (month, week, day, hour, minute)"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Response Statistics (Histogram)"
+        },
+        {
+          "info": {
+            "name": "Get API Response Statistics (per Client)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/clientResponseStats",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Response Statistics (per Client)"
+        },
+        {
+          "info": {
+            "name": "Get API Response Statistics (per Plan)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/planResponseStats",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Response Statistics (per Plan)"
+        },
+        {
+          "info": {
+            "name": "Get API Response Statistics (Summary)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/summaryResponseStats",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Response Statistics (Summary)"
+        },
+        {
+          "info": {
+            "name": "Get API Usage Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/usage",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "A valid interval (month, week, day, hour, minute)"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Usage Metrics"
+        },
+        {
+          "info": {
+            "name": "Get API Usage Metrics (per Client)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/clientUsage",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Usage Metrics (per Client)"
+        },
+        {
+          "info": {
+            "name": "Get API Usage Metrics (per Plan)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/metrics/planUsage",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start of a valid date range."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end of a valid date range."
+              }
+            ]
+          },
+          "docs": "Get API Usage Metrics (per Plan)"
+        },
+        {
+          "info": {
+            "name": "Grant Membership(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/roles",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant Membership(s)"
+        },
+        {
+          "info": {
+            "name": "List Organization Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/organizations/:organizationId/members",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              }
+            ]
+          },
+          "docs": "List Organization Members"
+        },
+        {
+          "info": {
+            "name": "Probe a policy associated with a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/contracts/:contractId/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              },
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "The contract ID"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "The policy ID (policy you want to probe)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Probe a policy associated with a contract"
+        },
+        {
+          "info": {
+            "name": "Reorder API plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/reorderApiPlans",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reorder API plans, which affects the order they are displayed in the API Developer Portal."
+        },
+        {
+          "info": {
+            "name": "Re-Order API Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/versions/:version/reorderPolicies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-Order API Policies"
+        },
+        {
+          "info": {
+            "name": "Re-Order Client Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/clients/:clientId/versions/:version/reorderPolicies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The Client ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Client version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-Order Client Policies"
+        },
+        {
+          "info": {
+            "name": "Re-Order Plan Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/organizations/:organizationId/plans/:planId/versions/:version/reorderPolicies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization ID."
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The Plan ID."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The Plan version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-Order Plan Policies"
+        },
+        {
+          "info": {
+            "name": "Revoke Single Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/roles/:roleId/:userId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The role ID."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user ID."
+              }
+            ]
+          },
+          "docs": "Revoke Single Membership"
+        },
+        {
+          "info": {
+            "name": "Revoke All Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/organizations/:organizationId/members/:userId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The organization ID."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user ID."
+              }
+            ]
+          },
+          "docs": "Revoke All Memberships"
+        },
+        {
+          "info": {
+            "name": "Tag an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/organizations/:organizationId/apis/:apiId/tags",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "API ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tag an API"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

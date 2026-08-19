@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Plugins API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plugins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/plugins"
+          }
+        },
+        {
+          "info": {
+            "name": "create_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/plugins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/plugins/:pluginId",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "The plugin ID"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/plugins/:pluginId",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "The plugin ID"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAvailablePlugins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/plugins/availablePlugins"
+          }
+        },
+        {
+          "info": {
+            "name": "getPolicyDefs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/plugins/:pluginId/policyDefs",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "The plugin ID"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getPolicyForm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/plugins/:pluginId/policyDefs/:policyDefId/form",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "The plugin ID"
+              },
+              {
+                "name": "policyDefId",
+                "value": "",
+                "type": "path",
+                "description": "The policy definition ID"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Blobs API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getBlob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/blobs/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "uploadBlob",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/blobs",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,247 @@
+{
+  "item": [
+    {
+      "id": "94e8ab64-a4cb-49fa-8d33-7330635d0363",
+      "name": "Blobs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "90de078c-74ff-47ae-8952-c24ece05f5d3",
+          "name": "get Blob",
+          "request": {
+            "name": "get Blob",
+            "description": {},
+            "url": {
+              "path": [
+                "blobs",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26c23ebb-aa10-4f2a-b6fe-0b4b60521f30",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobs",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "733c081a-94f7-46f7-b5a3-413fb9beacc4",
+          "name": "upload Blob",
+          "request": {
+            "name": "upload Blob",
+            "description": {},
+            "url": {
+              "path": [
+                "blobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "formData",
+                  "value": "{\"key_0\":{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"]}},\"key_1\":{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}}}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "formDataMap",
+                  "value": "{\"key_0\":[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"],\"key_2\":[\"<string>\",\"<string>\"]}}],\"key_1\":[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"]}}]}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "preamble",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "parts",
+                  "value": "[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"]}}]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a4d263a4-f46e-4d80-8ef0-28eef02fb3fc",
+              "name": "If your upload has been accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "formData",
+                      "value": "{\"key_0\":{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}}}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "formDataMap",
+                      "value": "{\"key_0\":[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"]}}],\"key_1\":[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"],\"key_2\":[\"<string>\",\"<string>\"],\"key_3\":[\"<string>\",\"<string>\"],\"key_4\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}}],\"key_2\":[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"],\"key_2\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"],\"key_2\":[\"<string>\",\"<string>\"]}}]}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "preamble",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "parts",
+                      "value": "[{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\",\"key_1\":\"<string>\",\"key_2\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"],\"key_2\":[\"<string>\",\"<string>\"]}},{\"contentTypeFromMessage\":\"<boolean>\",\"bodyAsString\":\"<string>\",\"mediaType\":{\"type\":\"<string>\",\"subtype\":\"<string>\",\"parameters\":{\"key_0\":\"<string>\"},\"wildcardType\":\"<boolean>\",\"wildcardSubtype\":\"<boolean>\"},\"headers\":{\"key_0\":[\"<string>\",\"<string>\"],\"key_1\":[\"<string>\",\"<string>\"]}}]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/apiman",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "54660651-40be-4317-87a1-4680ae86f716",
+    "name": "API Manager REST Actions Blobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.",
+      "type": "text/plain"
+    }
+  }
+}

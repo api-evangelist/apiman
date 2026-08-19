@@ -1,0 +1,314 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Users API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "createNotificationFilter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/users/:userId/notifications/filters",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getActivity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/activity",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getApiOrganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/apiorgs",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getApis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/apis",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getClientOrganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/clientorgs",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getClients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/viewable-clients",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getEditableClients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/editable-clients",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/currentuser/info"
+          }
+        },
+        {
+          "info": {
+            "name": "getNotificationsForUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/users/:userId/notifications",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "markNotifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/users/:userId/notifications",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getNotificationCountForUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "/apiman/users/:userId/notifications",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDismissed",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getOrganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/organizations",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getPermissionsForUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/permissions",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getPlanOrganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/users/:userId/planorgs",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "05784378-77bf-4066-82b0-356cc8b3c3f6",
+      "name": "Actions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07a735c0-bf56-46ce-aeab-11977283c11c",
+          "name": "Approve a contract",
+          "request": {
+            "name": "Approve a contract",
+            "description": {
+              "content": "Approve a contract (assuming it requires approval). If all contracts for a given Client Version have been approved, then it will transition from `AwaitingApproval` to `Ready`, and hence can be published.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "actions",
+                "contracts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contractId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"rejectionReason\": \"<string>\",\n  \"autoPromote\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "542de64e-e71c-4408-8756-6244725f62de",
+              "name": "If the action completes successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "actions",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contractId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"rejectionReason\": \"<string>\",\n  \"autoPromote\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c8eaa3c-4e0b-467e-acb4-f256da95e1a7",
+          "name": "Execute an Entity Action",
+          "request": {
+            "name": "Execute an Entity Action",
+            "description": {
+              "content": "Call this endpoint in order to execute actions for apiman entities such as Plans, APIs, or Clients. The type of the action must be included in the request payload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"entityId\": \"<string>\",\n  \"entityVersion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bff50671-4f49-47d9-a7ca-e07d470aa8d8",
+              "name": "If the action completes successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"entityId\": \"<string>\",\n  \"entityVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/apiman",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "235efe1a-5f49-48a7-811f-420f2f70e605",
+    "name": "API Manager REST Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.",
+      "type": "text/plain"
+    }
+  }
+}

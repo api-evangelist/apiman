@@ -1,0 +1,645 @@
+{
+  "item": [
+    {
+      "id": "310bc4a1-ec0e-4d34-8a2f-d53b51dfac13",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30555b2b-d572-4e07-993d-d9b9092e798c",
+          "name": "get Api Namespaces",
+          "request": {
+            "name": "get Api Namespaces",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "apiCatalog",
+                "namespaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11b94adf-a44c-42b3-92ca-6f2adbb8bdce",
+              "name": "If the namespaces were successfully returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "apiCatalog",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"ownedByUser\": false,\n    \"current\": true\n  },\n  {\n    \"name\": \"string\",\n    \"ownedByUser\": true,\n    \"current\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1d515c4-d806-4435-ad6c-1eb1ff703300",
+          "name": "search Api Catalog",
+          "request": {
+            "name": "search Api Catalog",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "apiCatalog",
+                "entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d2e757d-9fc9-4b43-80a1-d84729b5999a",
+              "name": "If the search is successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "apiCatalog",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"id\": \"string\",\n      \"icon\": \"string\",\n      \"endpoint\": \"string\",\n      \"routeEndpoint\": \"string\",\n      \"endpointType\": \"soap\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"definitionUrl\": \"string\",\n      \"routeDefinitionUrl\": \"string\",\n      \"definitionType\": \"RAML\",\n      \"namespace\": \"string\",\n      \"tags\": [\n        \"string\"\n      ],\n      \"internal\": false\n    },\n    {\n      \"id\": \"string\",\n      \"icon\": \"string\",\n      \"endpoint\": \"string\",\n      \"routeEndpoint\": \"string\",\n      \"endpointType\": \"soap\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"definitionUrl\": \"string\",\n      \"routeDefinitionUrl\": \"string\",\n      \"definitionType\": \"SwaggerYAML\",\n      \"namespace\": \"string\",\n      \"tags\": [\n        \"string\"\n      ],\n      \"internal\": true\n    }\n  ],\n  \"totalSize\": 7309\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c285761e-9e15-4a0f-9f21-26a9a935293a",
+          "name": "search Apis 2",
+          "request": {
+            "name": "search Apis 2",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "apis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a84b1de-9108-4d0b-8e9f-67d3255d8273",
+              "name": "If the search is successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "apis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"2015-04-13T05:42:59.483Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdOn\": \"2001-05-30T23:52:53.216Z\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalSize\": 1273\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68e6f991-b001-4fae-af81-c2986c48193d",
+          "name": "search Clients",
+          "request": {
+            "name": "search Clients",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e745ae0e-76e0-4f9b-a313-7eab66252f04",
+              "name": "If the search is successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"numContracts\": 5793\n    },\n    {\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"image\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"numContracts\": 4190\n    }\n  ],\n  \"totalSize\": 6494\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecdc98d0-807c-497d-bf6c-8c3e322bed92",
+          "name": "search Orgs",
+          "request": {
+            "name": "search Orgs",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c507459-14fd-4b51-8086-952945f66b03",
+              "name": "If the search is successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"numClients\": 4687,\n      \"numApis\": 749,\n      \"numMembers\": 7363\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"numClients\": 4616,\n      \"numApis\": 1126,\n      \"numMembers\": 9599\n    }\n  ],\n  \"totalSize\": 1131\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5aef1408-b0df-49be-9dbe-cab9c87d99eb",
+          "name": "search Roles",
+          "request": {
+            "name": "search Roles",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30e54acb-f231-482e-a098-dd2c35efb626",
+              "name": "If the search completes successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1956-03-28T11:59:12.540Z\",\n      \"autoGrant\": true,\n      \"permissions\": [\n        \"planEdit\",\n        \"orgAdmin\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1948-07-14T17:45:48.468Z\",\n      \"autoGrant\": false,\n      \"permissions\": [\n        \"clientView\",\n        \"apiView\"\n      ]\n    }\n  ],\n  \"totalSize\": 4763\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc317b45-5ade-466d-bdd9-77efb0256851",
+          "name": "search Users",
+          "request": {
+            "name": "search Users",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51f0c630-8541-4a52-806e-5888eb2e3f7b",
+              "name": "If the search is successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"operator\": \"<string>\"\n    }\n  ],\n  \"orderBy\": {\n    \"ascending\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"pageSize\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  },\n  \"page\": {\n    \"filters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"operator\": \"<string>\"\n      }\n    ],\n    \"orderBy\": {\n      \"ascending\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"paging\": {\n      \"page\": \"<integer>\",\n      \"pageSize\": \"<integer>\"\n    },\n    \"pageSize\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    },\n    \"page\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchCriteriaBean detected>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beans\": [\n    {\n      \"username\": \"string\",\n      \"fullName\": \"string\"\n    },\n    {\n      \"username\": \"string\",\n      \"fullName\": \"string\"\n    }\n  ],\n  \"totalSize\": 5574\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/apiman",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "36dad34f-2dba-48fe-93e2-13812592cc64",
+    "name": "API Manager REST Actions Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.",
+      "type": "text/plain"
+    }
+  }
+}

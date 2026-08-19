@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Approve a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/actions/contracts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve a contract (assuming it requires approval). If all contracts for a given Client Version have been approved, then it will transition from `AwaitingApproval` to `Ready`, and hence can be published."
+        },
+        {
+          "info": {
+            "name": "Execute an Entity Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/actions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Call this endpoint in order to execute actions for apiman entities such as Plans, APIs, or Clients. The type of the action must be included in the request payload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Developers API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Developers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getDevelopers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers"
+          }
+        },
+        {
+          "info": {
+            "name": "create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/developers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/:developerId",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/developers/:developerId",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/developers/:developerId",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllApiVersions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/:developerId/apis",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllClientContracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/:developerId/contracts",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllClientVersions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/:developerId/clients",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllPublicApiVersions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/apis"
+          }
+        },
+        {
+          "info": {
+            "name": "getApiDefinition_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/:developerId/organizations/:organizationId/apis/:apiId/versions/:version/definition",
+            "params": [
+              {
+                "name": "developerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getPublicApiDefinition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/developers/organizations/:organizationId/apis/:apiId/versions/:version/definition",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

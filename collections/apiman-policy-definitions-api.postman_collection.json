@@ -1,0 +1,419 @@
+{
+  "item": [
+    {
+      "id": "09b90f2f-1047-47d4-88d8-ee5fb981120f",
+      "name": "Policy Definitions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e419a330-71a2-49ff-92c2-4343cf2782dd",
+          "name": "list 2",
+          "request": {
+            "name": "list 2",
+            "description": {},
+            "url": {
+              "path": [
+                "policyDefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d59fa9a8-c22b-4a88-bf41-8e463e0e0e43",
+              "name": "If the policy definition list is successfully returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policyDefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"policyImpl\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"formType\": \"JsonSchema\",\n    \"pluginId\": 8566\n  },\n  {\n    \"id\": \"string\",\n    \"policyImpl\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"formType\": \"Default\",\n    \"pluginId\": 7544\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b939d2e-f799-4b09-aeba-53825bb199c4",
+          "name": "create 3",
+          "request": {
+            "name": "create 3",
+            "description": {},
+            "url": {
+              "path": [
+                "policyDefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"policyImpl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"templates\": [\n    {\n      \"language\": \"<string>\",\n      \"template\": \"<string>\"\n    },\n    {\n      \"language\": \"<string>\",\n      \"template\": \"<string>\"\n    }\n  ],\n  \"pluginId\": \"<long>\",\n  \"formType\": \"<string>\",\n  \"form\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9298e002-f738-4c4b-9aa8-8a0bc6cb259e",
+              "name": "If the policy definition is added successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policyDefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"policyImpl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"templates\": [\n    {\n      \"language\": \"<string>\",\n      \"template\": \"<string>\"\n    }\n  ],\n  \"pluginId\": \"<long>\",\n  \"formType\": \"<string>\",\n  \"form\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"policyImpl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"templates\": [\n    {\n      \"language\": \"<string>\",\n      \"template\": \"<string>\"\n    }\n  ],\n  \"pluginId\": \"<long>\",\n  \"formType\": \"<string>\",\n  \"form\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f941319-00a7-4179-9959-b5262da7e8c7",
+          "name": "get 3",
+          "request": {
+            "name": "get 3",
+            "description": {},
+            "url": {
+              "path": [
+                "policyDefs",
+                ":policyDefinitionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyDefinitionId",
+                  "description": "(Required) The policy definition ID"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79db32ca-361a-4af8-8a67-87ab0f7dec89",
+              "name": "If the policy definition is returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policyDefs",
+                    ":policyDefinitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyDefinitionId",
+                      "description": "(Required) The policy definition ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3448611f-4256-43ad-9ea4-3529917884e6",
+          "name": "update 2",
+          "request": {
+            "name": "update 2",
+            "description": {},
+            "url": {
+              "path": [
+                "policyDefs",
+                ":policyDefinitionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyDefinitionId",
+                  "description": "(Required) The policy definition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "3cc450d6-3efb-44fd-9724-0b3d0db76994",
+              "name": "If the update was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policyDefs",
+                    ":policyDefinitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyDefinitionId",
+                      "description": "(Required) The policy definition ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaa180cc-7769-4c1e-a94b-80061274aa28",
+          "name": "delete 3",
+          "request": {
+            "name": "delete 3",
+            "description": {},
+            "url": {
+              "path": [
+                "policyDefs",
+                ":policyDefinitionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyDefinitionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed4af676-9db4-46d8-bdc8-4af2106b5c27",
+              "name": "If the policy definition is successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policyDefs",
+                    ":policyDefinitionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyDefinitionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/apiman",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9266aeb3-5feb-41fd-ae3c-08d034d76b9c",
+    "name": "API Manager REST Actions Policy Definitions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.",
+      "type": "text/plain"
+    }
+  }
+}

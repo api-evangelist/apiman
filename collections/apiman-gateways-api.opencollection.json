@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Gateways API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gateways",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/gateways"
+          }
+        },
+        {
+          "info": {
+            "name": "create_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/gateways",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "test",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/gateways",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/gateways/:gatewayId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Gateway to get"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/apiman/gateways/:gatewayId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Gateway to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "delete_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/apiman/gateways/:gatewayId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Gateway to delete"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getGatewayEndpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/gateways/:gatewayId/endpoint",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

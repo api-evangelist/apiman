@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions System API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "exportData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/system/export",
+            "params": [
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "The download ID"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/system/status"
+          }
+        },
+        {
+          "info": {
+            "name": "importData",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/system/import"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

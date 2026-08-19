@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Manager REST Actions Search API",
+    "version": "3.1.0-SNAPSHOT"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getApiNamespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/apiman/search/apiCatalog/namespaces"
+          }
+        },
+        {
+          "info": {
+            "name": "searchApiCatalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/search/apiCatalog/entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "searchApis_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/search/apis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "searchClients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/search/clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "searchOrgs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/search/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "searchRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/search/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "searchUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/apiman/search/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
