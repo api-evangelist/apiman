@@ -38,6 +38,12 @@ tags:
   - API Management
   - Developer Portal
   - Java
+  - Open-Source
+tags_raw:
+  - API Gateway
+  - API Management
+  - Developer Portal
+  - Java
   - Open Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml
@@ -53,6 +59,11 @@ apis:
   humanURL: https://github.com/apiman/apiman
   baseURL: https://localhost:8080/apiman
   tags:
+  - API Gateway
+  - API Management
+  - Developer Portal
+  - Open-Source
+  tags_raw:
   - API Gateway
   - API Management
   - Developer Portal
@@ -124,6 +135,8 @@ apis:
   humanURL: https://github.com/apiman/apiman
   baseURL: https://localhost:8080/apiman
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -154,6 +167,8 @@ apis:
   humanURL: https://github.com/apiman/apiman
   baseURL: https://localhost:8080/apiman
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -214,6 +229,8 @@ apis:
   humanURL: https://github.com/apiman/apiman
   baseURL: https://localhost:8080/apiman
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
