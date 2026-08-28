@@ -18,7 +18,7 @@ deliveryModel:
   source:
   - license
   - openapi
-  generated: '2026-08-11'
+  generated: '2026-08-28'
   method: derived
 accessModel:
   pricing: freemium
