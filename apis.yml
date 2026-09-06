@@ -1,11 +1,9 @@
 aid: apiman
 name: Apiman
-description: >-
-  Apiman is an open source API management platform featuring a REST API,
-  manager UI, and standalone developer portal with multi-tenancy, events,
-  notifications, permissions, and approval workflows. It provides extensible
-  API gateway capabilities through a simple Java plugin architecture with
-  support for policies, plans, organizations, and client management.
+description: Apiman is an open source API management platform featuring a REST API, manager UI, and standalone developer
+  portal with multi-tenancy, events, notifications, permissions, and approval workflows. It provides extensible
+  API gateway capabilities through a simple Java plugin architecture with support for policies, plans, organizations,
+  and client management.
 type: Index
 deliveryModel:
   model: self-hosted
@@ -34,30 +32,31 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apiman.png
 tags:
-  - API Gateway
-  - API Management
-  - Developer Portal
-  - Java
-  - Open-Source
+- API Gateway
+- API Management
+- Developer Portal
+- Java
+- Open-Source
+- Policy Enforcement
+- Self-Hosted
+- Keycloak
 tags_raw:
-  - API Gateway
-  - API Management
-  - Developer Portal
-  - Java
-  - Open Source
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml
+- API Gateway
+- API Management
+- Developer Portal
+- Java
+- Open Source
+url: https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml
 created: '2026-03-25'
-modified: '2026-04-19'
+modified: '2026-09-06'
 specificationVersion: '0.23'
 apis:
 - aid: apiman:apiman
   name: Apiman
-  description: >-
-    Apiman is an open source API management platform with a developer portal, API gateway, and management
+  description: Apiman is an open source API management platform with a developer portal, API gateway, and management
     UI supporting policies, plans, organizations, multi-tenancy, and extensible Java-based plugin architecture.
   humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  baseURL: https://{apiman_host}/apiman
   tags:
   - API Gateway
   - API Management
@@ -70,7 +69,7 @@ apis:
   - Open Source
   properties:
   - type: Documentation
-    url: https://www.apiman.io/api-manager/latest/index.html
+    url: https://www.apiman.io/apiman-docs/guides/latest/index.html
   - type: GitHubRepository
     url: https://github.com/apiman/apiman
   - type: JSONSchema
@@ -82,58 +81,68 @@ apis:
 - aid: apiman:apiman-actions-api
   name: Apiman Actions API
   description: The Actions API from Apiman — 2 operation(s) for actions.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Actions
   properties:
   - type: OpenAPI
     url: openapi/apiman-actions-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-actions-api-overlay.yaml
 - aid: apiman:apiman-blobs-api
   name: Apiman Blobs API
   description: The Blobs API from Apiman — 2 operation(s) for blobs.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Blobs
   properties:
   - type: OpenAPI
     url: openapi/apiman-blobs-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-blobs-api-overlay.yaml
 - aid: apiman:apiman-developers-api
   name: Apiman Developers API
   description: The Developers API from Apiman — 8 operation(s) for developers.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Developers
   properties:
   - type: OpenAPI
     url: openapi/apiman-developers-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-developers-api-overlay.yaml
 - aid: apiman:apiman-devportal-api
   name: Apiman Devportal API
   description: The Devportal API from Apiman — 22 operation(s) for devportal.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Devportal
   properties:
   - type: OpenAPI
     url: openapi/apiman-devportal-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-devportal-api-overlay.yaml
 - aid: apiman:apiman-downloads-api
   name: Apiman Downloads API
   description: The Downloads API from Apiman — 1 operation(s) for downloads.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Downloads
   properties:
   - type: OpenAPI
     url: openapi/apiman-downloads-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-downloads-api-overlay.yaml
 - aid: apiman:apiman-events-api
   name: Apiman Events API
   description: The Events API from Apiman — 1 operation(s) for events.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Event
   tags_raw:
@@ -141,31 +150,37 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apiman-events-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-events-api-overlay.yaml
 - aid: apiman:apiman-experimental-api
   name: Apiman Experimental API
   description: The Experimental API from Apiman — 22 operation(s) for experimental.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Experimental
   properties:
   - type: OpenAPI
     url: openapi/apiman-experimental-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-experimental-api-overlay.yaml
 - aid: apiman:apiman-gateways-api
   name: Apiman Gateways API
   description: The Gateways API from Apiman — 3 operation(s) for gateways.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Gateways
   properties:
   - type: OpenAPI
     url: openapi/apiman-gateways-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-gateways-api-overlay.yaml
 - aid: apiman:apiman-organizations-api
   name: Apiman Organizations API
   description: The Organizations API from Apiman — 57 operation(s) for organizations.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Organization
   tags_raw:
@@ -173,61 +188,73 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apiman-organizations-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-organizations-api-overlay.yaml
 - aid: apiman:apiman-plugins-api
   name: Apiman Plugins API
   description: The Plugins API from Apiman — 5 operation(s) for plugins.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Plugins
   properties:
   - type: OpenAPI
     url: openapi/apiman-plugins-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-plugins-api-overlay.yaml
 - aid: apiman:apiman-policy-definitions-api
   name: Apiman Policy Definitions API
   description: The Policy Definitions API from Apiman — 2 operation(s) for policy definitions.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Policy Definitions
   properties:
   - type: OpenAPI
     url: openapi/apiman-policy-definitions-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-policy-definitions-api-overlay.yaml
 - aid: apiman:apiman-roles-api
   name: Apiman Roles API
   description: The Roles API from Apiman — 2 operation(s) for roles.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Roles
   properties:
   - type: OpenAPI
     url: openapi/apiman-roles-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-roles-api-overlay.yaml
 - aid: apiman:apiman-search-api
   name: Apiman Search API
   description: The Search API from Apiman — 7 operation(s) for search.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - Search
   properties:
   - type: OpenAPI
     url: openapi/apiman-search-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-search-api-overlay.yaml
 - aid: apiman:apiman-system-api
   name: Apiman System API
   description: The System API from Apiman — 3 operation(s) for system.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - System
   properties:
   - type: OpenAPI
     url: openapi/apiman-system-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-system-api-overlay.yaml
 - aid: apiman:apiman-users-api
   name: Apiman Users API
   description: The Users API from Apiman — 13 operation(s) for users.
-  humanURL: https://github.com/apiman/apiman
-  baseURL: https://localhost:8080/apiman
+  humanURL: https://www.apiman.io/rest-api-docs.html
+  baseURL: https://{apiman_host}/apiman
   tags:
   - User
   tags_raw:
@@ -235,66 +262,120 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apiman-users-api-openapi.yml
+  - type: Overlay
+    url: overlays/apiman-users-api-overlay.yaml
 common:
-  - type: IssueTracker
-    url: https://github.com/apiman/apiman/issues
-  - type: Releases
-    url: https://github.com/apiman/apiman/releases
-  - type: SecurityPolicy
-    url: https://github.com/apiman/apiman/blob/master/SECURITY.md
-  - type: CodeOfConduct
-    url: https://github.com/apiman/apiman/blob/master/CODE_OF_CONDUCT.md
-  - type: License
-    name: Apache-2.0
-    url: https://github.com/apiman/apiman/blob/master/LICENSE
-  - type: Support
-    url: https://www.apiman.io/support.html
-  - type: AgenticAccess
-    url: agentic-access/apiman-agentic-access.yml
-  - type: DomainSecurity
-    url: security/apiman-domain-security.yml
-  - type: Website
-    url: https://www.apiman.io
-  - type: Documentation
-    url: https://www.apiman.io/api-manager/latest/index.html
-  - type: GitHubOrganization
-    url: https://github.com/apiman
-  - type: GitHubRepository
-    url: https://github.com/apiman/apiman
-  - type: Features
-    data:
-      - name: REST API Manager
-        description: Full REST API for managing organizations, APIs, plans, clients, and policies programmatically.
-      - name: API Gateway
-        description: Extensible API gateway that enforces policies at runtime for authentication, rate limiting, and transformation.
-      - name: Developer Portal
-        description: Standalone developer portal for API discovery, documentation, and self-service subscription management.
-      - name: Policy Engine
-        description: Pluggable Java-based policy engine supporting rate limiting, quotas, IP whitelisting, authentication, and custom policies.
-      - name: Multi-Tenancy
-        description: Organization-based multi-tenancy allowing separate API management namespaces within a single platform.
-      - name: Approval Workflows
-        description: Configurable approval workflows for API subscriptions with notification and event support.
-  - type: UseCases
-    data:
-      - name: On-Premise API Management
-        description: Deploy Apiman on-premise to manage APIs across internal services with full control over infrastructure.
-      - name: Developer Portal Hosting
-        description: Provide developers with a self-service portal for discovering and subscribing to APIs.
-      - name: API Policy Enforcement
-        description: Enforce security, rate limiting, and transformation policies on API traffic through the gateway.
-      - name: Multi-Team API Governance
-        description: Use organizations and plans to provide isolated API management environments for multiple teams.
-  - type: Solutions
-    data:
-      - name: Open Source
-        description: Free, Apache-licensed API management platform deployable on any JVM-based infrastructure.
-      - name: Vert.x Gateway
-        description: High-performance async API gateway implementation using Eclipse Vert.x.
-      - name: WildFly Overlay
-        description: Apiman overlay for WildFly/EAP application server deployments.
-  - url: https://www.apiman.io/blog
-    type: Blog
+- type: IssueTracker
+  url: https://github.com/apiman/apiman/issues
+- type: Releases
+  url: https://github.com/apiman/apiman/releases
+- type: SecurityPolicy
+  url: https://github.com/apiman/apiman/blob/master/SECURITY.md
+- type: CodeOfConduct
+  url: https://github.com/apiman/apiman/blob/master/CODE_OF_CONDUCT.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/apiman/apiman/blob/master/LICENSE
+- type: Support
+  url: https://www.apiman.io/support.html
+- type: AgenticAccess
+  url: agentic-access/apiman-agentic-access.yml
+- type: DomainSecurity
+  url: security/apiman-domain-security.yml
+- type: Website
+  url: https://www.apiman.io
+- type: GitHubOrganization
+  url: https://github.com/apiman
+- type: GitHubRepository
+  url: https://github.com/apiman/apiman
+- type: Features
+  data:
+  - name: REST API Manager
+    description: Full REST API for managing organizations, APIs, plans, clients, and policies programmatically.
+  - name: API Gateway
+    description: Extensible API gateway that enforces policies at runtime for authentication, rate limiting, and
+      transformation.
+  - name: Developer Portal
+    description: Standalone developer portal for API discovery, documentation, and self-service subscription management.
+  - name: Policy Engine
+    description: Pluggable Java-based policy engine supporting rate limiting, quotas, IP whitelisting, authentication,
+      and custom policies.
+  - name: Multi-Tenancy
+    description: Organization-based multi-tenancy allowing separate API management namespaces within a single platform.
+  - name: Approval Workflows
+    description: Configurable approval workflows for API subscriptions with notification and event support.
+- type: UseCases
+  data:
+  - name: On-Premise API Management
+    description: Deploy Apiman on-premise to manage APIs across internal services with full control over infrastructure.
+  - name: Developer Portal Hosting
+    description: Provide developers with a self-service portal for discovering and subscribing to APIs.
+  - name: API Policy Enforcement
+    description: Enforce security, rate limiting, and transformation policies on API traffic through the gateway.
+  - name: Multi-Team API Governance
+    description: Use organizations and plans to provide isolated API management environments for multiple teams.
+- type: Solutions
+  data:
+  - name: Open Source
+    description: Free, Apache-licensed API management platform deployable on any JVM-based infrastructure.
+  - name: Vert.x Gateway
+    description: High-performance async API gateway implementation using Eclipse Vert.x.
+  - name: WildFly Overlay
+    description: Apiman overlay for WildFly/EAP application server deployments.
+- url: https://www.apiman.io/blog
+  type: Blog
+- type: Documentation
+  url: https://www.apiman.io/apiman-docs/guides/latest/index.html
+- type: APIReference
+  url: https://www.apiman.io/rest-api-docs.html
+- type: GettingStarted
+  url: https://www.apiman.io/apiman-docs/installation-guide/latest/quickstart.html
+- type: ChangeLog
+  url: https://www.apiman.io/changelog.html
+- type: ChangeLog
+  url: changelog/apiman-changelog.yml
+  name: Apiman changelog (structured)
+- type: Deprecation
+  url: https://github.com/apiman/apiman/blob/master/SECURITY.md
+- type: Lifecycle
+  url: lifecycle/apiman-lifecycle.yml
+- type: Authentication
+  url: authentication/apiman-authentication.yml
+- type: Conventions
+  url: conventions/apiman-conventions.yml
+- type: ErrorCatalog
+  url: errors/apiman-problem-types.yml
+- type: DataModel
+  url: data-model/apiman-data-model.yml
+- type: Conformance
+  url: conformance/apiman-conformance.yml
+- type: Packages
+  url: packages/apiman-packages.yml
+- type: CLI
+  url: cli/apiman-cli.yml
+- type: Sandbox
+  url: sandbox/apiman-sandbox.yml
+- type: LLMsTxt
+  url: llms/apiman-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: X-MCPServerCandidate
+  url: mcp/apiman-mcp.yml
+- type: VulnerabilityDisclosure
+  url: security/apiman-vulnerability-disclosure.yml
+- type: Plans
+  url: plans/apiman-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/apiman-rate-limits.yml
+- type: SourceCode
+  url: https://github.com/apiman/apiman
+- type: Community
+  url: https://github.com/orgs/apiman/discussions
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-06'
+  status: enriched
+  artifacts_added: 35
+  pass: local-v3

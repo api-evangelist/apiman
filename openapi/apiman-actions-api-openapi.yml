@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: API Manager REST Actions API
+  title: Manager REST Actions API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -40,6 +40,22 @@ paths:
           description: If the action completes successfully.
 components:
   schemas:
+    ContractActionDto:
+      type: object
+      properties:
+        contractId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - AwaitingApproval
+          - Created
+          - Rejected
+        rejectionReason:
+          type: string
+        autoPromote:
+          type: boolean
     ActionBean:
       type: object
       properties:
@@ -57,19 +73,3 @@ components:
           type: string
         entityVersion:
           type: string
-    ContractActionDto:
-      type: object
-      properties:
-        contractId:
-          type: integer
-          format: int64
-        status:
-          type: string
-          enum:
-          - AwaitingApproval
-          - Created
-          - Rejected
-        rejectionReason:
-          type: string
-        autoPromote:
-          type: boolean

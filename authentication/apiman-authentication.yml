@@ -1,0 +1,114 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html,
+  https://www.apiman.io/apiman-docs/installation-guide/latest/gateway/security.html,
+  https://www.apiman.io/apiman-docs/user-guide/latest/crash-course/managing-apiman.html,
+  openapi/_original/apiman-openapi.json
+docs: https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html
+spec_gap: >-
+  The published OpenAPI (https://www.apiman.io/openapi.json, 3.0.1, 128 paths / 177
+  operations) declares NO components.securitySchemes and NO top-level security block, so
+  a mechanical derivation from the spec yields nothing. Everything below is read from the
+  provider's own installation and user guides. This is a real contract gap worth raising
+  with the project: an agent reading only the spec cannot tell that the entire Manager
+  API is authenticated.
+summary:
+  types: [openIdConnect, http]
+  api_key_in: []
+  oauth2_flows: [authorizationCode, password]
+  authorization_model: role-based (Keycloak realm roles + Apiman organization roles)
+schemes:
+- name: keycloakOidc
+  type: openIdConnect
+  applies_to: Apiman Manager REST API and Manager UI
+  description: >-
+    The Manager REST API is protected by Keycloak (OIDC). Apiman 3 no longer bundles a
+    Keycloak server; the operator runs one and points Apiman at it. Keycloak clients:
+    `apiman` (Manager API), `apimanui` (Manager UI), `apiman-gateway-api` (Gateway API).
+    Default realm name is `apiman`; the realm definition ships in the distribution as
+    apiman/data/apiman-realm-for-keycloak.json.
+  configuration:
+  - property: apiman.auth.url
+    env: APIMAN_AUTH_URL
+    description: Keycloak auth server URL (required)
+  - property: apiman.auth.realm
+    env: APIMAN_AUTH_REALM
+    description: Keycloak realm name (default `apiman`)
+  - property: apiman.auth.api.secret
+    env: APIMAN_AUTH_API_SECRET
+    description: Client secret for the `apiman` Manager API client (default must be changed before production)
+  - property: apiman.auth.ui.secret
+    env: APIMAN_AUTH_UI_SECRET
+    description: Client secret for the `apimanui` Manager UI client
+  - property: apiman.auth.gateway.secret
+    env: APIMAN_AUTH_GATEWAY_SECRET
+    description: Client secret for the `apiman-gateway-api` Gateway API client
+  - property: apiman.auth.realm-public-key
+    env: APIMAN_AUTH_REALM_PUBLIC_KEY
+    description: >-
+      Realm public key. Only needed on the Vert.x gateway; otherwise Apiman retrieves it
+      from the Keycloak server's .well-known endpoint automatically.
+  discovery: >-
+    Keycloak's own OIDC discovery document (/realms/<realm>/.well-known/openid-configuration)
+    on the operator's Keycloak host. Apiman itself serves no discovery document — see
+    well-known/apiman-well-known.yml.
+  sources: [https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html]
+- name: gatewayBasicAuth
+  type: http
+  scheme: basic
+  applies_to: Apiman Gateway configuration REST API (invoked by the Manager when publishing)
+  description: >-
+    "This REST API should be protected, usually by BASIC authentication. By default, the
+    Apiman Gateway REST API requires BASIC authentication credentials, as well as a role
+    of apipublisher." Default quickstart user `apimanager` / `apiman123!` — documented
+    development credentials that must be changed before production.
+  required_role: apipublisher
+  keycloak_client: apiman-gateway-api
+  vertx_config:
+    flowType: PASSWORD
+    requiredRole: "realm:apipublisher"
+    resource: apiman-gateway-api
+  unauthenticated_exception: >-
+    /system/status on the Vert.x Gateway API is reachable without auth as of 3.1.2.Final,
+    so health checks do not need credentials.
+  sources: [https://www.apiman.io/apiman-docs/installation-guide/latest/gateway/security.html]
+- name: managedApiKey
+  type: apiKey
+  applies_to: APIs published THROUGH the Apiman gateway (runtime traffic, not the Manager API)
+  description: >-
+    Apiman mints an API key per Client App version, retrieved with getClientApiKey and
+    rotated with updateClientApiKey. Consumers present it to the gateway when calling a
+    managed API under a contract. This authenticates the gateway's downstream consumers,
+    NOT calls to the Manager REST API — do not confuse the two surfaces.
+  operations: [getClientApiKey, updateClientApiKey, getApiRegistryJSON, getApiRegistryXML]
+  policy_plugin: io.apiman.plugins:apiman-plugins-apikey-policy
+  sources: [openapi/apiman-organizations-api-openapi.yml]
+authorization:
+  model: role-based
+  realm_roles:
+  - name: apipublisher
+    description: Required to invoke the Gateway configuration REST API.
+  - name: apiadmin
+    description: Apiman administrator (system administration section, gateways, plugins, policy definitions, roles).
+  organization_roles:
+  - name: Organization Owner
+    description: Automatically granted to the creator of an organization; all permissions.
+  - name: API Developer
+    description: Plan view/edit/admin and API view/edit/admin.
+  - name: Client App Developer
+    description: Client App view/edit/admin only.
+  custom_roles: >-
+    Administrators can define arbitrary roles from the permission set (org/plan/API/client
+    view, edit, admin) in the Roles section of System Administration, and mark roles as
+    auto-granted on organization creation (RoleBean.autoGrant, at least one such role must exist).
+  discoverability: >-
+    Apiman also has an implicit read-permission system ("discoverability") analogous to a
+    public GitHub repository, letting non-members — including anonymous users — find and
+    subscribe to APIs. It is set per API version and per plan (ApiVersionBean.discoverability,
+    ApiPlanBean.discoverability).
+  inspection_operations: [getPermissionsForUser, getInfo, listMembers, grant, revoke, revokeAll]
+  no_scopes: >-
+    Apiman publishes no OAuth scope reference. Authorization is expressed as Keycloak
+    realm roles plus Apiman's own organization-scoped permission grid, so scopes/ is
+    deliberately absent rather than empty.

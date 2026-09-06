@@ -1,0 +1,87 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.apiman.io/download.html,
+  https://www.apiman.io/apiman-docs/installation-guide/latest/quickstart.html,
+  https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html,
+  https://www.apiman.io/apiman-docs/installation-guide/latest/manager/notifications.html
+model: self-hosted-quickstart
+note: >-
+  Apiman has no hosted sandbox and no test/live key separation, because there is no
+  vendor-operated instance to sandbox. Its equivalent is a downloadable quickstart that
+  stands the whole platform up locally with published default credentials and a mock mail
+  server. Every value below is published verbatim by the project; nothing is invented.
+distributions:
+- name: Docker Compose quickstart
+  since: Apiman 3
+  description: >-
+    Independent containers for Apiman Manager, Apiman Gateway (Vert.x), Keycloak,
+    PostgreSQL, Elasticsearch and a MailDev mock SMTP server — "an architecture that is
+    more representative of a real-world deployment".
+  prerequisites: [OCI-compatible container runtime, Docker Compose or compatible]
+  run:
+  - docker-compose -f docker-compose.setup.yml up
+  - docker-compose up
+  entry_point: http://apiman.local.gd:8080/apimanui
+  artifact: io.apiman:apiman-distro-docker-compose
+- name: WildFly overlay
+  artifact: io.apiman:apiman-distro-wildfly
+- name: Vert.x standalone gateway
+  artifact: io.apiman:apiman-distro-vertx
+- name: Tomcat
+  docs: https://www.apiman.io/apiman-docs/installation-guide/latest/servlet/wildfly.html
+service_endpoints:
+  note: >-
+    The quickstart uses local.gd (a public wildcard DNS that resolves everything to
+    127.0.0.1) so hostname-based routing works without editing /etc/hosts. Change
+    APIMAN_HOSTNAME in .env to use something else.
+  urls:
+    manager_ui: http://apiman.local.gd:8080/apimanui
+    developer_portal: http://apiman.local.gd:8080/portal
+    manager_api: http://apiman.local.gd:8080/apiman
+    gateway: http://gateway.local.gd:8080
+    keycloak_admin: http://auth.local.gd:8080/admin
+    keycloak_auth: http://auth.local.gd:8080
+    elasticsearch: http://elasticsearch.local.gd:8080
+    maildev: http://mail.local.gd:8080
+test_credentials:
+  note: >-
+    PUBLISHED DEVELOPMENT DEFAULTS, quoted from the project's own docs. The docs state
+    plainly: "Please change default secrets and keys before deploying Apiman to
+    production" and "You must change the default usernames and/or passwords before going
+    to production."
+  entries:
+  - scope: Apiman and Keycloak Admin (Docker Compose quickstart)
+    username: admin
+    password: 'admin123!'
+    source: https://www.apiman.io/download.html
+  - scope: Apiman Gateway REST API (BASIC auth, requires apipublisher role)
+    username: apimanager
+    password: 'apiman123!'
+    source: https://www.apiman.io/apiman-docs/installation-guide/latest/gateway/security.html
+  - scope: apiman-cli default Manager API credentials
+    username: apiman
+    password: 'admin123!'
+    source: https://github.com/apiman/apiman-cli
+  - scope: Keycloak client secrets (apiman, apimanui, apiman-gateway-api)
+    value: password
+    source: https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html
+email_testing:
+  tool: MailDev
+  url: http://mail.local.gd:8080
+  behaviour: >-
+    Email notifications are enabled in the Docker Compose quickstart and delivered to a
+    mock SMTP server; all mail lands in one mailbox, distinguished by the `to` field.
+  mock_flag: "apiman-manager.notifications.email.smtp.mock=true prints notifications to the log instead of sending"
+fixtures:
+  realm: apiman/data/apiman-realm-for-keycloak.json (Keycloak realm definition shipped in the distribution)
+  keys: generated into data/keys and copied into .env by the quickstart
+  api_catalogue: Default API catalogue and plugin registry JSON ship in the GitHub release (moved out of the repository in 3.1.0.Final)
+  test_policy_plugin: io.apiman.plugins:apiman-plugins-test-policy
+dry_run:
+  gateway_test: PUT /gateways (operationId test) validates a gateway configuration before creating it
+  policy_probe: probeContractPolicy inspects a live policy's state on a contract without modifying it
+production_warnings:
+- Replace demo self-signed certificates, keystores and truststores.
+- Run Keycloak in production mode; the quickstart runs dev-mode which is permissive about self-signed certs.
+- Run PostgreSQL and Elasticsearch multi-node for resilience; plan for backups.

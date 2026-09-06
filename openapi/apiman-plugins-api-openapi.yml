@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: API Manager REST Actions Plugins API
+  title: Manager REST Actions Plugins API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -143,12 +143,9 @@ paths:
           description: If the form does not exist.
 components:
   schemas:
-    PluginSummaryBean:
+    NewPluginBean:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         groupId:
           type: string
         artifactId:
@@ -163,11 +160,29 @@ components:
           type: string
         description:
           type: string
-        createdBy:
+        upgrade:
+          type: boolean
+    PolicyDefinitionSummaryBean:
+      type: object
+      properties:
+        id:
           type: string
-        createdOn:
+        policyImpl:
           type: string
-          format: date-time
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        pluginId:
+          type: integer
+          format: int64
     PluginBean:
       type: object
       properties:
@@ -195,30 +210,12 @@ components:
           format: date-time
         deleted:
           type: boolean
-    PolicyDefinitionSummaryBean:
+    PluginSummaryBean:
       type: object
       properties:
         id:
-          type: string
-        policyImpl:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-        formType:
-          type: string
-          enum:
-          - Default
-          - JsonSchema
-        pluginId:
           type: integer
           format: int64
-    NewPluginBean:
-      type: object
-      properties:
         groupId:
           type: string
         artifactId:
@@ -233,5 +230,8 @@ components:
           type: string
         description:
           type: string
-        upgrade:
-          type: boolean
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time

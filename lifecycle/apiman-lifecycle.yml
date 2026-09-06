@@ -1,0 +1,81 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://github.com/apiman/apiman/blob/master/SECURITY.md,
+  https://www.apiman.io/apiman-docs/migration-guide/latest/migrations.html,
+  https://www.apiman.io/apiman-docs/user-guide/latest/manager/versioning.html,
+  https://www.apiman.io/changelog.html
+versioning:
+  scheme: "MAJOR.MINOR.PATCH.QUALIFIER (e.g. 3.1.3.Final)"
+  current: 3.1.3.Final
+  current_released: '2023-11-13'
+  in_development: 3.2.0-SNAPSHOT
+  api_versioning: >-
+    The Manager REST API itself is unversioned in its URI — the whole surface is served
+    under the deployment context path /apiman and moves with the product release. What
+    Apiman versions is the MANAGED entities: Plans, APIs and Client Apps each carry
+    simultaneous versions, and once an entity is Locked or Published it is frozen and a
+    new version must be created to change it. Public APIs and Client Apps are the
+    exception — they can be modified and re-published in place without a new version.
+  docs: https://www.apiman.io/apiman-docs/user-guide/latest/manager/versioning.html
+support_policy:
+  url: https://github.com/apiman/apiman/blob/master/SECURITY.md
+  supported: ['3.x']
+  unsupported: ['2.x', '1.x']
+  statement: >-
+    Apiman's SECURITY.md publishes a supported-versions table: 3.x is supported by the
+    community, 2.x and 1.x are not. Users on a downstream support provider are directed
+    to their vendor. This is the project's stated end-of-life boundary; there is no dated
+    sunset calendar and no per-operation deprecation policy.
+deprecation:
+  policy_url: https://github.com/apiman/apiman/blob/master/SECURITY.md
+  migration_guide: https://www.apiman.io/apiman-docs/migration-guide/latest/migrations.html
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    Apiman publishes an end-of-life boundary (supported versions) plus a version-to-version
+    migration guide, but does NOT emit RFC 8594 Sunset or Deprecation response headers, and
+    the OpenAPI declares no `deprecated: true` operations. Removals are announced per
+    release in the changelog's "Removed" section (e.g. the Qmino documentation generator
+    removed in 3.1.0.Final).
+deprecated_operations: []
+status_page:
+  url: null
+  note: >-
+    Apiman is self-hosted software with no provider-operated runtime, so there is no
+    status page to publish and none was found. The operator's equivalent is the product's
+    own health surface: GET /system/status (operationId getStatus, SystemStatusBean) on
+    the Manager API, and the Vert.x Gateway API's /system/status, which 3.1.2.Final made
+    reachable without authentication specifically so health checks would not need
+    credentials. No StatusPage pointer is emitted.
+  self_hosted_health_endpoints:
+  - operation: getStatus
+    path: /system/status
+    spec: openapi/apiman-system-api-openapi.yml
+sla:
+  url: https://www.apiman.io/support.html
+  community: >-
+    "Community support is provided by contributors to the upstream ... strictly on a
+    voluntary basis, and there are no guarantees provided."
+  commercial: >-
+    Commercial-grade support, consulting and training are offered by Black Parrot Labs
+    (founded by Apiman co-founder and maintainer Marc Savy) and other long-term
+    contributors listed on the support page. Terms are not published.
+  uptime_target: null
+release_channels:
+- name: GitHub Releases
+  url: https://github.com/apiman/apiman/releases
+- name: Changelog
+  url: https://www.apiman.io/changelog.html
+- name: Maven Central
+  url: https://central.sonatype.com/namespace/io.apiman
+- name: Downloads
+  url: https://www.apiman.io/download.html
+maintenance_signal:
+  last_release: '2023-11-13'
+  last_commit_on_master: '2024-03-13'
+  last_blog_post: '2025-05-12'
+  note: >-
+    Recorded as an observation, not a judgement: no release in ~34 months, last master
+    commit 2024-03-13 ("docs(readme): clarify that Apiman 4 is WIP"), and a 2025 dev-diary
+    blog post describing Apiman 4 as in progress.

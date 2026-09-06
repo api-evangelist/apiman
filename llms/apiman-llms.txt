@@ -1,0 +1,117 @@
+# Apiman
+
+> Apiman is an Apache-2.0 licensed, self-hosted API management platform: a policy-driven
+> API gateway, a management REST API and UI, and a standalone Angular developer portal.
+> You run it yourself — there is no vendor-operated host, no sign-up and no pricing. The
+> project was started at Red Hat, which is no longer involved; it is maintained by the
+> community, principally Marc Savy of Black Parrot Labs. Current release 3.1.3.Final
+> (2023-11-13); Apiman 4 is described as work in progress.
+
+Generated 2026-09-06 by the API Evangelist enrichment pipeline (method: generated).
+Source: apis.yml plus the artifacts in this repository. Provider serves no /llms.txt —
+https://www.apiman.io/llms.txt returned 404 on 2026-09-06.
+
+## What this API is
+
+The Apiman Manager REST API automates every API-management task the Manager UI performs:
+organizations, APIs and API versions, plans, client apps, contracts, policies, gateways,
+plugins, roles, users, notifications, search, metrics and system import/export.
+
+- Contract: OpenAPI 3.0.1, 128 paths, 177 operations, 120 component schemas
+- Live spec: https://www.apiman.io/openapi.json (also served by any deployment at `<host>/apiman/openapi.json` and `/apiman/openapi.yml`)
+- Base URL: `https://{apiman_host}/apiman` — documented local default `http://localhost:8080/apiman`
+- Auth: OIDC bearer token from the operator's Keycloak (Manager API); HTTP BASIC + `apipublisher` role (Gateway API). The spec declares NO securitySchemes — this is a contract gap, not an open API.
+- Errors: status codes only. No error schema, no RFC 9457, no documented 5xx.
+- Idempotency: none. No Idempotency-Key on any write.
+- Rate limits: none published on this API. Apiman's rate limiting is a gateway feature applied to your consumers.
+
+## Docs
+
+- Documentation home: https://www.apiman.io/apiman-docs/guides/latest/index.html
+- User guide: https://www.apiman.io/apiman-docs/user-guide/latest/index.html
+- Installation guide: https://www.apiman.io/apiman-docs/installation-guide/latest/index.html
+- Development guide: https://www.apiman.io/apiman-docs/development-guide/latest/intro.html
+- Migration guide: https://www.apiman.io/apiman-docs/migration-guide/latest/migrations.html
+- REST API reference (Redoc): https://www.apiman.io/rest-api-docs.html
+- Data model: https://www.apiman.io/apiman-docs/user-guide/latest/manager/data-model.html
+- Gateway policy reference: https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/
+- Keycloak / SSO setup: https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html
+- Download and quickstarts: https://www.apiman.io/download.html
+- Changelog: https://www.apiman.io/changelog.html
+- Support: https://www.apiman.io/support.html
+- Community and discussions: https://github.com/orgs/apiman/discussions
+- Blog: https://www.apiman.io/blog
+
+## APIs
+
+The 177 operations are catalogued here as 15 tag-scoped OpenAPI documents:
+
+- Organizations (88 ops) — openapi/apiman-organizations-api-openapi.yml
+- Devportal (22) — openapi/apiman-devportal-api-openapi.yml
+- Experimental (22) — openapi/apiman-experimental-api-openapi.yml
+- Users (15) — openapi/apiman-users-api-openapi.yml
+- Developers (11) — openapi/apiman-developers-api-openapi.yml
+- Gateways (7) — openapi/apiman-gateways-api-openapi.yml
+- Plugins (7) — openapi/apiman-plugins-api-openapi.yml
+- Search (7) — openapi/apiman-search-api-openapi.yml
+- Policy Definitions (5) — openapi/apiman-policy-definitions-api-openapi.yml
+- Roles (5) — openapi/apiman-roles-api-openapi.yml
+- System (3) — openapi/apiman-system-api-openapi.yml
+- Actions (2) — openapi/apiman-actions-api-openapi.yml
+- Blobs (2) — openapi/apiman-blobs-api-openapi.yml
+- Downloads (1) — openapi/apiman-downloads-api-openapi.yml
+- Events (1) — openapi/apiman-events-api-openapi.yml
+
+## Key operations
+
+- Lifecycle: `performAction` — publishAPI, retireAPI, registerClient, unregisterClient, lockPlan
+- Readiness: `getApiVersionStatus`, `getApiPolicyChain`, `getStatus`
+- Provisioning: `createOrg`, `createApi`, `createApiVersion`, `updateApiDefinitionFromURL`
+- Consumption: `createContract`, `approveContract`, `getClientApiKey`, `getApiRegistryJSON`
+- Governance: `createPlanPolicy`, `createApiPolicy`, `createClientPolicy`, `list_2`
+- Analytics: `getUsage`, `getResponseStats`, `getUsagePerClient`
+- Backup: `exportData`, `importData`
+
+## Artifacts in this repository
+
+- openapi/ — 15 refined tag-scoped specs plus openapi/_original/apiman-openapi.json
+- authentication/apiman-authentication.yml — Keycloak OIDC, gateway BASIC auth, managed API keys, role model
+- conventions/apiman-conventions.yml — pagination, versioning, idempotency (none), reversibility, dry-run
+- errors/apiman-problem-types.yml — 401/403/404/409 derived from the spec, plus the gaps
+- data-model/apiman-data-model.yml — 16 entities, 22 relationships
+- lifecycle/apiman-lifecycle.yml — versioning, supported versions, migration, support terms
+- changelog/apiman-changelog.yml — 3.0.0 through 3.1.3.Final
+- conformance/apiman-conformance.yml — what Apiman's API conforms to vs what its gateway enforces
+- packages/apiman-packages.yml — 169 Maven Central artifacts (io.apiman, io.apiman.plugins)
+- cli/apiman-cli.yml — the first-party apiman-cli command surface
+- sandbox/apiman-sandbox.yml — Docker Compose quickstart, published default credentials
+- plans/apiman-plans-pricing.yml — plan_count 0 (open source, no pricing)
+- rate-limits/apiman-rate-limits.yml — limit_count 0 on the Manager API; gateway policies catalogued
+- security/apiman-vulnerability-disclosure.yml — GitHub private advisories, CVE-2023-28640 history
+- security/apiman-domain-security.yml — TLS/DNS probe of apiman.io
+- skills/ — five packaged agent skills grounded in real operationIds
+- mcp/apiman-mcp.yml — derived candidate tool set; no MCP server exists
+- well-known/apiman-well-known.yml — all named paths 404 on both hosts, with negative control
+- overlays/ — one OpenAPI Overlay 1.0.0 per spec capturing our enhancements
+- agentic-access/apiman-agentic-access.yml — recommended x-agentic-access contracts per operation
+- collections/ — Postman and OpenCollection exports
+- vocabulary/, json-schema/, json-structure/, json-ld/, examples/, rules/
+
+## Source
+
+- GitHub organization: https://github.com/apiman
+- Monorepo: https://github.com/apiman/apiman
+- CLI: https://github.com/apiman/apiman-cli
+- Maven Central: https://central.sonatype.com/namespace/io.apiman
+- License: Apache-2.0 — https://github.com/apiman/apiman/blob/master/LICENSE
+- Security policy: https://github.com/apiman/apiman/blob/master/SECURITY.md
+- Issues: https://github.com/apiman/apiman/issues
+- Releases: https://github.com/apiman/apiman/releases
+
+## Not present
+
+Recorded so an agent does not go looking: no hosted MCP server, no A2A agent card, no
+AsyncAPI or outbound webhooks (the events subsystem drives in-app and email notifications
+only), no /.well-known documents, no llms.txt, no status page, no pricing, no sign-up, no
+terms of service or privacy policy, no OAuth scope reference (authorization is role-based),
+no client SDKs, no trust centre or compliance certifications.

@@ -1,0 +1,79 @@
+generated: '2026-09-06'
+method: derived
+status: candidate
+source: openapi/_original/apiman-openapi.json
+search_note: >-
+  SEARCHED FIRST, FOUND NOTHING. No Apiman MCP server exists: nothing on apiman.io,
+  nothing in the 24-repo apiman GitHub organization, nothing under @modelcontextprotocol
+  or an io.apiman/npm namespace, and no third-party listing. Web results for
+  "apiman MCP" return Azure API Management (APIM) material, which is a different product
+  — do not let that collision produce a false positive on a later pass.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+  note: >-
+    Nobody ships a server, remote or stdio. A self-hosted deployment would in any case
+    need a per-instance endpoint, since Apiman has no vendor-operated host — see
+    conventions/apiman-conventions.yml base_url. The tools below are a DERIVED candidate
+    set from real operationIds in the published OpenAPI, offered as a starting point;
+    no endpoint is asserted and none should be inferred.
+server:
+  name: apiman
+  transport: null
+  url: null
+tools:
+- name: list_organizations
+  description: List the organizations the current user belongs to.
+  source_operation: openapi/apiman-users-api-openapi.yml#getOrganizations
+- name: get_organization
+  description: Get an organization by id.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#getOrg
+- name: create_organization
+  description: Create an organization.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#createOrg
+- name: list_apis
+  description: List the APIs in an organization.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#listApis
+- name: create_api
+  description: Create an API in an organization.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#createApi
+- name: create_api_version
+  description: Create a version of an API.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#createApiVersion
+- name: get_api_version_status
+  description: Get the readiness status of an API version, including what is blocking publication.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#getApiVersionStatus
+- name: update_api_definition
+  description: Attach or replace an API version's definition document (OpenAPI, Swagger, WSDL).
+  source_operation: openapi/apiman-organizations-api-openapi.yml#updateApiDefinition
+- name: perform_action
+  description: "Execute a lifecycle action: publishAPI, retireAPI, registerClient, unregisterClient or lockPlan."
+  source_operation: openapi/apiman-actions-api-openapi.yml#performAction
+- name: approve_contract
+  description: Approve a pending API contract.
+  source_operation: openapi/apiman-actions-api-openapi.yml#approveContract
+- name: list_plans
+  description: List the plans in an organization.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#listPlans
+- name: create_plan_policy
+  description: Attach a policy to a plan version.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#createPlanPolicy
+- name: create_contract
+  description: Subscribe a client version to an API version through a plan.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#createContract
+- name: get_client_api_key
+  description: Retrieve the API key minted for a client version.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#getClientApiKey
+- name: search_apis
+  description: Search APIs with filters, ordering and paging.
+  source_operation: openapi/apiman-search-api-openapi.yml#searchApis_2
+- name: get_api_usage_metrics
+  description: Get usage metrics for an API version over a time range.
+  source_operation: openapi/apiman-organizations-api-openapi.yml#getUsage
+- name: get_system_status
+  description: Get Apiman system status (health).
+  source_operation: openapi/apiman-system-api-openapi.yml#getStatus

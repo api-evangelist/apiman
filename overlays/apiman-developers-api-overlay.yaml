@@ -1,0 +1,41 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Manager REST Actions Developers API
+  version: 1.0.0
+extends: openapi/apiman-developers-api-openapi.yml
+x-generated: '2026-09-06'
+x-method: generated
+x-source: apis.yml + repo artifacts; never mutates openapi/_original/apiman-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: apiman
+    x-apievangelist-provider-name: Apiman
+    x-apievangelist-delivery-model: self-hosted open source (Apache-2.0)
+    x-apievangelist-contract-source: https://www.apiman.io/openapi.json
+    x-apievangelist-docs: https://www.apiman.io/apiman-docs/guides/latest/index.html
+    x-apievangelist-api-reference: https://www.apiman.io/rest-api-docs.html
+    x-apievangelist-authentication: authentication/apiman-authentication.yml
+    x-apievangelist-conventions: conventions/apiman-conventions.yml
+    x-apievangelist-errors: errors/apiman-problem-types.yml
+    x-apievangelist-lifecycle: lifecycle/apiman-lifecycle.yml
+    x-apievangelist-data-model: data-model/apiman-data-model.yml
+    x-apievangelist-tags:
+    - Developers
+    x-apievangelist-operation-count: 11
+- target: $.servers
+  update:
+  - url: https://{apiman_host}/apiman
+    description: Self-hosted Apiman Manager REST API. The upstream spec declares the relative path /apiman;
+      this overlay names the variable a deployment must supply. The project documents http://localhost:8080/apiman
+      as the local default and http://apiman.local.gd:8080/apiman in the Docker Compose quickstart.
+    variables:
+      apiman_host:
+        default: localhost:8080
+        description: Host and port of your Apiman Manager deployment.
+- target: $
+  update:
+    x-apievangelist-security-note: The upstream spec declares no components.securitySchemes and no security
+      block, yet the entire Manager REST API is protected by the operator’s Keycloak (OIDC). See authentication/apiman-authentication.yml.
+    x-apievangelist-idempotency: none — no Idempotency-Key mechanism exists on this surface
+    x-apievangelist-error-format: undeclared — no error schema is bound to any 4xx in the upstream spec

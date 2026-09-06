@@ -1,0 +1,30 @@
+generated: '2026-09-06'
+method: generated
+source: >-
+  openapi/_original/apiman-openapi.json (every operationId below is verified present in
+  the published spec), plus conventions/, errors/, authentication/ and lifecycle/ in this
+  repo. Apiman publishes no AGENTS.md or first-party skill files — searched
+  apiman/apiman, apiman.github.io and the 24-repo GitHub organization.
+provider: Apiman
+api_base: "https://{apiman_host}/apiman"
+skills:
+- file: apiman-publish-an-api.md
+  name: Publish an API through Apiman
+  api: openapi/apiman-organizations-api-openapi.yml
+  operations: [getInfo, getOrganizations, createOrg, getOrg, list, test, create_1, createApi, createApiVersion, updateApiDefinitionFromURL, updateApiDefinition, getApiVersionPlans_1, getApiVersionStatus, performAction]
+- file: apiman-onboard-a-client.md
+  name: Onboard a client app and issue an API key
+  api: openapi/apiman-organizations-api-openapi.yml
+  operations: [createClient, createClientVersion, getApiVersionPlans_1, createContract, approveContract, performAction, getClientApiKey, updateClientApiKey, getClientVersionContracts, getApiRegistryJSON, deleteContract, deleteAllContracts]
+- file: apiman-govern-with-plans-and-policies.md
+  name: Govern an API with plans and policies
+  api: openapi/apiman-organizations-api-openapi.yml
+  operations: [list_2, getPolicyDefs, getAvailablePlugins, create_2, createPlan, createPlanVersion, createPlanPolicy, listPlanPolicies_1, updatePlanPolicy, reorderPlanPolicies, performAction, createApiPolicy, listApiPolicies_1, reorderApiPolicies, createClientPolicy, getApiPolicyChain, probeContractPolicy]
+- file: apiman-retire-and-clean-up.md
+  name: Retire and clean up Apiman entities safely
+  api: openapi/apiman-organizations-api-openapi.yml
+  operations: [getApiVersionContracts, getClientVersionContracts, deleteContract, deleteAllContracts, performAction, deleteApi, deleteClient, deletePlan, deleteOrg, deleteApiDefinition, deleteApiImage, revoke, revokeAll, exportData, importData]
+- file: apiman-audit-usage.md
+  name: Read Apiman usage metrics and audit history
+  api: openapi/apiman-organizations-api-openapi.yml
+  operations: [getUsage, getUsagePerClient, getUsagePerPlan, getResponseStats, getResponseStatsSummary, getResponseStatsPerClient, getResponseStatsPerPlan, getClientUsagePerApi, getOrgActivity, getApiActivity, getApiVersionActivity, getClientActivity, getPlanActivity, getActivity, searchApis_2, searchClients, searchOrgs, searchUsers, getStatus]

@@ -1,0 +1,105 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  openapi/_original/apiman-openapi.json,
+  https://www.apiman.io/apiman-docs/installation-guide/latest/keycloak.html,
+  https://www.apiman.io/apiman-docs/user-guide/latest/ (gateway policy reference)
+note: >-
+  Two different conformance surfaces exist for an API management platform and they must
+  not be conflated. (a) What Apiman's OWN Manager REST API conforms to. (b) What Apiman
+  as a gateway can ENFORCE on someone else's traffic via policies. Section `standards`
+  below is (a) — the graded surface. Section `gateway_enforceable` is (b), recorded for
+  completeness and explicitly NOT claimed as conformance of Apiman's own API.
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    The Manager REST API publishes OpenAPI 3.0.1 at /apiman/openapi.json and
+    /apiman/openapi.yml (added in 3.1.0.Final); the project serves a copy at
+    https://www.apiman.io/openapi.json rendered by Redoc at /rest-api-docs.html.
+- id: oidc
+  conforms: true
+  evidence: >-
+    Manager API and UI authenticate against Keycloak as an OIDC provider; Apiman reads
+    the realm public key from Keycloak's .well-known discovery endpoint automatically.
+    See authentication/apiman-authentication.yml.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Keycloak clients apiman / apimanui / apiman-gateway-api; the Vert.x Gateway API auth
+    config uses flowType PASSWORD with requiredRole realm:apipublisher.
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: >-
+    "By default, the Apiman Gateway REST API requires BASIC authentication credentials,
+    as well as a role of apipublisher."
+    (installation-guide/latest/gateway/security.html#_gateway_api_authentication)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No response in the 177-operation spec declares application/problem+json. Error
+    responses are described in prose only, with no error schema bound to any 4xx.
+    Response content types across the whole spec are application/json (115),
+    application/wsdl+xml (2), application/x-yaml (2) and */* (2).
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation headers are documented or emitted; no operation is marked deprecated.
+- id: idempotency-key
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header or equivalent replay-protection parameter appears anywhere
+    in the spec or docs. See conventions/apiman-conventions.yml (idempotency.coverage none).
+- id: pagination
+  conforms: true
+  evidence: >-
+    Search operations accept SearchCriteriaBean with a PagingBean (page, pageSize), an
+    OrderByBean (name, ascending) and SearchCriteriaFilterBean operators
+    (bool_eq, eq, neq, gt, gte, lt, lte, like); responses are SearchResultsBean* envelopes.
+- id: hal
+  conforms: false
+  evidence: Responses are plain JSON beans with no hypermedia envelope.
+- id: json-schema
+  conforms: true
+  evidence: >-
+    components.schemas carries 120 reusable schemas, referenced by $ref throughout —
+    see data-model/apiman-data-model.yml. Repo also holds json-schema/ and json-structure/.
+- id: scim
+  conforms: false
+  evidence: >-
+    User and role management is Apiman's own model (UserBean, RoleBean, MemberBean,
+    permission grid) plus Keycloak; no urn:ietf:params:scim schema URN appears.
+- id: odata
+  conforms: false
+  evidence: No $metadata surface; search uses a POST body criteria object.
+domain_standard:
+  applicable: false
+  note: >-
+    REWARD-ONLY CHECK, HONESTLY DECLINED. API management / API gateway has no market-wide
+    message or resource standard of the kind domain_standard_conformance is looking for
+    (no SCIM URN, OData $metadata, OpenRTB endpoint, Sparkplug namespace, ActivityPub
+    actor, LTI/OneRoster shape, OAI-PMH verb, HL7v2/X12/ISO-20022 message type). The
+    nearest thing to a domain standard here is OpenAPI itself, already recorded above as
+    openapi-3.0. Nothing is invented to fill the slot.
+compliance_program:
+  published: false
+  certifications: []
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or trust-centre page exists, and none
+    should be expected: Apiman is Apache-2.0 software you run yourself, so the compliance
+    posture belongs to the operator's deployment, not to the project. probe-security-programs.py
+    returned trust=none. No `Compliance` or `TrustCenter` pointer is emitted.
+gateway_enforceable:
+  note: >-
+    Standards Apiman's GATEWAY can enforce on managed traffic via first-party policy
+    plugins. These are product capabilities, not conformance claims about Apiman's own API.
+  policies:
+  - {id: rfc7519-jwt, plugin: 'io.apiman.plugins:apiman-plugins-jwt-policy', docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/jwt-policy.html'}
+  - {id: keycloak-oauth2, plugin: 'io.apiman.plugins:apiman-plugins-keycloak-oauth-policy', docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/keycloak-oauth-policy.html'}
+  - {id: cors, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/cors-policy.html'}
+  - {id: http-basic-auth, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/basic-auth-policy.html'}
+  - {id: soap-authorization, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/soap-authorization-policy.html'}
+  - {id: http-security-headers, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/http-security-policy.html'}
+  - {id: rate-limiting, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/rate-limiting-policy.html'}
+  - {id: quota, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/quota-policy.html'}
+  - {id: transfer-quota, docs: 'https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/transfer-quota-policy.html'}
+  - {id: mtls, docs: 'https://www.apiman.io/apiman-docs/installation-guide/latest/gateway/security.html#_mtls_mutual_ssl_endpoint_security'}

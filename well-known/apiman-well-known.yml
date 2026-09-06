@@ -1,0 +1,84 @@
+generated: '2026-09-06'
+method: probed
+source: live HTTPS probes of every host in apis.yml (registrable domain + www)
+note: >-
+  Apiman is self-hosted software: the only host the project itself operates is the
+  project website www.apiman.io (Jekyll on GitHub Pages, apiman/apiman.github.io).
+  The OpenAPI servers[] value is the relative path /apiman, and every apis[].baseURL
+  is the documented self-hosted default http(s)://<your-host>:8080/apiman, so there is
+  no provider-operated API host to probe. Every named path returned 404 on both hosts.
+  No WellKnown or SecurityTxt pointer is emitted — the probe records an absence, not a
+  surface. Apiman's vulnerability-disclosure policy is published as SECURITY.md in the
+  GitHub monorepo instead of an RFC 9116 security.txt; see
+  security/apiman-vulnerability-disclosure.yml.
+hit_count: 0
+path_echo_control: passed
+soft_404_control:
+  path: /.well-known/apiman-negative-control-7f3ab91c.json
+  status: 404
+  bytes: 10151
+  note: >-
+    Both hosts return the site's own 404 page (10,151 bytes of HTML) for every miss,
+    including the negative control, so this host is NOT a path-echoing or soft-200
+    catch-all. Every 404 below is a real absence.
+hosts:
+- host: https://www.apiman.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+- host: https://apiman.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404

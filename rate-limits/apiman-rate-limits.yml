@@ -3,90 +3,78 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Apiman
 providerId: apiman
+generated: '2026-09-06'
+method: searched
+source: >-
+  openapi/_original/apiman-openapi.json,
+  https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/rate-limiting-policy.html,
+  https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/quota-policy.html
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-06'
+limit_count: 0
 tags:
   - API Gateway
   - API Management
-  - Developer Portal
-  - Java
-  - Open Source
   - Rate Limiting
   - Quotas
   - Throttling
-description: Machine-readable rate limit definitions for the Apiman API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Apiman
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Apiman
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Apiman
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Apiman
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Apiman
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - Open Source
+description: >-
+  Apiman publishes no rate limits for its own Manager REST API, and there is no
+  vendor-operated instance that could impose one — you run the server, so the ceiling is
+  your own hardware. limit_count is 0 because nothing is published, not because nothing
+  was looked for. Apiman's rate limiting is a GATEWAY FEATURE it applies to other
+  people's traffic, catalogued under `gateway_policies` below; that must not be harvested
+  as limits on Apiman's own API.
+provenance_note: >-
+  REPLACES A FABRICATED SCAFFOLD (2026-09-06). The prior version of this file, written by
+  the 2026-05-04 bulk sweep, asserted free (10 rpm / 1,000 per month), professional
+  (100 rpm / 100,000 per month) and enterprise (1,000 rpm, 5,000 burst) tiers, plus
+  X-RateLimit-* response headers and a 429/503 contract. Apiman's Manager API declares no
+  429 anywhere in its 177 operations and emits no rate-limit headers. All of it was
+  scaffold default values. Removed rather than kept.
+headers: {}
+responseCodes: {}
+limits: []
+observed:
+  manager_api:
+    published_limits: false
+    rate_limit_headers: []
+    status_on_exhaustion: null
+    evidence: >-
+      The published OpenAPI (128 paths, 177 operations) declares response codes
+      200/201/202/204/401/403/404/409/default. There is no 429, no Retry-After, no
+      RateLimit-* or X-RateLimit-* header, and no throttling language in the user or
+      installation guides.
+gateway_policies:
+  note: >-
+    Capabilities Apiman's gateway ENFORCES on managed APIs, configured per API, plan or
+    client and combined into a policy chain. These are the operator's limits on their own
+    consumers, not limits on Apiman.
+  policies:
+  - name: Rate Limiting Policy
+    docs: https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/rate-limiting-policy.html
+    description: Steady-state request-rate limiting, configurable per second/minute/hour/day/month and granularity (client, API, user, IP).
+  - name: Quota Policy
+    docs: https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/quota-policy.html
+    description: Absolute request-count quota over a configured time window.
+  - name: Transfer Quota Policy
+    docs: https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/transfer-quota-policy.html
+    description: Byte-volume quota on inbound and/or outbound transfer.
+  - name: Time Restricted Access Policy
+    docs: https://www.apiman.io/apiman-docs/user-guide/latest/gateway/policies/time-restricted-access-policy.html
+    description: Allow or deny by time of day and day of week. Evaluates in UTC as of 3.1.3.Final.
+  - name: Circuit Breaker Policy
+    plugin: io.apiman.plugins:apiman-plugins-circuit-breaker-policy
+    description: Trips a managed API out of service after a configured failure threshold.
+  backing_stores: [Elasticsearch, Redis, JDBC, Hazelcast, Vert.x shared data, filesystem, in-memory]
+  backing_store_docs: https://www.apiman.io/apiman-docs/installation-guide/latest/registries-and-components/overview.html
+  where_limits_are_expressed: >-
+    Through the API, a rate-limit or quota policy is created as a PolicyBean with a
+    policy-type specific `configuration` blob, via createApiPolicy, createPlanPolicy or
+    createClientPolicy. The available policy types come from PolicyDefinitionBean
+    (list_2 / getPolicyDefs), and the resolved runtime order is readable with
+    getApiPolicyChain.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

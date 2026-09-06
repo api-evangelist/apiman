@@ -1,0 +1,121 @@
+generated: '2026-09-06'
+method: derived
+source: >-
+  openapi/_original/apiman-openapi.json (components.schemas, 120 schemas),
+  https://www.apiman.io/apiman-docs/user-guide/latest/manager/data-model.html
+summary:
+  schemas: 120
+  entities: 16
+  relationships: 22
+  root_container: OrganizationBean
+  note: >-
+    Apiman's model is a strict containment tree rooted at the organization, with a
+    three-way join (the Contract) binding a Client version, an API version and a Plan
+    version. Policies attach at three different levels — API, Plan and Client — and are
+    ordered into a runtime policy chain. Everything versionable (API, Client, Plan) splits
+    into a parent identity bean and a version bean.
+entities:
+- name: OrganizationBean
+  id_field: id
+  description: Top-level container. Every other entity is scoped to an organization.
+  fields: [id, name, description, createdBy, createdOn, modifiedBy, modifiedOn]
+- name: ApiBean
+  id_field: id
+  description: A managed API's identity within an organization.
+  fields: [organization, id, name, image, description, tags, createdBy, createdOn, numPublished]
+- name: ApiVersionBean
+  description: A concrete version of an API — endpoint, gateways, plans, discoverability, status.
+  fields: [id, api, status, endpoint, endpointType, endpointContentType, endpointProperties, gateways, publicAPI, discoverability, plans, version, definition]
+  status_values_note: Status transitions are driven by performAction (publishAPI / retireAPI).
+- name: ClientBean
+  description: A client application's identity within an organization.
+  fields: [organization, id, name, image, description, createdBy, createdOn]
+- name: ClientVersionBean
+  description: A concrete version of a client app; carries the minted apikey.
+  fields: [id, client, status, version, apikey, publishedOn, retiredOn]
+- name: PlanBean
+  description: A named level of service (a set of policies) within an organization.
+  fields: [organization, id, name, description]
+- name: PlanVersionBean
+  description: A concrete plan version; frozen once lockedOn is set.
+  fields: [id, plan, status, version, lockedOn]
+- name: ContractBean
+  description: >-
+    The three-way join at the heart of Apiman — a Client version consumes an API version
+    through a Plan version. Creating one is what issues access; breaking one revokes it.
+  fields: [id, client, api, plan, createdBy, createdOn, status]
+- name: PolicyBean
+  description: A configured policy instance attached to an API, Plan or Client version.
+  fields: [id, type, organizationId, entityId, entityVersion, name, description, configuration, definition, orderIndex]
+- name: PolicyDefinitionBean
+  description: The catalogue of installable policy types, contributed by core or by a plugin.
+  fields: [id, policyImpl, name, description, icon, templates, pluginId, formType, form, deleted]
+- name: PolicyChainBean
+  description: The ordered, resolved chain of policies applied at runtime to an API version under a plan.
+- name: GatewayBean
+  description: A registered runtime gateway that enforces published policies.
+  fields: [id, name, description, type, configuration]
+- name: PluginBean
+  description: An installed plugin, addressed by Maven coordinates.
+  fields: [id, groupId, artifactId, version, classifier, type, name, description, deleted]
+- name: RoleBean
+  description: A named permission set grantable within an organization.
+  fields: [id, name, description, autoGrant, permissions]
+- name: UserBean
+  description: An Apiman user (identity is federated from Keycloak).
+  fields: [username, fullName, email, joinedOn, locale, admin]
+- name: DeveloperBean
+  description: Developer-portal principal, mapped to one or more client apps.
+  fields: [id, clients]
+- name: AuditEntryBean
+  description: Immutable activity record for any entity.
+  fields: [id, who, organizationId, entityType, entityId, entityVersion, createdOn, what, data]
+- name: NotificationDtoObject
+  description: An in-app notification produced by the events subsystem.
+  fields: [id, category, reason, reasonMessage, status, createdOn, recipient, source, payload]
+relationships:
+- {from: ApiBean, to: OrganizationBean, type: belongs_to, via: organization}
+- {from: ClientBean, to: OrganizationBean, type: belongs_to, via: organization}
+- {from: PlanBean, to: OrganizationBean, type: belongs_to, via: organization}
+- {from: ApiVersionBean, to: ApiBean, type: belongs_to, via: api}
+- {from: ClientVersionBean, to: ClientBean, type: belongs_to, via: client}
+- {from: PlanVersionBean, to: PlanBean, type: belongs_to, via: plan}
+- {from: ApiBean, to: KeyValueTag, type: has_many, via: tags}
+- {from: ApiVersionBean, to: ApiGatewayBean, type: has_many, via: gateways}
+- {from: ApiVersionBean, to: ApiPlanBean, type: has_many, via: plans}
+- {from: ApiVersionBean, to: ApiDefinitionBean, type: has_one, via: definition}
+- {from: ContractBean, to: ClientVersionBean, type: belongs_to, via: client}
+- {from: ContractBean, to: ApiVersionBean, type: belongs_to, via: api}
+- {from: ContractBean, to: PlanVersionBean, type: belongs_to, via: plan}
+- {from: PolicyBean, to: PolicyDefinitionBean, type: belongs_to, via: definition}
+- {from: PolicyBean, to: ApiVersionBean, type: belongs_to, via: "entityId + entityVersion (type=Api)"}
+- {from: PolicyBean, to: PlanVersionBean, type: belongs_to, via: "entityId + entityVersion (type=Plan)"}
+- {from: PolicyBean, to: ClientVersionBean, type: belongs_to, via: "entityId + entityVersion (type=Client)"}
+- {from: PolicyDefinitionBean, to: PluginBean, type: belongs_to, via: pluginId}
+- {from: PolicyDefinitionBean, to: PolicyDefinitionTemplateBean, type: has_many, via: templates}
+- {from: MemberBean, to: MemberRoleBean, type: has_many, via: roles}
+- {from: DeveloperBean, to: DeveloperMappingBean, type: has_many, via: clients}
+- {from: NotificationDtoObject, to: UserDto, type: belongs_to, via: recipient}
+identifiers:
+  style: caller-chosen string ids, not opaque server-generated tokens
+  composite_addressing: >-
+    Resources are addressed by a composite path — /organizations/{organizationId}/apis/{apiId}/versions/{version}
+    — with no globally unique surrogate key. A 404 therefore does not say which path segment missed;
+    see errors/apiman-problem-types.yml.
+  api_key: ApiKeyBean.apiKey, minted per ClientVersionBean and rotatable with updateClientApiKey
+projections:
+  note: >-
+    Apiman ships hand-written read projections rather than field selection. Summary beans
+    (ApiSummaryBean, ClientSummaryBean, PlanSummaryBean, ApiVersionSummaryBean,
+    PolicySummaryBean, GatewaySummaryBean, PluginSummaryBean, OrganizationSummaryBean,
+    ContractSummaryBean, MemberBean) back list endpoints; *Dto variants
+    (ApiBeanDto, ApiVersionBeanDto, ApiPlanBeanDto, DeveloperApiVersionBeanDto, UserDto)
+    back the developer-portal surface, which is deliberately narrower than the manager surface.
+metrics_model:
+  note: >-
+    A separate read-only analytics shape hangs off ApiVersionBean — UsageHistogramBean /
+    UsageDataPoint, ResponseStatsHistogramBean / ResponseStatsDataPoint,
+    ResponseStatsSummaryBean, UsagePerClientBean, UsagePerPlanBean,
+    ResponseStatsPerClientBean, ResponseStatsPerPlanBean, ClientUsagePerApiBean — served by
+    the seven /metrics/* operations and backed by the configured metrics store
+    (Elasticsearch, InfluxDB, Prometheus or file).

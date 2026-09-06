@@ -37,6 +37,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "apiman-actions-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-blobs-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-developers-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-devportal-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-downloads-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-events-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-experimental-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-gateways-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-organizations-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-plugins-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-policy-definitions-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-roles-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-search-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-system-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apiman-users-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

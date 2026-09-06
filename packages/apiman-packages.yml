@@ -1,0 +1,152 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://search.maven.org/solrsearch/select?q=g:io.apiman (146 artifacts),
+  https://search.maven.org/solrsearch/select?q=g:io.apiman.plugins (23 artifacts),
+  https://github.com/apiman/apiman-cli/releases, https://www.apiman.io/download.html
+summary:
+  registries: [maven-central, github-releases, quay.io]
+  first_party_artifacts_on_maven_central: 169
+  latest_release: 3.1.3.Final
+  latest_release_published: '2023-11-13'
+  client_sdk_count: 0
+  note: >-
+    Apiman publishes 169 first-party Maven Central artifacts under io.apiman (146) and
+    io.apiman.plugins (23), but they are the SERVER distribution, the gateway engine, the
+    policy plugins and the JAX-RS resource interfaces — not client SDKs. Apiman ships no
+    per-language client library for its Manager REST API; the first-party consumer surface
+    is apiman-cli (see cli/apiman-cli.yml). No `SDKs` pointer is emitted, because emitting
+    one would credit Apiman with client libraries it does not publish.
+decay_signal:
+  observation: >-
+    Every io.apiman and io.apiman.plugins artifact last published 3.1.3.Final on
+    2023-11-13, the same day as the newest GitHub release. apiman-cli last released
+    v0.4.0 on 2020-11-01. The publishing cadence has been dormant since November 2023,
+    while a 2025-05-12 project blog post ("Apiman 4 dev diary") describes a Vert.x
+    rewrite still in progress. No published package post-dates the API it wraps.
+  last_registry_publish: '2023-11-13'
+  last_github_release: '2023-11-13'
+  source: https://github.com/apiman/apiman/releases
+packages:
+- language: java
+  registry: maven
+  name: io.apiman:apiman-distro-wildfly
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-distro-wildfly
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-distro-wildfly</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: distribution
+  description: Apiman overlay distribution for WildFly / JBoss EAP.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman:apiman-distro-vertx
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-distro-vertx
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-distro-vertx</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: distribution
+  description: Standalone Eclipse Vert.x high-performance gateway distribution.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman:apiman-distro-docker-compose
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-distro-docker-compose
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-distro-docker-compose</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: distribution
+  description: Docker Compose quickstart distribution (Manager, Vert.x Gateway, Keycloak, PostgreSQL, Elasticsearch, MailDev).
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman:apiman-manager-api-rest
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-manager-api-rest
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-manager-api-rest</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: rest-interface
+  description: >-
+    JAX-RS annotated resource interfaces for the Manager REST API — the contract the
+    OpenAPI at /apiman/openapi.json is generated from. Usable as a typed proxy contract by
+    JVM consumers, but the project does not document or support it as a client SDK.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman:apiman-gateway-api-rest
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-gateway-api-rest
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-gateway-api-rest</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: rest-interface
+  description: JAX-RS resource interfaces for the Gateway configuration REST API (BASIC auth, apipublisher role).
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman:apiman-gateway-engine-core
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-gateway-engine-core
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-gateway-engine-core</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: library
+  description: Core gateway policy engine — the extension point Java policy plugins are written against.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman:apiman-common-plugin
+  url: https://central.sonatype.com/artifact/io.apiman/apiman-common-plugin
+  install: "<dependency><groupId>io.apiman</groupId><artifactId>apiman-common-plugin</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: library
+  description: Plugin descriptor and packaging support for building custom Apiman policy plugins.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman.plugins:apiman-plugins-jwt-policy
+  url: https://central.sonatype.com/artifact/io.apiman.plugins/apiman-plugins-jwt-policy
+  install: "<dependency><groupId>io.apiman.plugins</groupId><artifactId>apiman-plugins-jwt-policy</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: policy-plugin
+  description: Official JWT validation policy plugin for the Apiman gateway.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman.plugins:apiman-plugins-keycloak-oauth-policy
+  url: https://central.sonatype.com/artifact/io.apiman.plugins/apiman-plugins-keycloak-oauth-policy
+  install: "<dependency><groupId>io.apiman.plugins</groupId><artifactId>apiman-plugins-keycloak-oauth-policy</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: policy-plugin
+  description: Official Keycloak OAuth policy plugin for the Apiman gateway.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: maven
+  name: io.apiman.plugins:apiman-plugins-transformation-policy
+  url: https://central.sonatype.com/artifact/io.apiman.plugins/apiman-plugins-transformation-policy
+  install: "<dependency><groupId>io.apiman.plugins</groupId><artifactId>apiman-plugins-transformation-policy</artifactId><version>3.1.3.Final</version></dependency>"
+  official: true
+  role: policy-plugin
+  description: Official XML/JSON transformation policy plugin for the Apiman gateway.
+  version: 3.1.3.Final
+  published: '2023-11-13'
+- language: java
+  registry: github-releases
+  name: apiman-cli
+  url: https://github.com/apiman/apiman-cli/releases
+  install: "download the apiman-cli release archive and run ./apiman"
+  official: true
+  role: cli
+  description: First-party command line interface for the Apiman Manager and Gateway, including declarative (YAML/JSON) environment management. Not published to Maven Central.
+  version: v0.4.0
+  published: '2020-11-01'
+non_first_party:
+- registry: npm
+  name: apiman
+  url: https://www.npmjs.com/package/apiman
+  official: false
+  note: >-
+    NOT Apiman. registry.npmjs.org/apiman is "Generic API methods manager" by kolypto
+    (latest 1.0.1), an unrelated package that happens to share the name. Recorded here so
+    a future pass does not mistake it for a first-party JavaScript SDK.

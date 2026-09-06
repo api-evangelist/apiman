@@ -3,149 +3,68 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Apiman
 providerId: apiman
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.apiman.io/, https://www.apiman.io/download.html,
+  https://www.apiman.io/support.html,
+  https://github.com/apiman/apiman/blob/master/LICENSE
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-06'
+plan_count: 0
 tags:
   - API Gateway
   - API Management
   - Developer Portal
   - Java
   - Open Source
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
-plans:
-  - id: apiman-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Apiman API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Apiman
-  - id: apiman-pro
-    name: Professional
-    type: paid
-    description: Production tier for Apiman. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Apiman
-  - id: apiman-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Apiman. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://localhost:8080/apiman
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Apiman
+description: >-
+  Apiman publishes no plans and no pricing, and correctly so: it is Apache-2.0 licensed
+  software that you download and run yourself, not a hosted service with tiers. There is
+  no sign-up, no free tier, no paid tier and no overage — the only listed money surface is
+  third-party commercial support, consulting and training from Black Parrot Labs (founded
+  by Apiman maintainer Marc Savy) and other long-term contributors, whose terms are not
+  published. plan_count is 0 because the provider genuinely has nothing to publish.
+provenance_note: >-
+  REPLACES A FABRICATED SCAFFOLD (2026-09-06). The prior version of this file, written by
+  the 2026-05-04 bulk sweep, asserted three tiers — apiman-free (1,000 requests/month, 10
+  rpm), apiman-pro (100,000 requests/month, 100 rpm, "price: TBD") and apiman-enterprise
+  (negotiated, 1,000 rpm) — with quotas and domains of https://localhost:8080/apiman. None
+  of it came from Apiman. It was scaffold default values stamped onto an open-source,
+  self-hosted project that has never sold a plan. It has been removed rather than kept,
+  per the no-fabrication rule; an honest zero is the measurement.
+plans: []
+pricing_page: null
+free_and_open_source:
+  license: Apache-2.0
+  license_url: https://github.com/apiman/apiman/blob/master/LICENSE
+  cost: 0
+  distribution: https://www.apiman.io/download.html
+commercial_support:
+  published_terms: false
+  url: https://www.apiman.io/support.html
+  providers:
+  - name: Black Parrot Labs
+    url: https://www.blackparrotlabs.io
+    offering: Long-term enterprise-grade Apiman support, consulting, training and professional services.
+    note: >-
+      Founded by Apiman co-founder and maintainer Marc Savy. Pricing is not published;
+      engagement is by contact. This is a service sold by a company, not a plan sold by
+      the Apiman project.
+  community_support:
+    url: https://github.com/orgs/apiman/discussions
+    terms: >-
+      "Community support is provided by contributors to the upstream, with questions
+      answered in GitHub Issues and Apiman Discussions when people have time. This is
+      strictly on a voluntary basis, and there are no guarantees provided."
+product_plans_are_not_pricing_plans:
+  note: >-
+    DISAMBIGUATION, because this trips up automated readers. "Plan" is a first-class
+    entity in Apiman's own data model — a named set of policies defining a level of
+    service that an API provider offers to client apps (PlanBean / PlanVersionBean,
+    listPlans, createPlan, lockPlan). Those are plans that Apiman's USERS create for their
+    own consumers. They are not commercial tiers Apiman sells, and must never be harvested
+    as such. See data-model/apiman-data-model.yml.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

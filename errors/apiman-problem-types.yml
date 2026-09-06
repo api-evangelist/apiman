@@ -1,0 +1,120 @@
+generated: '2026-09-06'
+method: derived
+source: openapi/_original/apiman-openapi.json (128 paths / 177 operations, OpenAPI 3.0.1)
+format: none
+envelope:
+  declared: false
+  media_type: null
+  note: >-
+    Apiman's OpenAPI declares NO error schema. Every 4xx response carries a prose
+    description and no `content`, so a machine reading the contract cannot learn the shape
+    of an error body — only its status code and a sentence. There is no
+    application/problem+json (RFC 9457), no error-code registry, and no documented
+    envelope field. This is the single largest agent-readiness gap in the contract and is
+    worth raising with the project: Apiman's server does return a JSON error body
+    (Apiman's ErrorBean carries type/message/moreInfoUrl at runtime) but it is absent from
+    the published spec, so nothing here asserts it.
+coverage:
+  operations_total: 177
+  responses_2xx: 150
+  responses_4xx: 98
+  responses_5xx: 0
+  responses_default: 26
+  operations_with_any_4xx: 89
+  note: >-
+    Half the surface documents no failure mode at all, and no operation anywhere in the
+    spec documents a 5xx.
+problems:
+- status: 401
+  title: Unauthorized
+  description: >-
+    Declared on exactly ONE operation in the whole spec, and its description
+    ("If invalid data is provided, such as plans that exist but have not been attached to
+    the API") describes a validation failure, not an authentication failure — the code and
+    the prose disagree. In practice the entire Manager API is Keycloak-protected and will
+    answer 401 to an unauthenticated caller; the contract simply does not say so.
+  occurrences: 1
+  source_operations:
+  - openapi/apiman-organizations-api-openapi.yml#reorderApiPlans
+- status: 403
+  title: Forbidden
+  description: >-
+    The caller is authenticated but the action is not permitted. Two documented shapes:
+    "If the access is not allowed" (organization/entity permission denied under the
+    role-based permission grid) and "If the user is not an admin" (apiadmin-only system
+    administration operations).
+  occurrences: 10
+  remediation: >-
+    Check the caller's grants with getPermissionsForUser, or their organization
+    memberships with getOrganizations / listMembers. Admin-only surfaces (plugins, policy
+    definitions, gateways, roles, system import/export) require the apiadmin realm role.
+  source_operations:
+  - openapi/apiman-developers-api-openapi.yml#getDevelopers
+  - openapi/apiman-plugins-api-openapi.yml#getAvailablePlugins
+- status: 404
+  title: Not Found
+  description: >-
+    The addressed entity does not exist. The dominant error in the contract (79 of 98
+    documented 4xx responses). Because Apiman entities are addressed by a composite path
+    (organizationId / apiId / version / policyId), a 404 does not say WHICH segment
+    missed — several descriptions name the ambiguity explicitly, e.g. "If the
+    Organization, Client, or Policy does not exist."
+  occurrences: 79
+  remediation: >-
+    Resolve the path segments outward-in: getOrg, then listApis / listClients / listPlans,
+    then listApiVersions_1 / listClientVersions / listPlanVersions, then the policy or
+    contract id.
+  variants:
+  - "If the Organization does not exist"
+  - "If the API does not exist / cannot be found"
+  - "If the API version does not exist"
+  - "If the Client is not found / Client version does not exist"
+  - "If the Plan does not exist / Plan version does not exist"
+  - "If the Policy does not exist"
+  - "If the Contract is not found"
+  - "If the developer does not exist"
+  - "If the user does not exist"
+  - "If the plugin does not exist"
+  - "If the form does not exist"
+  source_operations:
+  - openapi/apiman-organizations-api-openapi.yml#getOrg
+  - openapi/apiman-organizations-api-openapi.yml#getContract
+  - openapi/apiman-organizations-api-openapi.yml#updateClientPolicy
+  - openapi/apiman-developers-api-openapi.yml#get
+  - openapi/apiman-plugins-api-openapi.yml#getPolicyForm
+- status: 409
+  title: Conflict
+  description: >-
+    A state or precondition conflict. Two distinct causes are documented: (a) the entity
+    version being created already exists, and (b) delete preconditions are unmet because
+    sub-elements are still active — "still-published APIs" under an organization,
+    "still-registered ClientVersions" under a client. updateClientApiKey also answers 409
+    when the client version is in the wrong status.
+  occurrences: 8
+  remediation: >-
+    For (a) pick a new version string or fetch the existing one. For (b) retire or
+    unregister the children first with performAction (retireAPI / unregisterClient) and
+    break contracts with deleteContract / deleteAllContracts, then retry the delete. See
+    conventions/apiman-conventions.yml reversibility.
+  source_operations:
+  - openapi/apiman-organizations-api-openapi.yml#createApiVersion
+  - openapi/apiman-organizations-api-openapi.yml#createClientVersion
+  - openapi/apiman-organizations-api-openapi.yml#createPlanVersion
+  - openapi/apiman-organizations-api-openapi.yml#deleteOrg
+  - openapi/apiman-organizations-api-openapi.yml#deleteClient
+  - openapi/apiman-organizations-api-openapi.yml#deleteApi
+  - openapi/apiman-organizations-api-openapi.yml#deletePlan
+  - openapi/apiman-organizations-api-openapi.yml#updateClientApiKey
+- status: default
+  title: Undifferentiated default response
+  description: >-
+    26 operations declare only a `default` response, 2 of them with content */*. These
+    carry no status code and no schema and are unusable for error handling.
+  occurrences: 26
+  source_operations:
+  - openapi/apiman-blobs-api-openapi.yml#getBlob
+gaps:
+- No 5xx response is documented anywhere in the 177-operation surface.
+- No error body schema, no error-code registry, no application/problem+json.
+- The single 401 is attached to a validation condition, not an auth condition.
+- 88 operations document no failure mode at all.

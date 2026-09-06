@@ -1,0 +1,73 @@
+generated: '2026-09-06'
+method: searched
+source: https://www.apiman.io/changelog.html
+docs: https://www.apiman.io/changelog.html
+releases: https://github.com/apiman/apiman/releases
+scheme:
+  style: "MAJOR.MINOR.PATCH.QUALIFIER"
+  qualifiers: [Final, RC1, RC2, SNAPSHOT]
+  example: 3.1.3.Final
+  note: >-
+    Apiman uses a Keep-a-Changelog style page grouped per release into Added / Changed /
+    Removed / Fixed, scoped to Apiman 3 and later ("All notable changes to Apiman will be
+    documented here (as of Apiman 3)"). Each entry credits its contributor.
+current_version: 3.1.3.Final
+current_version_released: '2023-11-13'
+in_development: 3.2.0-SNAPSHOT
+cadence_note: >-
+  The newest published release on both the changelog page and GitHub Releases is
+  3.1.3.Final (2023-11-13). The most recent commit on apiman/apiman master is
+  2024-03-13. A 2025-05-12 blog post ("Apiman 4 dev diary: hybrid Vert.x
+  async/imperative") describes Apiman 4 as work in progress; no Apiman 4 release exists.
+entries:
+- version: 3.1.3.Final
+  date: '2023-11-13'
+  breaking: false
+  changed:
+  - A large number of dependencies updated across the codebase for security.
+  fixed:
+  - "[gateway] Time Restricted-Access policy now evaluates in UTC instead of server local time."
+  - "[manager-ui] Metrics popover legend no longer renders white/invisible."
+  - "[common-config] EnvLookup NPE when List.of received a null element, which broke metrics rendering under some configurations."
+- version: 3.1.2.Final
+  date: '2023-07-06'
+  breaking: false
+  added:
+  - "[gateway-vertx] allowed-issuers list in the Gateway API Keycloak authentication config, for Keycloak servers returning different internal vs external issuers."
+  changed:
+  - Broad dependency update for security.
+  - "[containers/docker-compose] allowed-issuers now set in the Vert.x Gateway API auth config."
+  fixed:
+  - "[gateway-vertx] /system/status is reachable without auth so health checks do not need credentials."
+  - "[gateway-vertx] array values correctly substituted in Vert.x Gateway configuration."
+  - "[portal] REST API documentation shown to logged-out users."
+  - "[gateway-vertx] null/empty path elements no longer emitted in the Keycloak discovery URI."
+  - "[distro-ddl] several Microsoft SQL Server DDL fixes (set hibernate.auto_quote_keyword=true)."
+  - "[manager-api-jpa] organizations with retired entities/contracts can be deleted."
+  - "[gateway-engine-vertx] API is resolved before use (async correctness)."
+- version: 3.1.1.Final
+  date: '2023-03-27'
+  breaking: false
+  highlights:
+  - No functional changes; re-released because of a CI/CD pipeline problem.
+- version: 3.1.0.Final
+  date: '2023-03-27'
+  breaking: false
+  added:
+  - "[metrics-es] write-to option to log metrics to file as JSON for scrape-based patterns."
+  changed:
+  - "[manager-api-rest] The Manager API now publishes an OpenAPI v3 schema at /openapi.json and /openapi.yml (e.g. http://localhost:8080/apiman/openapi.json)."
+  - Default plugin registry and API catalogue JSON moved into the GitHub release rather than the repository.
+  - Apiman converted into a monorepo — plugins, API catalogue, plugin registry, developer portal and docker images merged in.
+  removed:
+  - "[manager-api-rest] Obsolete Qmino API documentation generator removed."
+  fixed:
+  - "[gateway-vertx] inverted getAllowedIssuers check in Keycloak discovery."
+  - "[manager-api] subtype registration for policy deserialization."
+- version: 3.0.0.Final
+  date: '2022-11-30'
+  breaking: true
+  highlights:
+  - "Apiman 3 — standalone Angular developer portal, events and notifications subsystem, discoverability, approval workflows."
+  - Keycloak is no longer bundled in quickstart distributions and must be run separately.
+  source: https://www.apiman.io/blog/apiman-3/

@@ -1,0 +1,76 @@
+generated: '2026-09-06'
+method: searched
+source: https://github.com/apiman/apiman-cli
+name: apiman-cli
+description: >-
+  First-party command line interface for Apiman. Scripts Manager and Gateway actions
+  (create organizations, APIs, gateways, install plugins, publish) and supports a
+  declarative mode that applies a checked-in YAML/JSON environment declaration.
+repository: https://github.com/apiman/apiman-cli
+releases: https://github.com/apiman/apiman-cli/releases
+latest_version: v0.4.0
+latest_released: '2020-11-01'
+currency_note: >-
+  apiman-cli has not been released since 2020-11-01 (v0.4.0), three years before the
+  current Apiman 3.1.3.Final server release. Its documented requirement is JDK 8. Treat
+  coverage of Apiman 3.x features (developer portal, notifications, discoverability,
+  blobs) as unverified.
+install:
+- method: github-release
+  note: Download the release archive from https://github.com/apiman/apiman-cli/releases and run ./apiman
+- method: source
+  note: Clone https://github.com/apiman/apiman-cli and build with Maven
+requirements:
+- A running Apiman instance
+- JDK 8
+- macOS, Windows or Linux
+global_flags:
+- flag: --debug
+  description: Log at DEBUG level (default false)
+- flag: --help / -h
+  description: Display usage only
+- flag: --server / -s
+  description: "Management API server address (default: http://localhost:8080/apiman)"
+- flag: --serverUsername / -su
+  description: "Management API server username (default: apiman)"
+- flag: --serverPassword / -sp
+  description: "Management API server password (default: admin123!)"
+commands:
+- group: manager plugin
+  description: Install and inspect policy plugins on the Manager (groupId/artifactId/version coordinates).
+  backing_operations: [create_2, list_1, get_2, delete_2, getAvailablePlugins]
+- group: manager org
+  description: Show and create organizations.
+  subcommands: [show, create]
+  backing_operations: [createOrg, getOrg]
+- group: manager api
+  description: Create, configure and publish APIs and API versions.
+  subcommands: [create, publish]
+  backing_operations: [createApi, createApiVersion, updateApiVersion, updateApiDefinition, performAction]
+- group: manager gateway
+  description: Register and test gateways (name, endpoint, username, password, type REST).
+  backing_operations: [create_1, list, test, get_1]
+- group: manager apply
+  description: Declarative mode — apply a YAML/JSON declaration file describing orgs, APIs, policies, gateways and plugins.
+  flags:
+  - "-f <file>: declaration file"
+  - "-P key=value: placeholder property"
+  - "--propertiesFile <path>: placeholder properties file"
+- group: gateway
+  description: Control the Apiman Gateway component directly.
+flows:
+- name: Create and publish an API
+  steps:
+  - "apiman manager api create --name example --endpoint http://example.com --initialVersion 1.0 --public --orgName test"
+  - "apiman manager api publish --name example --version 1.0 --orgName test"
+  - "call the managed API at http://localhost:8080/apiman-gateway/test/example/1.0"
+- name: Declarative environment management
+  steps:
+  - "write a declaration (org, apis, config, policies, definition) as simple.yml"
+  - "apiman manager apply -f simple.yml"
+  - "reuse across environments with placeholders: apiman manager apply -f simple.yml -P myApiEndpoint=http://example.com"
+declarative_features:
+- org/common/policies (first and last lists injected into every API policy chain)
+- org/common/config (defaults overridden by per-API values)
+- shared policies and shared properties blocks
+- placeholder substitution from flags or a properties file
