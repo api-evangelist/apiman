@@ -1,17 +1,17 @@
 ---
 kin_checks:
   slug: apiman
-  schema_version: 0.21.0
-  scored_at: '2026-09-12'
-  run_ts: 2026-09-12T080032
+  schema_version: 0.22.0
+  scored_at: '2026-09-15'
+  run_ts: 2026-09-15T230249
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.21.0.yml; counts below let you verify that.
+    in rubric/scoring-0.22.0.yml; counts below let you verify that.
   counts:
     total: 136
     earned: 42
     partial: 15
-    missed: 60
-    na: 19
+    missed: 57
+    na: 22
   checks:
   - id: multiple_apis
     status: missed
@@ -96,12 +96,6 @@ kin_checks:
   - id: reg_privacy_policy
     status: missed
   - id: reg_compliance_published
-    status: missed
-  - id: reg_named_standard_conformance
-    status: missed
-  - id: reg_consent_model
-    status: missed
-  - id: reg_certification_signal
     status: missed
   - id: os_contribution_guide
     status: missed
