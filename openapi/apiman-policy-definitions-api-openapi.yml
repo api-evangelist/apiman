@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Policy Definitions API
+  title: Manager REST Policy Definitions API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -22,6 +22,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PolicyDefinitionSummaryBean'
+      summary: List 2
+      x-summary-source: derived
     post:
       tags:
       - Policy Definitions
@@ -38,6 +40,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyDefinitionBean'
+      summary: Create 3
+      x-summary-source: derived
   /policyDefs/{policyDefinitionId}:
     get:
       tags:
@@ -53,6 +57,8 @@ paths:
       responses:
         '200':
           description: If the policy definition is returned successfully.
+      summary: Get 3
+      x-summary-source: derived
     put:
       tags:
       - Policy Definitions
@@ -72,6 +78,8 @@ paths:
       responses:
         '204':
           description: If the update was successful.
+      summary: Update 2
+      x-summary-source: derived
     delete:
       tags:
       - Policy Definitions
@@ -85,8 +93,17 @@ paths:
       responses:
         '204':
           description: If the policy definition is successfully deleted.
+      summary: Delete 3
+      x-summary-source: derived
 components:
   schemas:
+    PolicyDefinitionTemplateBean:
+      type: object
+      properties:
+        language:
+          type: string
+        template:
+          type: string
     UpdatePolicyDefinitionBean:
       type: object
       properties:
@@ -148,10 +165,3 @@ components:
           type: string
         deleted:
           type: boolean
-    PolicyDefinitionTemplateBean:
-      type: object
-      properties:
-        language:
-          type: string
-        template:
-          type: string

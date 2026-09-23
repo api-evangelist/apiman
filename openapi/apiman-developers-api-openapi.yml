@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Developers API
+  title: Manager REST Developers API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -19,6 +19,8 @@ paths:
         '403':
           description: If the access is not allowed
       deprecated: true
+      summary: Get developers
+      x-summary-source: derived
     post:
       tags:
       - Developers
@@ -34,6 +36,8 @@ paths:
         '403':
           description: If the access is not allowed
       deprecated: true
+      summary: Create
+      x-summary-source: derived
   /developers/{developerId}:
     get:
       tags:
@@ -53,6 +57,8 @@ paths:
         '404':
           description: If the developer does not exist.
       deprecated: true
+      summary: Get
+      x-summary-source: derived
     put:
       tags:
       - Developers
@@ -76,6 +82,8 @@ paths:
         '404':
           description: If the developer does not exist.
       deprecated: true
+      summary: Update
+      x-summary-source: derived
     delete:
       tags:
       - Developers
@@ -94,6 +102,8 @@ paths:
         '404':
           description: If the developer does not exist.
       deprecated: true
+      summary: Delete
+      x-summary-source: derived
   /developers/{developerId}/apis:
     get:
       tags:
@@ -113,6 +123,8 @@ paths:
         '404':
           description: If the developer does not exist.
       deprecated: true
+      summary: Get all api versions
+      x-summary-source: derived
   /developers/{developerId}/contracts:
     get:
       tags:
@@ -132,6 +144,8 @@ paths:
         '404':
           description: If the developer does not exist.
       deprecated: true
+      summary: Get all client contracts
+      x-summary-source: derived
   /developers/{developerId}/clients:
     get:
       tags:
@@ -151,6 +165,8 @@ paths:
         '404':
           description: If the developer does not exist.
       deprecated: true
+      summary: Get all client versions
+      x-summary-source: derived
   /developers/apis:
     get:
       tags:
@@ -162,6 +178,8 @@ paths:
         '403':
           description: If the access is not allowed
       deprecated: true
+      summary: Get all public api versions
+      x-summary-source: derived
   /developers/{developerId}/organizations/{organizationId}/apis/{apiId}/versions/{version}/definition:
     get:
       tags:
@@ -194,6 +212,8 @@ paths:
         '404':
           description: If the API version does not exist.
       deprecated: true
+      summary: Get api definition 1
+      x-summary-source: derived
   /developers/organizations/{organizationId}/apis/{apiId}/versions/{version}/definition:
     get:
       tags:
@@ -221,8 +241,18 @@ paths:
         '404':
           description: If the API version does not exist.
       deprecated: true
+      summary: Get public api definition
+      x-summary-source: derived
 components:
   schemas:
+    UpdateDeveloperBean:
+      type: object
+      properties:
+        clients:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DeveloperMappingBean'
     DeveloperMappingBean:
       type: object
       properties:
@@ -235,14 +265,6 @@ components:
       properties:
         id:
           type: string
-        clients:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/DeveloperMappingBean'
-    UpdateDeveloperBean:
-      type: object
-      properties:
         clients:
           uniqueItems: true
           type: array

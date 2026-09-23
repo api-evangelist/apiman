@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Gateways API
+  title: Manager REST Gateways API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -22,6 +22,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GatewaySummaryBean'
+      summary: List
+      x-summary-source: derived
     put:
       tags:
       - Gateways
@@ -38,6 +40,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GatewayTestResultBean'
+      summary: Test
+      x-summary-source: derived
     post:
       tags:
       - Gateways
@@ -54,6 +58,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GatewayBean'
+      summary: Create 1
+      x-summary-source: derived
   /gateways/{gatewayId}:
     get:
       tags:
@@ -73,6 +79,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GatewayBean'
+      summary: Get 1
+      x-summary-source: derived
     put:
       tags:
       - Gateways
@@ -92,6 +100,8 @@ paths:
       responses:
         '204':
           description: If the update is successful.
+      summary: Update 1
+      x-summary-source: derived
     delete:
       tags:
       - Gateways
@@ -106,6 +116,8 @@ paths:
       responses:
         '204':
           description: If the delete is successful.
+      summary: Delete 1
+      x-summary-source: derived
   /gateways/{gatewayId}/endpoint:
     get:
       tags:
@@ -125,39 +137,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GatewayEndpointSummaryBean'
       deprecated: true
+      summary: Get gateway endpoint
+      x-summary-source: derived
 components:
   schemas:
-    UpdateGatewayBean:
-      type: object
-      properties:
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - REST
-        configuration:
-          type: string
-    NewGatewayBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - REST
-        configuration:
-          type: string
-    GatewayTestResultBean:
-      type: object
-      properties:
-        success:
-          type: boolean
-        detail:
-          type: string
     GatewayBean:
       type: object
       properties:
@@ -183,6 +166,24 @@ components:
           - REST
         configuration:
           type: string
+    UpdateGatewayBean:
+      type: object
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
+          type: string
+    GatewayTestResultBean:
+      type: object
+      properties:
+        success:
+          type: boolean
+        detail:
+          type: string
     GatewaySummaryBean:
       type: object
       properties:
@@ -200,4 +201,17 @@ components:
       type: object
       properties:
         endpoint:
+          type: string
+    NewGatewayBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
           type: string

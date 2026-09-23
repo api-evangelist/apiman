@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Users API
+  title: Manager REST Users API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -29,6 +29,8 @@ paths:
           description: default response
           content:
             application/json: {}
+      summary: Create notification filter
+      x-summary-source: derived
   /users/{userId}:
     get:
       tags:
@@ -47,6 +49,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDto'
+      summary: Get 5
+      x-summary-source: derived
     put:
       tags:
       - Users
@@ -65,6 +69,8 @@ paths:
       responses:
         '204':
           description: If the user information is successfully updated.
+      summary: Update 4
+      x-summary-source: derived
   /users/{userId}/activity:
     get:
       tags:
@@ -93,6 +99,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanAuditEntryBean'
+      summary: Get activity
+      x-summary-source: derived
   /users/{userId}/apiorgs:
     get:
       tags:
@@ -113,6 +121,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrganizationSummaryBean'
+      summary: Get api organizations
+      x-summary-source: derived
   /users/{userId}/apis:
     get:
       tags:
@@ -133,6 +143,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ApiSummaryBean'
+      summary: Get apis
+      x-summary-source: derived
   /users/{userId}/clientorgs:
     get:
       tags:
@@ -153,6 +165,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrganizationSummaryBean'
+      summary: Get client organizations
+      x-summary-source: derived
   /users/{userId}/viewable-clients:
     get:
       tags:
@@ -173,6 +187,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ClientSummaryBean'
+      summary: Get clients
+      x-summary-source: derived
   /users/{userId}/editable-clients:
     get:
       tags:
@@ -193,6 +209,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ClientSummaryBean'
+      summary: Get editable clients
+      x-summary-source: derived
   /users/currentuser/info:
     get:
       tags:
@@ -205,6 +223,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CurrentUserBean'
+      summary: Get info
+      x-summary-source: derived
   /users/{userId}/notifications:
     put:
       tags:
@@ -225,6 +245,8 @@ paths:
       responses:
         '202':
           description: If the command to mark the user's notification was accepted
+      summary: Mark notifications
+      x-summary-source: derived
     post:
       tags:
       - Users
@@ -247,6 +269,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanNotificationDtoObject'
+      summary: Get notifications for user
+      x-summary-source: derived
     head:
       tags:
       - Users
@@ -265,6 +289,8 @@ paths:
       responses:
         '204':
           description: If user's notification metadata is successfully retrieved
+      summary: Get notification count for user
+      x-summary-source: derived
   /users/{userId}/organizations:
     get:
       tags:
@@ -285,6 +311,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrganizationSummaryBean'
+      summary: Get organizations
+      x-summary-source: derived
   /users/{userId}/permissions:
     get:
       tags:
@@ -303,6 +331,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserPermissionsBean'
+      summary: Get permissions for user
+      x-summary-source: derived
   /users/{userId}/planorgs:
     get:
       tags:
@@ -323,38 +353,19 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrganizationSummaryBean'
+      summary: Get plan organizations
+      x-summary-source: derived
 components:
   schemas:
-    SearchResultsBeanNotificationDtoObject:
+    PagingBean:
       type: object
       properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationDtoObject'
-        totalSize:
+        page:
           type: integer
           format: int32
-    NotificationPreferenceEntity:
-      required:
-      - type
-      type: object
-      properties:
-        id:
+        pageSize:
           type: integer
-          format: int64
-        user:
-          $ref: '#/components/schemas/UserBean'
-        type:
-          type: string
-          enum:
-          - WEB
-          - EMAIL
-        rules:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationFilterEntity'
+          format: int32
     CurrentUserBean:
       type: object
       properties:
@@ -419,6 +430,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PermissionBean'
+    SearchResultsBeanNotificationDtoObject:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationDtoObject'
+        totalSize:
+          type: integer
+          format: int32
+    CreateNotificationFilterDto:
+      type: object
+      properties:
+        source:
+          type: string
+        notificationType:
+          type: string
+          enum:
+          - WEB
+          - EMAIL
+        expression:
+          type: string
+        enabled:
+          type: boolean
+        message:
+          type: string
+    NotificationPreferenceEntity:
+      required:
+      - type
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/UserBean'
+        type:
+          type: string
+          enum:
+          - WEB
+          - EMAIL
+        rules:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationFilterEntity'
     NotificationDtoObject:
       type: object
       properties:
@@ -456,15 +513,62 @@ components:
           type: string
         payload:
           type: object
-    PagingBean:
+    ApiSummaryBean:
       type: object
       properties:
-        page:
-          type: integer
-          format: int32
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    NotificationActionDto:
+      required:
+      - status
+      type: object
+      properties:
+        markAll:
+          type: boolean
+        notificationIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        status:
+          type: string
+          enum:
+          - OPEN
+          - USER_DISMISSED
+          - SYSTEM_DISMISSED
+    SearchCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
         pageSize:
-          type: integer
-          format: int32
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
     PermissionBean:
       type: object
       properties:
@@ -485,24 +589,66 @@ components:
           - planAdmin
         organizationId:
           type: string
-    NotificationActionDto:
+    UserDto:
       required:
-      - status
+      - email
+      - fullName
+      - joinedOn
+      - locale
+      - username
       type: object
       properties:
-        markAll:
-          type: boolean
-        notificationIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-        status:
+        username:
           type: string
-          enum:
-          - OPEN
-          - USER_DISMISSED
-          - SYSTEM_DISMISSED
+        fullName:
+          type: string
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+        admin:
+          type: boolean
     AuditEntryBean:
       type: object
       properties:
@@ -551,6 +697,21 @@ components:
           - DeleteDefinition
         data:
           type: string
+    NotificationCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
     UpdateUserBean:
       type: object
       properties:
@@ -652,69 +813,6 @@ components:
               type: string
         admin:
           type: boolean
-    SearchResultsBeanAuditEntryBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditEntryBean'
-        totalSize:
-          type: integer
-          format: int32
-    CreateNotificationFilterDto:
-      type: object
-      properties:
-        source:
-          type: string
-        notificationType:
-          type: string
-          enum:
-          - WEB
-          - EMAIL
-        expression:
-          type: string
-        enabled:
-          type: boolean
-        message:
-          type: string
-    NotificationCriteriaBean:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchCriteriaFilterBean'
-        orderBy:
-          $ref: '#/components/schemas/OrderByBean'
-        paging:
-          $ref: '#/components/schemas/PagingBean'
-        pageSize:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-        page:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-    SearchCriteriaBean:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchCriteriaFilterBean'
-        orderBy:
-          $ref: '#/components/schemas/OrderByBean'
-        paging:
-          $ref: '#/components/schemas/PagingBean'
-        pageSize:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-        page:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-    OrderByBean:
-      type: object
-      properties:
-        ascending:
-          type: boolean
-        name:
-          type: string
     SearchCriteriaFilterBean:
       type: object
       properties:
@@ -733,39 +831,6 @@ components:
           - lt
           - lte
           - like
-    KeyValueTagDto:
-      required:
-      - key
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      description: Key value tag pair
-    ApiSummaryBean:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        image:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueTagDto'
     UserPermissionsBean:
       type: object
       properties:
@@ -776,84 +841,47 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PermissionBean'
-    OrganizationSummaryBean:
+    OrderByBean:
       type: object
       properties:
-        id:
-          type: string
+        ascending:
+          type: boolean
         name:
           type: string
-        description:
-          type: string
-        numClients:
-          type: integer
-          format: int32
-        numApis:
-          type: integer
-          format: int32
-        numMembers:
-          type: integer
-          format: int32
-    UserDto:
+    NotificationFilterEntity:
       required:
-      - email
-      - fullName
-      - joinedOn
-      - locale
-      - username
+      - expression
+      - source
       type: object
       properties:
-        username:
+        source:
           type: string
-        fullName:
+        expression:
           type: string
-        email:
-          type: string
-        joinedOn:
-          type: string
-          format: date-time
-        locale:
-          type: object
-          properties:
-            language:
-              type: string
-            displayName:
-              type: string
-            script:
-              type: string
-            country:
-              type: string
-            variant:
-              type: string
-            extensionKeys:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            unicodeLocaleAttributes:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            unicodeLocaleKeys:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            iso3Language:
-              type: string
-            iso3Country:
-              type: string
-            displayLanguage:
-              type: string
-            displayScript:
-              type: string
-            displayCountry:
-              type: string
-            displayVariant:
-              type: string
-        admin:
+        enabled:
           type: boolean
+        message:
+          type: string
+    SearchResultsBeanAuditEntryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEntryBean'
+        totalSize:
+          type: integer
+          format: int32
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
     ClientSummaryBean:
       type: object
       properties:
@@ -872,17 +900,21 @@ components:
         numContracts:
           type: integer
           format: int32
-    NotificationFilterEntity:
-      required:
-      - expression
-      - source
+    OrganizationSummaryBean:
       type: object
       properties:
-        source:
+        id:
           type: string
-        expression:
+        name:
           type: string
-        enabled:
-          type: boolean
-        message:
+        description:
           type: string
+        numClients:
+          type: integer
+          format: int32
+        numApis:
+          type: integer
+          format: int32
+        numMembers:
+          type: integer
+          format: int32

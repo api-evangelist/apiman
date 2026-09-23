@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Search API
+  title: Manager REST Search API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -22,6 +22,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ApiNamespaceBean'
+      summary: Get api namespaces
+      x-summary-source: derived
   /search/apiCatalog/entries:
     post:
       tags:
@@ -39,6 +41,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanAvailableApiBean'
+      summary: Search api catalog
+      x-summary-source: derived
   /search/apis:
     post:
       tags:
@@ -56,6 +60,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
+      summary: Search apis 2
+      x-summary-source: derived
   /search/clients:
     post:
       tags:
@@ -73,6 +79,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanClientSummaryBean'
+      summary: Search clients
+      x-summary-source: derived
   /search/organizations:
     post:
       tags:
@@ -90,6 +98,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanOrganizationSummaryBean'
+      summary: Search orgs
+      x-summary-source: derived
   /search/roles:
     post:
       tags:
@@ -107,6 +117,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanRoleBean'
+      summary: Search roles
+      x-summary-source: derived
   /search/users:
     post:
       tags:
@@ -124,37 +136,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultsBeanUserSearchResult'
+      summary: Search users
+      x-summary-source: derived
 components:
   schemas:
-    KeyValueTagDto:
-      required:
-      - key
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      description: Key value tag pair
-    PagingBean:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-    SearchResultsBeanClientSummaryBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClientSummaryBean'
-        totalSize:
-          type: integer
-          format: int32
     RoleBean:
       type: object
       properties:
@@ -189,53 +174,15 @@ components:
             - planView
             - planEdit
             - planAdmin
-    SearchResultsBeanApiSummaryBean:
+    PagingBean:
       type: object
       properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiSummaryBean'
-        totalSize:
+        page:
           type: integer
           format: int32
-    SearchResultsBeanOrganizationSummaryBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationSummaryBean'
-        totalSize:
+        pageSize:
           type: integer
           format: int32
-    OrganizationSummaryBean:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        numClients:
-          type: integer
-          format: int32
-        numApis:
-          type: integer
-          format: int32
-        numMembers:
-          type: integer
-          format: int32
-    ApiNamespaceBean:
-      type: object
-      properties:
-        name:
-          type: string
-        ownedByUser:
-          type: boolean
-        current:
-          type: boolean
     SearchCriteriaBean:
       type: object
       properties:
@@ -251,23 +198,13 @@ components:
           $ref: '#/components/schemas/SearchCriteriaBean'
         page:
           $ref: '#/components/schemas/SearchCriteriaBean'
-    SearchResultsBeanRoleBean:
+    SearchResultsBeanUserSearchResult:
       type: object
       properties:
         beans:
           type: array
           items:
-            $ref: '#/components/schemas/RoleBean'
-        totalSize:
-          type: integer
-          format: int32
-    SearchResultsBeanAvailableApiBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvailableApiBean'
+            $ref: '#/components/schemas/UserSearchResult'
         totalSize:
           type: integer
           format: int32
@@ -278,38 +215,23 @@ components:
           type: string
         fullName:
           type: string
-    ClientSummaryBean:
+    KeyValueTagDto:
+      required:
+      - key
       type: object
       properties:
-        organizationId:
+        key:
           type: string
-        organizationName:
+        value:
           type: string
-        image:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        numContracts:
-          type: integer
-          format: int32
-    OrderByBean:
-      type: object
-      properties:
-        ascending:
-          type: boolean
-        name:
-          type: string
-    SearchResultsBeanUserSearchResult:
+      description: Key value tag pair
+    SearchResultsBeanAvailableApiBean:
       type: object
       properties:
         beans:
           type: array
           items:
-            $ref: '#/components/schemas/UserSearchResult'
+            $ref: '#/components/schemas/AvailableApiBean'
         totalSize:
           type: integer
           format: int32
@@ -356,6 +278,50 @@ components:
             type: string
         internal:
           type: boolean
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
+    ClientSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numContracts:
+          type: integer
+          format: int32
+    SearchResultsBeanOrganizationSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    ApiNamespaceBean:
+      type: object
+      properties:
+        name:
+          type: string
+        ownedByUser:
+          type: boolean
+        current:
+          type: boolean
     SearchCriteriaFilterBean:
       type: object
       properties:
@@ -374,6 +340,44 @@ components:
           - lt
           - lte
           - like
+    SearchResultsBeanClientSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    SearchResultsBeanRoleBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleBean'
+        totalSize:
+          type: integer
+          format: int32
+    OrganizationSummaryBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numClients:
+          type: integer
+          format: int32
+        numApis:
+          type: integer
+          format: int32
+        numMembers:
+          type: integer
+          format: int32
     ApiSummaryBean:
       type: object
       properties:
@@ -397,3 +401,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueTagDto'
+    SearchResultsBeanApiSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiSummaryBean'
+        totalSize:
+          type: integer
+          format: int32

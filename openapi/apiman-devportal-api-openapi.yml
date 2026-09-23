@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Devportal API
+  title: Manager REST Devportal API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -636,32 +636,22 @@ paths:
                 $ref: '#/components/schemas/SearchResultsBeanApiSummaryBean'
 components:
   schemas:
-    PolicyDefinitionTemplateBean:
+    PagingBean:
       type: object
       properties:
-        language:
-          type: string
-        template:
-          type: string
-    ApiPlanBeanDto:
-      required:
-      - planId
-      - version
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    NewOrganizationBean:
       type: object
       properties:
-        planId:
+        name:
           type: string
-        version:
+        description:
           type: string
-        requiresApproval:
-          type: boolean
-        discoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
     PolicySummaryBean:
       type: object
       properties:
@@ -681,72 +671,36 @@ components:
         createdOn:
           type: string
           format: date-time
-    PagingBean:
+    PolicyDefinitionBean:
       type: object
       properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-    NewOrganizationBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    ApiVersionEndpointSummaryBean:
-      type: object
-      properties:
-        managedEndpoint:
-          type: string
-    ApiVersionPolicySummaryDto:
-      type: object
-      properties:
-        policyDefinitionId:
-          type: string
         id:
-          type: integer
-          format: int64
+          type: string
+        policyImpl:
+          type: string
         name:
           type: string
         description:
           type: string
         icon:
           type: string
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        policyConfiguration:
-          type: string
-    DeveloperApiPlanSummaryDto:
-      type: object
-      properties:
-        planId:
-          type: string
-        planName:
-          type: string
-        planDescription:
-          type: string
-        version:
-          type: string
-        requiresApproval:
-          type: boolean
-        discoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-        planPolicies:
+        templates:
+          uniqueItems: true
           type: array
           items:
-            $ref: '#/components/schemas/PolicyBean'
+            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
+        pluginId:
+          type: integer
+          format: int64
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        form:
+          type: string
+        deleted:
+          type: boolean
     ApiVersionSummaryBean:
       type: object
       properties:
@@ -785,30 +739,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueTagDto'
-    OrganizationBean:
+    ApiSummaryBean:
       type: object
       properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
         id:
           type: string
         name:
           type: string
         description:
           type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    ApiBeanDto:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTag'
         createdBy:
           type: string
         createdOn:
           type: string
           format: date-time
-        modifiedBy:
-          type: string
-        modifiedOn:
-          type: string
-          format: date-time
-    ApiGatewayBean:
-      type: object
-      properties:
-        gatewayId:
-          type: string
+        numPublished:
+          type: integer
+          format: int32
     SearchCriteriaBean:
       type: object
       properties:
@@ -824,12 +803,34 @@ components:
           $ref: '#/components/schemas/SearchCriteriaBean'
         page:
           $ref: '#/components/schemas/SearchCriteriaBean'
-    OrderByBean:
+    DeveloperApiPlanSummaryDto:
       type: object
       properties:
-        ascending:
+        planId:
+          type: string
+        planName:
+          type: string
+        planDescription:
+          type: string
+        version:
+          type: string
+        requiresApproval:
           type: boolean
-        name:
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        planPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyBean'
+    ApiVersionEndpointSummaryBean:
+      type: object
+      properties:
+        managedEndpoint:
           type: string
     KeyValueTag:
       type: object
@@ -841,6 +842,118 @@ components:
           type: string
         value:
           type: string
+    PolicyDefinitionTemplateBean:
+      type: object
+      properties:
+        language:
+          type: string
+        template:
+          type: string
+    PolicyBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: The type of policy
+          enum:
+          - Client
+          - Plan
+          - Api
+        organizationId:
+          type: string
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        configuration:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/PolicyDefinitionBean'
+        orderIndex:
+          type: integer
+          format: int32
+    ApiVersionPolicySummaryDto:
+      type: object
+      properties:
+        policyDefinitionId:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        policyConfiguration:
+          type: string
+    ApiPlanBeanDto:
+      required:
+      - planId
+      - version
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    SearchCriteriaFilterBean:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        operator:
+          type: string
+          enum:
+          - bool_eq
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - like
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
     SearchResultsBeanApiSummaryBean:
       type: object
       properties:
@@ -851,16 +964,11 @@ components:
         totalSize:
           type: integer
           format: int32
-    KeyValueTagDto:
-      required:
-      - key
+    ApiGatewayBean:
       type: object
       properties:
-        key:
+        gatewayId:
           type: string
-        value:
-          type: string
-      description: Key value tag pair
     ApiVersionBeanDto:
       required:
       - api
@@ -962,101 +1070,24 @@ components:
           type: string
         extendedDescription:
           type: string
-    SearchCriteriaFilterBean:
+    KeyValueTagDto:
+      required:
+      - key
       type: object
       properties:
-        name:
+        key:
           type: string
         value:
           type: string
-        operator:
-          type: string
-          enum:
-          - bool_eq
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - like
-    ApiSummaryBean:
+      description: Key value tag pair
+    OrganizationBean:
       type: object
       properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        image:
-          type: string
         id:
           type: string
         name:
           type: string
         description:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueTagDto'
-    PolicyDefinitionBean:
-      type: object
-      properties:
-        id:
-          type: string
-        policyImpl:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-        templates:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
-        pluginId:
-          type: integer
-          format: int64
-        formType:
-          type: string
-          enum:
-          - Default
-          - JsonSchema
-        form:
-          type: string
-        deleted:
-          type: boolean
-    PolicyBean:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        type:
-          type: string
-          description: The type of policy
-          enum:
-          - Client
-          - Plan
-          - Api
-        organizationId:
-          type: string
-        entityId:
-          type: string
-        entityVersion:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        configuration:
           type: string
         createdBy:
           type: string
@@ -1068,34 +1099,3 @@ components:
         modifiedOn:
           type: string
           format: date-time
-        definition:
-          $ref: '#/components/schemas/PolicyDefinitionBean'
-        orderIndex:
-          type: integer
-          format: int32
-    ApiBeanDto:
-      type: object
-      properties:
-        organization:
-          $ref: '#/components/schemas/OrganizationBean'
-        id:
-          type: string
-        name:
-          type: string
-        image:
-          type: string
-        description:
-          type: string
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueTag'
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        numPublished:
-          type: integer
-          format: int32

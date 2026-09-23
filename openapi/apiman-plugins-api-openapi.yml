@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Plugins API
+  title: Manager REST Plugins API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -22,6 +22,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PluginSummaryBean'
+      summary: List 1
+      x-summary-source: derived
     post:
       tags:
       - Plugins
@@ -38,6 +40,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginBean'
+      summary: Create 2
+      x-summary-source: derived
   /plugins/{pluginId}:
     get:
       tags:
@@ -58,6 +62,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PluginBean'
+      summary: Get 2
+      x-summary-source: derived
     delete:
       tags:
       - Plugins
@@ -73,6 +79,8 @@ paths:
       responses:
         '204':
           description: If the plugin was deleted successfully.
+      summary: Delete 2
+      x-summary-source: derived
   /plugins/availablePlugins:
     get:
       tags:
@@ -89,6 +97,8 @@ paths:
                   $ref: '#/components/schemas/PluginSummaryBean'
         '403':
           description: If the user is not an admin.
+      summary: Get available plugins
+      x-summary-source: derived
   /plugins/{pluginId}/policyDefs:
     get:
       tags:
@@ -113,6 +123,8 @@ paths:
                   $ref: '#/components/schemas/PolicyDefinitionSummaryBean'
         '404':
           description: If the plugin does not exist.
+      summary: Get policy defs
+      x-summary-source: derived
   /plugins/{pluginId}/policyDefs/{policyDefId}/form:
     get:
       tags:
@@ -141,27 +153,10 @@ paths:
                 type: string
         '404':
           description: If the form does not exist.
+      summary: Get policy form
+      x-summary-source: derived
 components:
   schemas:
-    NewPluginBean:
-      type: object
-      properties:
-        groupId:
-          type: string
-        artifactId:
-          type: string
-        version:
-          type: string
-        classifier:
-          type: string
-        type:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        upgrade:
-          type: boolean
     PolicyDefinitionSummaryBean:
       type: object
       properties:
@@ -183,6 +178,31 @@ components:
         pluginId:
           type: integer
           format: int64
+    PluginSummaryBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        groupId:
+          type: string
+        artifactId:
+          type: string
+        version:
+          type: string
+        classifier:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
     PluginBean:
       type: object
       properties:
@@ -210,12 +230,9 @@ components:
           format: date-time
         deleted:
           type: boolean
-    PluginSummaryBean:
+    NewPluginBean:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         groupId:
           type: string
         artifactId:
@@ -230,8 +247,5 @@ components:
           type: string
         description:
           type: string
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
+        upgrade:
+          type: boolean

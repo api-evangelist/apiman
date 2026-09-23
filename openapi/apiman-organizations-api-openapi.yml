@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Organizations API
+  title: Manager REST Organizations API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -223,7 +223,7 @@ paths:
       tags:
       - Organizations
       summary: Create Client
-      description: Use this endpoint to create a new Client.It is important to also create an initial version of the Client (e.g. 1.0). This can either be done by including the 'initialVersion' property in the request, or by immediately following up with a call to Create Client Version If the former is done, then a first  Client version will be created automatically by this endpoint.
+      description: Use this endpoint to create a new Client.It is important to also create an initial version of the Client (e.g. 1.0). This can either be done by including the 'initialVersion' property in the request, or by immediately following up with a call to Create Client Version If the former is done, then a first Client version will be created automatically by this endpoint.
       operationId: createClient
       parameters:
       - name: organizationId
@@ -3017,33 +3017,7 @@ paths:
           description: Tag was created successfully.
 components:
   schemas:
-    PolicyDefinitionTemplateBean:
-      type: object
-      properties:
-        language:
-          type: string
-        template:
-          type: string
-    ApiPlanBeanDto:
-      required:
-      - planId
-      - version
-      type: object
-      properties:
-        planId:
-          type: string
-        version:
-          type: string
-        requiresApproval:
-          type: boolean
-        discoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-    UsagePerPlanBean:
+    ClientUsagePerApiBean:
       type: object
       properties:
         data:
@@ -3051,6 +3025,105 @@ components:
           additionalProperties:
             type: integer
             format: int64
+    ContractBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        client:
+          $ref: '#/components/schemas/ClientVersionBean'
+        api:
+          $ref: '#/components/schemas/ApiVersionBean'
+        plan:
+          $ref: '#/components/schemas/PlanVersionBean'
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - AwaitingApproval
+          - Created
+          - Rejected
+    UpdateClientBean:
+      type: object
+      properties:
+        description:
+          type: string
+    NewOrganizationBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    GrantRolesBean:
+      type: object
+      properties:
+        userId:
+          type: string
+        roleIds:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    NewApiVersionBean:
+      required:
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+        clone:
+          type: boolean
+        cloneVersion:
+          type: string
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        publicAPI:
+          type: boolean
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBean'
+        definitionUrl:
+          type: string
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        extendedDescription:
+          type: string
+      description: Initial information to create a new API version.
+    ApiKeyBean:
+      type: object
+      properties:
+        apiKey:
+          type: string
     PolicySummaryBean:
       type: object
       properties:
@@ -3070,22 +3143,126 @@ components:
         createdOn:
           type: string
           format: date-time
-    MemberBean:
+    PolicyDefinitionBean:
       type: object
       properties:
-        userId:
+        id:
           type: string
-        userName:
+        policyImpl:
           type: string
-        email:
+        name:
           type: string
-        joinedOn:
+        description:
           type: string
-          format: date-time
-        roles:
+        icon:
+          type: string
+        templates:
+          uniqueItems: true
           type: array
           items:
-            $ref: '#/components/schemas/MemberRoleBean'
+            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
+        pluginId:
+          type: integer
+          format: int64
+        formType:
+          type: string
+          enum:
+          - Default
+          - JsonSchema
+        form:
+          type: string
+        deleted:
+          type: boolean
+    UpdateApiPlanDto:
+      required:
+      - planId
+      - version
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    MemberRoleBean:
+      type: object
+      properties:
+        roleId:
+          type: string
+        roleName:
+          type: string
+    ApiVersionStatusBean:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusItemBean'
+    ApiVersionSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        extendedDescription:
+          type: string
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Published
+          - Retired
+        version:
+          type: string
+        publicAPI:
+          type: boolean
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        apiTags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    NewContractBean:
+      type: object
+      properties:
+        apiOrgId:
+          type: string
+        apiId:
+          type: string
+        apiVersion:
+          type: string
+        planId:
+          type: string
+      description: Required information to create a new Contract.
     ContractSummaryBean:
       type: object
       properties:
@@ -3129,100 +3306,109 @@ components:
           - AwaitingApproval
           - Created
           - Rejected
-    ApiPlanSummaryBean:
+    PlanBean:
       type: object
       properties:
-        planId:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
           type: string
-        planName:
-          type: string
-        planDescription:
-          type: string
-        version:
-          type: string
-        discoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-        requiresApproval:
-          type: boolean
-    ApiPlanOrderDto:
-      type: object
-      properties:
-        order:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiPlanOrderEntryDto'
-    UsageDataPoint:
-      type: object
-      properties:
-        label:
-          type: string
-        count:
-          type: integer
-          format: int64
-    PolicyChainBean:
-      type: object
-      properties:
-        policies:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolicySummaryBean'
-      description: Models an ordered list of policies that would be applied if an API were invoked via a particular plan
-    NewOrganizationBean:
-      type: object
-      properties:
         name:
           type: string
         description:
           type: string
-    UpdateApiPlanDto:
-      required:
-      - planId
-      - version
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+    ApiBeanDto:
       type: object
       properties:
-        planId:
+        organization:
+          $ref: '#/components/schemas/OrganizationBean'
+        id:
           type: string
-        version:
-          type: string
-        requiresApproval:
-          type: boolean
-        discoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-    UpdateApiBean:
-      type: object
-      properties:
-        description:
+        name:
           type: string
         image:
+          type: string
+        description:
           type: string
         tags:
           uniqueItems: true
           type: array
           items:
-            $ref: '#/components/schemas/KeyValueTagDto'
-        publicDiscoverability:
+            $ref: '#/components/schemas/KeyValueTag'
+        createdBy:
           type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-    ApiVersionEndpointSummaryBean:
+        createdOn:
+          type: string
+          format: date-time
+        numPublished:
+          type: integer
+          format: int32
+    ApiSummaryBean:
       type: object
       properties:
-        managedEndpoint:
+        organizationId:
           type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    ApiDefinitionBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        apiVersion:
+          $ref: '#/components/schemas/ApiVersionBean'
+        data:
+          type: array
+          items:
+            type: string
+            format: byte
+    ResponseStatsSummaryBean:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        failures:
+          type: integer
+          format: int64
+        errors:
+          type: integer
+          format: int64
+    UsageHistogramBean:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageDataPoint'
+    UpdatePolicyBean:
+      type: object
+      properties:
+        configuration:
+          type: string
+      description: Update a policy
     ApiBean:
       type: object
       properties:
@@ -3249,6 +3435,76 @@ components:
         numPublished:
           type: integer
           format: int32
+    UpdateApiBean:
+      type: object
+      properties:
+        description:
+          type: string
+        image:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    ResponseStatsPerPlanBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ResponseStatsDataPoint'
+    StatusItemBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        done:
+          type: boolean
+        optional:
+          type: boolean
+        remediation:
+          type: string
+    ResponseStatsHistogramBean:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseStatsDataPoint'
+    NewClientBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        initialVersion:
+          type: string
+    ApiPlanOrderDto:
+      type: object
+      properties:
+        order:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanOrderEntryDto'
+    ResponseStatsPerClientBean:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ResponseStatsDataPoint'
     AuditEntryBean:
       type: object
       properties:
@@ -3297,6 +3553,89 @@ components:
           - DeleteDefinition
         data:
           type: string
+    NewPlanBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        initialVersion:
+          type: string
+    ApiVersionEndpointSummaryBean:
+      type: object
+      properties:
+        managedEndpoint:
+          type: string
+    ResponseStatsDataPoint:
+      type: object
+      properties:
+        label:
+          type: string
+        total:
+          type: integer
+          format: int64
+        failures:
+          type: integer
+          format: int64
+        errors:
+          type: integer
+          format: int64
+    UpdateApiVersionBean:
+      type: object
+      properties:
+        endpoint:
+          type: string
+        endpointType:
+          type: string
+          enum:
+          - rest
+          - soap
+        endpointContentType:
+          type: string
+          enum:
+          - json
+          - xml
+        endpointProperties:
+          type: object
+          additionalProperties:
+            type: string
+        gateways:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiGatewayBean'
+        parsePayload:
+          type: boolean
+        publicAPI:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateApiPlanDto'
+        extendedDescription:
+          type: string
+        publicDiscoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    NewClientVersionBean:
+      type: object
+      properties:
+        version:
+          type: string
+        clone:
+          type: boolean
+        cloneVersion:
+          type: string
+        apiKey:
+          type: string
     ClientVersionBean:
       type: object
       properties:
@@ -3333,146 +3672,67 @@ components:
           format: date-time
         apikey:
           type: string
-    ApiDefinitionBean:
+    NewApiBean:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        apiVersion:
-          $ref: '#/components/schemas/ApiVersionBean'
-        data:
-          type: array
-          items:
-            type: string
-            format: byte
-    ContractBean:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        client:
-          $ref: '#/components/schemas/ClientVersionBean'
-        api:
-          $ref: '#/components/schemas/ApiVersionBean'
-        plan:
-          $ref: '#/components/schemas/PlanVersionBean'
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - AwaitingApproval
-          - Created
-          - Rejected
-    UpdateClientBean:
-      type: object
-      properties:
-        description:
-          type: string
-    UpdatePlanBean:
-      type: object
-      properties:
-        description:
-          type: string
-    UsageHistogramBean:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageDataPoint'
-    PlanVersionSummaryBean:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - Created
-          - Ready
-          - Locked
-        version:
-          type: string
-    ApiVersionSummaryBean:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        id:
-          type: string
         name:
           type: string
         description:
           type: string
         extendedDescription:
           type: string
-        status:
+        initialVersion:
+          type: string
+        endpoint:
+          type: string
+        endpointType:
           type: string
           enum:
-          - Created
-          - Ready
-          - Published
-          - Retired
-        version:
+          - rest
+          - soap
+        endpointContentType:
           type: string
+          enum:
+          - json
+          - xml
         publicAPI:
           type: boolean
-        publicDiscoverability:
+        parsePayload:
+          type: boolean
+        disableKeysStrip:
+          type: boolean
+        plans:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiPlanBean'
+        definitionUrl:
+          type: string
+        definitionType:
           type: string
           enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-        apiTags:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External
+        tags:
           uniqueItems: true
           type: array
           items:
             $ref: '#/components/schemas/KeyValueTagDto'
-    SearchResultsBeanAuditEntryBean:
+    KeyValueTag:
       type: object
       properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditEntryBean'
-        totalSize:
-          type: integer
-          format: int32
-    ClientBean:
-      type: object
-      properties:
-        organization:
-          $ref: '#/components/schemas/OrganizationBean'
         id:
+          type: integer
+          format: int64
+        key:
           type: string
-        name:
+        value:
           type: string
-        image:
-          type: string
-        description:
-          type: string
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
     ApiVersionBean:
       type: object
       properties:
@@ -3561,157 +3821,21 @@ components:
           type: string
         definition:
           $ref: '#/components/schemas/ApiDefinitionBean'
-    OrganizationBean:
+    PolicyDefinitionTemplateBean:
       type: object
       properties:
-        id:
+        language:
           type: string
-        name:
+        template:
           type: string
-        description:
-          type: string
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        modifiedBy:
-          type: string
-        modifiedOn:
-          type: string
-          format: date-time
-    ApiGatewayBean:
+    UsagePerPlanBean:
       type: object
       properties:
-        gatewayId:
-          type: string
-    UpdateApiVersionBean:
-      type: object
-      properties:
-        endpoint:
-          type: string
-        endpointType:
-          type: string
-          enum:
-          - rest
-          - soap
-        endpointContentType:
-          type: string
-          enum:
-          - json
-          - xml
-        endpointProperties:
+        data:
           type: object
           additionalProperties:
-            type: string
-        gateways:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiGatewayBean'
-        parsePayload:
-          type: boolean
-        publicAPI:
-          type: boolean
-        disableKeysStrip:
-          type: boolean
-        plans:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateApiPlanDto'
-        extendedDescription:
-          type: string
-        publicDiscoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-    NewClientBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        initialVersion:
-          type: string
-    GrantRolesBean:
-      type: object
-      properties:
-        userId:
-          type: string
-        roleIds:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-    NewApiBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        extendedDescription:
-          type: string
-        initialVersion:
-          type: string
-        endpoint:
-          type: string
-        endpointType:
-          type: string
-          enum:
-          - rest
-          - soap
-        endpointContentType:
-          type: string
-          enum:
-          - json
-          - xml
-        publicAPI:
-          type: boolean
-        parsePayload:
-          type: boolean
-        disableKeysStrip:
-          type: boolean
-        plans:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiPlanBean'
-        definitionUrl:
-          type: string
-        definitionType:
-          type: string
-          enum:
-          - None
-          - SwaggerJSON
-          - SwaggerYAML
-          - WSDL
-          - WADL
-          - RAML
-          - External
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueTagDto'
-    StatusItemBean:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        done:
-          type: boolean
-        optional:
-          type: boolean
-        remediation:
-          type: string
+            type: integer
+            format: int64
     ClientVersionSummaryBean:
       type: object
       properties:
@@ -3737,50 +3861,35 @@ components:
           type: string
         apiKey:
           type: string
-    ResponseStatsHistogramBean:
+    UpdatePlanBean:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseStatsDataPoint'
-    KeyValueTag:
+        description:
+          type: string
+    PolicyBean:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        key:
+        type:
           type: string
-        value:
-          type: string
-    ResponseStatsSummaryBean:
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        failures:
-          type: integer
-          format: int64
-        errors:
-          type: integer
-          format: int64
-    PlanVersionBean:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        plan:
-          $ref: '#/components/schemas/PlanBean'
-        status:
-          type: string
+          description: The type of policy
           enum:
-          - Created
-          - Ready
-          - Locked
-        version:
+          - Client
+          - Plan
+          - Api
+        organizationId:
+          type: string
+        entityId:
+          type: string
+        entityVersion:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        configuration:
           type: string
         createdBy:
           type: string
@@ -3792,39 +3901,110 @@ components:
         modifiedOn:
           type: string
           format: date-time
-        lockedOn:
-          type: string
-          format: date-time
-    ApiVersionStatusBean:
+        definition:
+          $ref: '#/components/schemas/PolicyDefinitionBean'
+        orderIndex:
+          type: integer
+          format: int32
+    UpdateOrganizationBean:
       type: object
       properties:
-        status:
+        description:
           type: string
-          enum:
-          - Created
-          - Ready
-          - Published
-          - Retired
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusItemBean'
-    UpdatePolicyBean:
+    UsagePerClientBean:
       type: object
       properties:
+        data:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+    NewPolicyBean:
+      type: object
+      properties:
+        definitionId:
+          type: string
         configuration:
           type: string
-      description: Update a policy
-    NewPlanVersionBean:
+      description: Payload for creating a new policy for a Plan, API, or Client
+    ApiPlanBeanDto:
+      required:
+      - planId
+      - version
       type: object
       properties:
+        planId:
+          type: string
         version:
           type: string
-        clone:
+        requiresApproval:
           type: boolean
-        cloneVersion:
+        discoverability:
           type: string
-    PlanSummaryBean:
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    ApiPlanBean:
+      type: object
+      properties:
+        planId:
+          type: string
+        version:
+          type: string
+        requiresApproval:
+          type: boolean
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+    ApiPlanSummaryBean:
+      type: object
+      properties:
+        planId:
+          type: string
+        planName:
+          type: string
+        planDescription:
+          type: string
+        version:
+          type: string
+        discoverability:
+          type: string
+          enum:
+          - PORTAL
+          - ANONYMOUS
+          - FULL_PLATFORM_MEMBERS
+          - ORG_MEMBERS
+        requiresApproval:
+          type: boolean
+    UsageDataPoint:
+      type: object
+      properties:
+        label:
+          type: string
+        count:
+          type: integer
+          format: int64
+    ApiPlanOrderEntryDto:
+      required:
+      - apiVersionId
+      - planId
+      - version
+      type: object
+      properties:
+        apiVersionId:
+          type: integer
+          format: int64
+        planId:
+          type: string
+        version:
+          type: string
+    PlanVersionSummaryBean:
       type: object
       properties:
         organizationId:
@@ -3837,46 +4017,20 @@ components:
           type: string
         description:
           type: string
-    ResponseStatsPerClientBean:
+        status:
+          type: string
+          enum:
+          - Created
+          - Ready
+          - Locked
+        version:
+          type: string
+    ApiGatewayBean:
       type: object
       properties:
-        data:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ResponseStatsDataPoint'
-    NewPlanBean:
-      type: object
-      properties:
-        name:
+        gatewayId:
           type: string
-        description:
-          type: string
-        initialVersion:
-          type: string
-    KeyValueTagDto:
-      required:
-      - key
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      description: Key value tag pair
-    UsagePerClientBean:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int64
-    ApiKeyBean:
-      type: object
-      properties:
-        apiKey:
-          type: string
-    PlanBean:
+    ClientBean:
       type: object
       properties:
         organization:
@@ -3885,6 +4039,8 @@ components:
           type: string
         name:
           type: string
+        image:
+          type: string
         description:
           type: string
         createdBy:
@@ -3892,14 +4048,6 @@ components:
         createdOn:
           type: string
           format: date-time
-    NewPolicyBean:
-      type: object
-      properties:
-        definitionId:
-          type: string
-        configuration:
-          type: string
-      description: Payload for creating a new policy for a Plan, API, or Client
     ApiVersionBeanDto:
       required:
       - api
@@ -4001,178 +4149,31 @@ components:
           type: string
         extendedDescription:
           type: string
-    ApiSummaryBean:
+    SearchResultsBeanAuditEntryBean:
       type: object
       properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        image:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        tags:
-          uniqueItems: true
+        beans:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValueTagDto'
-    NewContractBean:
-      type: object
-      properties:
-        apiOrgId:
-          type: string
-        apiId:
-          type: string
-        apiVersion:
-          type: string
-        planId:
-          type: string
-      description: Required information to create a new Contract.
-    PolicyDefinitionBean:
-      type: object
-      properties:
-        id:
-          type: string
-        policyImpl:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-        templates:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/PolicyDefinitionTemplateBean'
-        pluginId:
+            $ref: '#/components/schemas/AuditEntryBean'
+        totalSize:
           type: integer
-          format: int64
-        formType:
-          type: string
-          enum:
-          - Default
-          - JsonSchema
-        form:
-          type: string
-        deleted:
-          type: boolean
-    NewClientVersionBean:
-      type: object
-      properties:
-        version:
-          type: string
-        clone:
-          type: boolean
-        cloneVersion:
-          type: string
-        apiKey:
-          type: string
-    ClientUsagePerApiBean:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int64
-    NewApiDefinitionBean:
-      type: object
-      properties:
-        definitionUrl:
-          type: string
-        definitionType:
-          type: string
-          enum:
-          - None
-          - SwaggerJSON
-          - SwaggerYAML
-          - WSDL
-          - WADL
-          - RAML
-          - External
-    NewApiVersionBean:
-      required:
-      - version
-      type: object
-      properties:
-        version:
-          type: string
-        clone:
-          type: boolean
-        cloneVersion:
-          type: string
-        endpoint:
-          type: string
-        endpointType:
-          type: string
-          enum:
-          - rest
-          - soap
-        endpointContentType:
-          type: string
-          enum:
-          - json
-          - xml
-        publicAPI:
-          type: boolean
-        parsePayload:
-          type: boolean
-        disableKeysStrip:
-          type: boolean
-        plans:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiPlanBean'
-        definitionUrl:
-          type: string
-        definitionType:
-          type: string
-          enum:
-          - None
-          - SwaggerJSON
-          - SwaggerYAML
-          - WSDL
-          - WADL
-          - RAML
-          - External
-        extendedDescription:
-          type: string
-      description: Initial information to create a new API version.
-    PolicyBean:
+          format: int32
+    PlanVersionBean:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        type:
+        plan:
+          $ref: '#/components/schemas/PlanBean'
+        status:
           type: string
-          description: The type of policy
           enum:
-          - Client
-          - Plan
-          - Api
-        organizationId:
-          type: string
-        entityId:
-          type: string
-        entityVersion:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        configuration:
+          - Created
+          - Ready
+          - Locked
+        version:
           type: string
         createdBy:
           type: string
@@ -4184,30 +4185,56 @@ components:
         modifiedOn:
           type: string
           format: date-time
-        definition:
-          $ref: '#/components/schemas/PolicyDefinitionBean'
-        orderIndex:
-          type: integer
-          format: int32
-    UpdateOrganizationBean:
+        lockedOn:
+          type: string
+          format: date-time
+    PolicyChainBean:
       type: object
       properties:
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicySummaryBean'
+      description: Models an ordered list of policies that would be applied if an API were invoked via a particular plan
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    PlanSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
         description:
           type: string
-    MemberRoleBean:
+    MemberBean:
       type: object
       properties:
-        roleId:
+        userId:
           type: string
-        roleName:
+        userName:
           type: string
-    ResponseStatsPerPlanBean:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ResponseStatsDataPoint'
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberRoleBean'
     ClientSummaryBean:
       type: object
       properties:
@@ -4226,73 +4253,46 @@ components:
         numContracts:
           type: integer
           format: int32
-    ApiPlanBean:
+    OrganizationBean:
       type: object
       properties:
-        planId:
-          type: string
-        version:
-          type: string
-        requiresApproval:
-          type: boolean
-        discoverability:
-          type: string
-          enum:
-          - PORTAL
-          - ANONYMOUS
-          - FULL_PLATFORM_MEMBERS
-          - ORG_MEMBERS
-    ResponseStatsDataPoint:
-      type: object
-      properties:
-        label:
-          type: string
-        total:
-          type: integer
-          format: int64
-        failures:
-          type: integer
-          format: int64
-        errors:
-          type: integer
-          format: int64
-    ApiBeanDto:
-      type: object
-      properties:
-        organization:
-          $ref: '#/components/schemas/OrganizationBean'
         id:
           type: string
         name:
           type: string
-        image:
-          type: string
         description:
           type: string
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueTag'
         createdBy:
           type: string
         createdOn:
           type: string
           format: date-time
-        numPublished:
-          type: integer
-          format: int32
-    ApiPlanOrderEntryDto:
-      required:
-      - apiVersionId
-      - planId
-      - version
+        modifiedBy:
+          type: string
+        modifiedOn:
+          type: string
+          format: date-time
+    NewPlanVersionBean:
       type: object
       properties:
-        apiVersionId:
-          type: integer
-          format: int64
-        planId:
-          type: string
         version:
           type: string
+        clone:
+          type: boolean
+        cloneVersion:
+          type: string
+    NewApiDefinitionBean:
+      type: object
+      properties:
+        definitionUrl:
+          type: string
+        definitionType:
+          type: string
+          enum:
+          - None
+          - SwaggerJSON
+          - SwaggerYAML
+          - WSDL
+          - WADL
+          - RAML
+          - External

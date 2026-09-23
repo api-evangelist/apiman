@@ -40,22 +40,6 @@ paths:
           description: If the action completes successfully.
 components:
   schemas:
-    ContractActionDto:
-      type: object
-      properties:
-        contractId:
-          type: integer
-          format: int64
-        status:
-          type: string
-          enum:
-          - AwaitingApproval
-          - Created
-          - Rejected
-        rejectionReason:
-          type: string
-        autoPromote:
-          type: boolean
     ActionBean:
       type: object
       properties:
@@ -73,3 +57,19 @@ components:
           type: string
         entityVersion:
           type: string
+    ContractActionDto:
+      type: object
+      properties:
+        contractId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - AwaitingApproval
+          - Created
+          - Rejected
+        rejectionReason:
+          type: string
+        autoPromote:
+          type: boolean

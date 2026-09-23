@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Manager REST Actions Roles API
+  title: Manager REST Roles API
   description: The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.
   version: 3.1.0-SNAPSHOT
 servers:
@@ -22,6 +22,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RoleBean'
+      summary: List 3
+      x-summary-source: derived
     post:
       tags:
       - Roles
@@ -38,6 +40,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoleBean'
+      summary: Create 4
+      x-summary-source: derived
   /roles/{roleId}:
     get:
       tags:
@@ -57,6 +61,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoleBean'
+      summary: Get 4
+      x-summary-source: derived
     put:
       tags:
       - Roles
@@ -76,6 +82,8 @@ paths:
       responses:
         '204':
           description: If the role is updated successfully.
+      summary: Update 3
+      x-summary-source: derived
     delete:
       tags:
       - Roles
@@ -90,36 +98,11 @@ paths:
       responses:
         '204':
           description: If the role is deleted.
+      summary: Delete 4
+      x-summary-source: derived
 components:
   schemas:
     UpdateRoleBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        autoGrant:
-          type: boolean
-        permissions:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-            enum:
-            - orgView
-            - orgEdit
-            - orgAdmin
-            - apiView
-            - apiEdit
-            - apiAdmin
-            - clientView
-            - clientEdit
-            - clientAdmin
-            - planView
-            - planEdit
-            - planAdmin
-    NewRoleBean:
       type: object
       properties:
         name:
@@ -160,6 +143,33 @@ components:
         createdOn:
           type: string
           format: date-time
+        autoGrant:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - orgView
+            - orgEdit
+            - orgAdmin
+            - apiView
+            - apiEdit
+            - apiAdmin
+            - clientView
+            - clientEdit
+            - clientAdmin
+            - planView
+            - planEdit
+            - planAdmin
+    NewRoleBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
         autoGrant:
           type: boolean
         permissions:
