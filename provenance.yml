@@ -6,6 +6,15 @@ artifacts:
   agentic-access/apiman-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  authentication/apiman-authentication.yml:
+    method: searched
+    evidence: declared in the artifact
+  changelog/apiman-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/apiman-cli.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/apiman-actions-api.opencollection.json:
     method: derived
     evidence: openapi/apiman-actions-api
@@ -102,6 +111,18 @@ artifacts:
   collections/apiman.postman_collection.json:
     method: derived
     evidence: openapi/apiman
+  conformance/apiman-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conventions/apiman-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/apiman-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/apiman-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/apiman-api-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -111,6 +132,9 @@ artifacts:
   finops/apiman-finops.yml:
     method: generated
     evidence: declared in the artifact
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/apiman-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -126,55 +150,7 @@ artifacts:
   json-structure/apiman-plan-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -261,9 +237,136 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/apiman-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/apiman-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  mcp/apiman-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/_original/apiman-openapi.json:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/apiman-actions-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -309,18 +412,93 @@ artifacts:
   openapi/apiman-users-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  plans/apiman-plans-pricing.yml:
+  overlays/apiman-actions-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
-  rate-limits/apiman-rate-limits.yml:
+  overlays/apiman-blobs-api-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/apiman-developers-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-devportal-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-downloads-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-events-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-experimental-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-gateways-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-organizations-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-plugins-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-policy-definitions-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-roles-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-search-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-system-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apiman-users-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/apiman-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/apiman-plans-pricing.yml:
+    method: searched
+    evidence: declared in the artifact
+  rate-limits/apiman-rate-limits.yml:
+    method: searched
     evidence: declared in the artifact
   rules/apiman-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  sandbox/apiman-sandbox.yml:
+    method: searched
+    evidence: declared in the artifact
   security/apiman-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
+  security/apiman-vulnerability-disclosure.yml:
+    method: searched
+    evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/apiman-audit-usage.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/apiman-govern-with-plans-and-policies.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/apiman-onboard-a-client.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/apiman-publish-an-api.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/apiman-retire-and-clean-up.md:
+    method: generated
+    evidence: declared in the artifact
   vocabulary/apiman-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/apiman-well-known.yml:
     method: unknown
     evidence: no authorship recorded
