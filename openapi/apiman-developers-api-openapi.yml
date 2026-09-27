@@ -245,14 +245,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateDeveloperBean:
-      type: object
-      properties:
-        clients:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/DeveloperMappingBean'
     DeveloperMappingBean:
       type: object
       properties:
@@ -265,6 +257,14 @@ components:
       properties:
         id:
           type: string
+        clients:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DeveloperMappingBean'
+    UpdateDeveloperBean:
+      type: object
+      properties:
         clients:
           uniqueItems: true
           type: array

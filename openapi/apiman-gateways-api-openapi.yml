@@ -166,24 +166,6 @@ components:
           - REST
         configuration:
           type: string
-    UpdateGatewayBean:
-      type: object
-      properties:
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - REST
-        configuration:
-          type: string
-    GatewayTestResultBean:
-      type: object
-      properties:
-        success:
-          type: boolean
-        detail:
-          type: string
     GatewaySummaryBean:
       type: object
       properties:
@@ -197,10 +179,28 @@ components:
           type: string
           enum:
           - REST
+    GatewayTestResultBean:
+      type: object
+      properties:
+        success:
+          type: boolean
+        detail:
+          type: string
     GatewayEndpointSummaryBean:
       type: object
       properties:
         endpoint:
+          type: string
+    UpdateGatewayBean:
+      type: object
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
           type: string
     NewGatewayBean:
       type: object

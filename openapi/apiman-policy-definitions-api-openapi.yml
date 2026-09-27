@@ -104,16 +104,6 @@ components:
           type: string
         template:
           type: string
-    UpdatePolicyDefinitionBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-      description: Update a new policy definition
     PolicyDefinitionSummaryBean:
       type: object
       properties:
@@ -165,3 +155,13 @@ components:
           type: string
         deleted:
           type: boolean
+    UpdatePolicyDefinitionBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+      description: Update a new policy definition

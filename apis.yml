@@ -36,13 +36,14 @@ tags:
 - API Management
 - Developer Portal
 - Java
-- Open-Source
+- Open Source
 tags_raw:
 - API Gateway
 - API Management
 - Developer Portal
 - Java
 - Open Source
+- Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml
 created: '2026-03-25'
 modified: '2026-09-06'
@@ -58,12 +59,13 @@ apis:
   - API Gateway
   - API Management
   - Developer Portal
-  - Open-Source
+  - Open Source
   tags_raw:
   - API Gateway
   - API Management
   - Developer Portal
   - Open Source
+  - Open-Source
   properties:
   - type: Documentation
     url: https://www.apiman.io/apiman-docs/guides/latest/index.html
