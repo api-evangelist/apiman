@@ -357,26 +357,50 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SearchResultsBeanAuditEntryBean:
+    SearchResultsBeanNotificationDtoObject:
       type: object
       properties:
         beans:
           type: array
           items:
-            $ref: '#/components/schemas/AuditEntryBean'
+            $ref: '#/components/schemas/NotificationDtoObject'
         totalSize:
           type: integer
           format: int32
-    UserPermissionsBean:
+    PermissionBean:
       type: object
       properties:
-        userId:
+        name:
           type: string
-        permissions:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionBean'
+          enum:
+          - orgView
+          - orgEdit
+          - orgAdmin
+          - apiView
+          - apiEdit
+          - apiAdmin
+          - clientView
+          - clientEdit
+          - clientAdmin
+          - planView
+          - planEdit
+          - planAdmin
+        organizationId:
+          type: string
+    NotificationFilterEntity:
+      required:
+      - expression
+      - source
+      type: object
+      properties:
+        source:
+          type: string
+        expression:
+          type: string
+        enabled:
+          type: boolean
+        message:
+          type: string
     SearchCriteriaBean:
       type: object
       properties:
@@ -392,73 +416,61 @@ components:
           $ref: '#/components/schemas/SearchCriteriaBean'
         page:
           $ref: '#/components/schemas/SearchCriteriaBean'
-    OrderByBean:
+    NotificationDtoObject:
       type: object
       properties:
-        ascending:
-          type: boolean
-        name:
+        id:
+          type: integer
+          format: int64
+        category:
           type: string
-    UserDto:
-      required:
-      - email
-      - fullName
-      - joinedOn
-      - locale
-      - username
-      type: object
-      properties:
-        username:
+          enum:
+          - USER_ADMINISTRATION
+          - API_ADMINISTRATION
+          - API_LIFECYCLE
+          - CLIENT_LIFECYCLE
+          - SYSTEM
+          - OTHER
+        reason:
           type: string
-        fullName:
+        reasonMessage:
           type: string
-        email:
+        status:
           type: string
-        joinedOn:
+          enum:
+          - OPEN
+          - USER_DISMISSED
+          - SYSTEM_DISMISSED
+        createdOn:
           type: string
           format: date-time
-        locale:
+        modifiedOn:
+          type: string
+          format: date-time
+        recipient:
+          $ref: '#/components/schemas/UserDto'
+        source:
+          type: string
+        payload:
           type: object
-          properties:
-            language:
-              type: string
-            displayName:
-              type: string
-            script:
-              type: string
-            country:
-              type: string
-            variant:
-              type: string
-            extensionKeys:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            unicodeLocaleAttributes:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            unicodeLocaleKeys:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            iso3Language:
-              type: string
-            iso3Country:
-              type: string
-            displayLanguage:
-              type: string
-            displayScript:
-              type: string
-            displayCountry:
-              type: string
-            displayVariant:
-              type: string
-        admin:
-          type: boolean
+    ClientSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        numContracts:
+          type: integer
+          format: int32
     ApiSummaryBean:
       type: object
       properties:
@@ -482,26 +494,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueTagDto'
-    NotificationPreferenceEntity:
-      required:
-      - type
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        user:
-          $ref: '#/components/schemas/UserBean'
-        type:
-          type: string
-          enum:
-          - WEB
-          - EMAIL
-        rules:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationFilterEntity'
     AuditEntryBean:
       type: object
       properties:
@@ -550,97 +542,6 @@ components:
           - DeleteDefinition
         data:
           type: string
-    ClientSummaryBean:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        image:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        numContracts:
-          type: integer
-          format: int32
-    PermissionBean:
-      type: object
-      properties:
-        name:
-          type: string
-          enum:
-          - orgView
-          - orgEdit
-          - orgAdmin
-          - apiView
-          - apiEdit
-          - apiAdmin
-          - clientView
-          - clientEdit
-          - clientAdmin
-          - planView
-          - planEdit
-          - planAdmin
-        organizationId:
-          type: string
-    SearchResultsBeanNotificationDtoObject:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationDtoObject'
-        totalSize:
-          type: integer
-          format: int32
-    KeyValueTagDto:
-      required:
-      - key
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      description: Key value tag pair
-    NotificationCriteriaBean:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchCriteriaFilterBean'
-        orderBy:
-          $ref: '#/components/schemas/OrderByBean'
-        paging:
-          $ref: '#/components/schemas/PagingBean'
-        pageSize:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-        page:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-    NotificationActionDto:
-      required:
-      - status
-      type: object
-      properties:
-        markAll:
-          type: boolean
-        notificationIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-        status:
-          type: string
-          enum:
-          - OPEN
-          - USER_DISMISSED
-          - SYSTEM_DISMISSED
     OrganizationSummaryBean:
       type: object
       properties:
@@ -659,40 +560,6 @@ components:
         numMembers:
           type: integer
           format: int32
-    SearchCriteriaFilterBean:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        operator:
-          type: string
-          enum:
-          - bool_eq
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - like
-    CreateNotificationFilterDto:
-      type: object
-      properties:
-        source:
-          type: string
-        notificationType:
-          type: string
-          enum:
-          - WEB
-          - EMAIL
-        expression:
-          type: string
-        enabled:
-          type: boolean
-        message:
-          type: string
     CurrentUserBean:
       type: object
       properties:
@@ -757,113 +624,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PermissionBean'
-    NotificationFilterEntity:
-      required:
-      - expression
-      - source
+    SearchCriteriaFilterBean:
       type: object
       properties:
-        source:
+        name:
           type: string
-        expression:
+        value:
           type: string
-        enabled:
-          type: boolean
-        message:
-          type: string
-    UpdateUserBean:
-      type: object
-      properties:
-        fullName:
-          type: string
-        email:
-          type: string
-        locale:
-          type: object
-          properties:
-            language:
-              type: string
-            displayName:
-              type: string
-            script:
-              type: string
-            country:
-              type: string
-            variant:
-              type: string
-            extensionKeys:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            unicodeLocaleAttributes:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            unicodeLocaleKeys:
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-            iso3Language:
-              type: string
-            iso3Country:
-              type: string
-            displayLanguage:
-              type: string
-            displayScript:
-              type: string
-            displayCountry:
-              type: string
-            displayVariant:
-              type: string
-    PagingBean:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-    NotificationDtoObject:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        category:
+        operator:
           type: string
           enum:
-          - USER_ADMINISTRATION
-          - API_ADMINISTRATION
-          - API_LIFECYCLE
-          - CLIENT_LIFECYCLE
-          - SYSTEM
-          - OTHER
-        reason:
-          type: string
-        reasonMessage:
-          type: string
-        status:
-          type: string
-          enum:
-          - OPEN
-          - USER_DISMISSED
-          - SYSTEM_DISMISSED
-        createdOn:
-          type: string
-          format: date-time
-        modifiedOn:
-          type: string
-          format: date-time
-        recipient:
-          $ref: '#/components/schemas/UserDto'
-        source:
-          type: string
-        payload:
-          type: object
+          - bool_eq
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - like
     UserBean:
       type: object
       properties:
@@ -918,3 +696,225 @@ components:
               type: string
         admin:
           type: boolean
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    UpdateUserBean:
+      type: object
+      properties:
+        fullName:
+          type: string
+        email:
+          type: string
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+    SearchResultsBeanAuditEntryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEntryBean'
+        totalSize:
+          type: integer
+          format: int32
+    PagingBean:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    CreateNotificationFilterDto:
+      type: object
+      properties:
+        source:
+          type: string
+        notificationType:
+          type: string
+          enum:
+          - WEB
+          - EMAIL
+        expression:
+          type: string
+        enabled:
+          type: boolean
+        message:
+          type: string
+    NotificationPreferenceEntity:
+      required:
+      - type
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/UserBean'
+        type:
+          type: string
+          enum:
+          - WEB
+          - EMAIL
+        rules:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationFilterEntity'
+    UserDto:
+      required:
+      - email
+      - fullName
+      - joinedOn
+      - locale
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        joinedOn:
+          type: string
+          format: date-time
+        locale:
+          type: object
+          properties:
+            language:
+              type: string
+            displayName:
+              type: string
+            script:
+              type: string
+            country:
+              type: string
+            variant:
+              type: string
+            extensionKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleAttributes:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            unicodeLocaleKeys:
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+            iso3Language:
+              type: string
+            iso3Country:
+              type: string
+            displayLanguage:
+              type: string
+            displayScript:
+              type: string
+            displayCountry:
+              type: string
+            displayVariant:
+              type: string
+        admin:
+          type: boolean
+    NotificationActionDto:
+      required:
+      - status
+      type: object
+      properties:
+        markAll:
+          type: boolean
+        notificationIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        status:
+          type: string
+          enum:
+          - OPEN
+          - USER_DISMISSED
+          - SYSTEM_DISMISSED
+    NotificationCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+    UserPermissionsBean:
+      type: object
+      properties:
+        userId:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionBean'
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
