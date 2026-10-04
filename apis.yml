@@ -264,6 +264,9 @@ apis:
   - type: Overlay
     url: overlays/apiman-users-api-overlay.yaml
 common:
+- type: CapabilityMap
+  url: capabilities/apiman-capability-edges.yml
+  name: Apiman Business Capability Map
 - type: IssueTracker
   url: https://github.com/apiman/apiman/issues
 - type: Releases
