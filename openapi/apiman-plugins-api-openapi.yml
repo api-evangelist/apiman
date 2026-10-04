@@ -178,6 +178,50 @@ components:
         pluginId:
           type: integer
           format: int64
+    PluginSummaryBean:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        groupId:
+          type: string
+        artifactId:
+          type: string
+        version:
+          type: string
+        classifier:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+    NewPluginBean:
+      type: object
+      properties:
+        groupId:
+          type: string
+        artifactId:
+          type: string
+        version:
+          type: string
+        classifier:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        upgrade:
+          type: boolean
     PluginBean:
       type: object
       properties:
@@ -205,47 +249,3 @@ components:
           format: date-time
         deleted:
           type: boolean
-    NewPluginBean:
-      type: object
-      properties:
-        groupId:
-          type: string
-        artifactId:
-          type: string
-        version:
-          type: string
-        classifier:
-          type: string
-        type:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        upgrade:
-          type: boolean
-    PluginSummaryBean:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        groupId:
-          type: string
-        artifactId:
-          type: string
-        version:
-          type: string
-        classifier:
-          type: string
-        type:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time

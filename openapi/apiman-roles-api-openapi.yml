@@ -102,33 +102,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NewRoleBean:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        autoGrant:
-          type: boolean
-        permissions:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-            enum:
-            - orgView
-            - orgEdit
-            - orgAdmin
-            - apiView
-            - apiEdit
-            - apiAdmin
-            - clientView
-            - clientEdit
-            - clientAdmin
-            - planView
-            - planEdit
-            - planAdmin
     UpdateRoleBean:
       type: object
       properties:
@@ -170,6 +143,33 @@ components:
         createdOn:
           type: string
           format: date-time
+        autoGrant:
+          type: boolean
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - orgView
+            - orgEdit
+            - orgAdmin
+            - apiView
+            - apiEdit
+            - apiAdmin
+            - clientView
+            - clientEdit
+            - clientAdmin
+            - planView
+            - planEdit
+            - planAdmin
+    NewRoleBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
         autoGrant:
           type: boolean
         permissions:
