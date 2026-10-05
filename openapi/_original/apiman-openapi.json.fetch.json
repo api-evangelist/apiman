@@ -1,0 +1,12 @@
+{
+ "url": "https://www.apiman.io/openapi.json",
+ "requested_url": "https://www.apiman.io/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 142531,
+ "sha256": "3839f9a7a6a9063e5aed16ba31d223fe0abb17029c773574c3763afbd6f5f423",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
