@@ -264,6 +264,8 @@ apis:
   - type: Overlay
     url: overlays/apiman-users-api-overlay.yaml
 common:
+- type: FinOps
+  url: finops/apiman-finops.yml
 - type: CapabilityMap
   url: capabilities/apiman-capability-edges.yml
   name: Apiman Business Capability Map
