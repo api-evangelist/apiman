@@ -1,17 +1,22 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/apiman-openapi.json
+source: openapi/apiman-actions-api-openapi.yml, openapi/apiman-blobs-api-openapi.yml, openapi/apiman-developers-api-openapi.yml,
+  openapi/apiman-devportal-api-openapi.yml, openapi/apiman-downloads-api-openapi.yml, openapi/apiman-events-api-openapi.yml,
+  openapi/apiman-experimental-api-openapi.yml, openapi/apiman-gateways-api-openapi.yml, openapi/apiman-organizations-api-openapi.yml,
+  openapi/apiman-plugins-api-openapi.yml, openapi/apiman-policy-definitions-api-openapi.yml,
+  openapi/apiman-roles-api-openapi.yml, openapi/apiman-search-api-openapi.yml, openapi/apiman-system-api-openapi.yml,
+  openapi/apiman-users-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 177
+  operations: 199
   by_action_class:
-    acting: 76
-    connected: 101
+    acting: 69
+    connected: 130
   by_consequence:
-    write: 69
-    read: 101
+    write: 62
+    read: 130
     physical: 5
     safety-critical: 2
   human_in_the_loop_required: 2
@@ -61,128 +66,6 @@ operations:
 - path: /blobs
   method: post
   operationId: uploadBlob
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /devportal/organizations
-  method: post
-  operationId: createHomeOrgForDeveloper
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition
-  method: get
-  operationId: getApiDefinition
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}
-  method: get
-  operationId: getApiVersion
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint
-  method: get
-  operationId: getApiVersionEndpointInfo
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans
-  method: get
-  operationId: getApiVersionPlans
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/apis/featured
-  method: get
-  operationId: getFeaturedApis
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}
-  method: get
-  operationId: getPlanPolicy
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies
-  method: get
-  operationId: listApiPolicies
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/apis/{apiId}/versions
-  method: get
-  operationId: listApiVersions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies
-  method: get
-  operationId: listPlanPolicies
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/search/apis
-  method: post
-  operationId: searchApis
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -324,6 +207,238 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /devportal/organizations
+  method: post
+  operationId: createHomeOrgForDeveloper
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition
+  method: get
+  operationId: getApiDefinition
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}
+  method: get
+  operationId: getApiVersion
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint
+  method: get
+  operationId: getApiVersionEndpointInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans
+  method: get
+  operationId: getApiVersionPlans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/apis/featured
+  method: get
+  operationId: getFeaturedApis
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}
+  method: get
+  operationId: getPlanPolicy
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies
+  method: get
+  operationId: listApiPolicies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions
+  method: get
+  operationId: listApiVersions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies
+  method: get
+  operationId: listPlanPolicies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/search/apis
+  method: post
+  operationId: searchApis
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations
+  method: post
+  operationId: createHomeOrgForDeveloper_1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition
+  method: get
+  operationId: getApiDefinition_3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}
+  method: get
+  operationId: getApiVersion_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint
+  method: get
+  operationId: getApiVersionEndpointInfo_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans
+  method: get
+  operationId: getApiVersionPlans_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/apis/featured
+  method: get
+  operationId: getFeaturedApis_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}
+  method: get
+  operationId: getPlanPolicy_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies
+  method: get
+  operationId: listApiPolicies_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions
+  method: get
+  operationId: listApiVersions_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies
+  method: get
+  operationId: listPlanPolicies_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/search/apis
+  method: post
+  operationId: searchApis_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /downloads/{downloadId}
   method: get
   operationId: download
@@ -350,6 +465,238 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /devportal/organizations
+  method: post
+  operationId: createHomeOrgForDeveloper
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition
+  method: get
+  operationId: getApiDefinition
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}
+  method: get
+  operationId: getApiVersion
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint
+  method: get
+  operationId: getApiVersionEndpointInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans
+  method: get
+  operationId: getApiVersionPlans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/apis/featured
+  method: get
+  operationId: getFeaturedApis
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}
+  method: get
+  operationId: getPlanPolicy
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies
+  method: get
+  operationId: listApiPolicies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/apis/{apiId}/versions
+  method: get
+  operationId: listApiVersions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies
+  method: get
+  operationId: listPlanPolicies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/search/apis
+  method: post
+  operationId: searchApis
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations
+  method: post
+  operationId: createHomeOrgForDeveloper_1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition
+  method: get
+  operationId: getApiDefinition_3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}
+  method: get
+  operationId: getApiVersion_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint
+  method: get
+  operationId: getApiVersionEndpointInfo_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans
+  method: get
+  operationId: getApiVersionPlans_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/apis/featured
+  method: get
+  operationId: getFeaturedApis_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}
+  method: get
+  operationId: getPlanPolicy_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies
+  method: get
+  operationId: listApiPolicies_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions
+  method: get
+  operationId: listApiVersions_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies
+  method: get
+  operationId: listPlanPolicies_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /devportal/protected/search/apis
+  method: post
+  operationId: searchApis_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /gateways
   method: get
   operationId: list
@@ -1736,128 +2083,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /devportal/protected/organizations
-  method: post
-  operationId: createHomeOrgForDeveloper_1
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/definition
-  method: get
-  operationId: getApiDefinition_3
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}
-  method: get
-  operationId: getApiVersion_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/endpoint
-  method: get
-  operationId: getApiVersionEndpointInfo_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/plans
-  method: get
-  operationId: getApiVersionPlans_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/apis/featured
-  method: get
-  operationId: getFeaturedApis_1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies/{policyId}
-  method: get
-  operationId: getPlanPolicy_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions/{apiVersion}/policies
-  method: get
-  operationId: listApiPolicies_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/apis/{apiId}/versions
-  method: get
-  operationId: listApiVersions_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/organizations/{orgId}/plans/{planId}/versions/{planVersion}/policies
-  method: get
-  operationId: listPlanPolicies_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /devportal/protected/search/apis
-  method: post
-  operationId: searchApis_1
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /roles
   method: get
   operationId: list_3
@@ -1940,98 +2165,62 @@ operations:
   method: post
   operationId: searchApiCatalog
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/apis
   method: post
   operationId: searchApis_2
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/clients
   method: post
   operationId: searchClients
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/organizations
   method: post
   operationId: searchOrgs
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/roles
   method: post
   operationId: searchRoles
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /search/users
   method: post
   operationId: searchUsers
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /system/export
   method: get
   operationId: exportData
@@ -2200,18 +2389,12 @@ operations:
   method: post
   operationId: getNotificationsForUser
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /users/{userId}/notifications
   method: head
   operationId: getNotificationCountForUser
