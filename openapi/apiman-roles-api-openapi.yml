@@ -102,13 +102,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateRoleBean:
+    RoleBean:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         description:
           type: string
+        createdBy:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
         autoGrant:
           type: boolean
         permissions:
@@ -129,20 +136,13 @@ components:
             - planView
             - planEdit
             - planAdmin
-    RoleBean:
+    UpdateRoleBean:
       type: object
       properties:
-        id:
-          type: string
         name:
           type: string
         description:
           type: string
-        createdBy:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
         autoGrant:
           type: boolean
         permissions:

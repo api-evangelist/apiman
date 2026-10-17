@@ -252,19 +252,19 @@ components:
           type: string
         organizationId:
           type: string
-    UpdateDeveloperBean:
-      type: object
-      properties:
-        clients:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/DeveloperMappingBean'
     DeveloperBean:
       type: object
       properties:
         id:
           type: string
+        clients:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DeveloperMappingBean'
+    UpdateDeveloperBean:
+      type: object
+      properties:
         clients:
           uniqueItems: true
           type: array

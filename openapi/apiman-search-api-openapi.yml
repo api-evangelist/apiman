@@ -140,25 +140,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SearchResultsBeanApiSummaryBean:
+    PagingBean:
       type: object
       properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiSummaryBean'
-        totalSize:
+        page:
           type: integer
           format: int32
-    ApiNamespaceBean:
-      type: object
-      properties:
-        name:
-          type: string
-        ownedByUser:
-          type: boolean
-        current:
-          type: boolean
+        pageSize:
+          type: integer
+          format: int32
     OrganizationSummaryBean:
       type: object
       properties:
@@ -175,6 +165,108 @@ components:
           type: integer
           format: int32
         numMembers:
+          type: integer
+          format: int32
+    KeyValueTagDto:
+      required:
+      - key
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: Key value tag pair
+    OrderByBean:
+      type: object
+      properties:
+        ascending:
+          type: boolean
+        name:
+          type: string
+    UserSearchResult:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+    SearchResultsBeanOrganizationSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationSummaryBean'
+        totalSize:
+          type: integer
+          format: int32
+    SearchCriteriaBean:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriteriaFilterBean'
+        orderBy:
+          $ref: '#/components/schemas/OrderByBean'
+        paging:
+          $ref: '#/components/schemas/PagingBean'
+        pageSize:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+        page:
+          $ref: '#/components/schemas/SearchCriteriaBean'
+    SearchResultsBeanAvailableApiBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableApiBean'
+        totalSize:
+          type: integer
+          format: int32
+    ApiSummaryBean:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        image:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueTagDto'
+    SearchResultsBeanUserSearchResult:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSearchResult'
+        totalSize:
+          type: integer
+          format: int32
+    SearchResultsBeanClientSummaryBean:
+      type: object
+      properties:
+        beans:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientSummaryBean'
+        totalSize:
           type: integer
           format: int32
     AvailableApiBean:
@@ -220,21 +312,24 @@ components:
             type: string
         internal:
           type: boolean
-    SearchCriteriaBean:
+    SearchCriteriaFilterBean:
       type: object
       properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchCriteriaFilterBean'
-        orderBy:
-          $ref: '#/components/schemas/OrderByBean'
-        paging:
-          $ref: '#/components/schemas/PagingBean'
-        pageSize:
-          $ref: '#/components/schemas/SearchCriteriaBean'
-        page:
-          $ref: '#/components/schemas/SearchCriteriaBean'
+        name:
+          type: string
+        value:
+          type: string
+        operator:
+          type: string
+          enum:
+          - bool_eq
+          - eq
+          - neq
+          - gt
+          - gte
+          - lt
+          - lte
+          - like
     RoleBean:
       type: object
       properties:
@@ -269,13 +364,13 @@ components:
             - planView
             - planEdit
             - planAdmin
-    SearchResultsBeanUserSearchResult:
+    SearchResultsBeanRoleBean:
       type: object
       properties:
         beans:
           type: array
           items:
-            $ref: '#/components/schemas/UserSearchResult'
+            $ref: '#/components/schemas/RoleBean'
         totalSize:
           type: integer
           format: int32
@@ -297,117 +392,22 @@ components:
         numContracts:
           type: integer
           format: int32
-    OrderByBean:
+    ApiNamespaceBean:
       type: object
       properties:
-        ascending:
+        name:
+          type: string
+        ownedByUser:
           type: boolean
-        name:
-          type: string
-    KeyValueTagDto:
-      required:
-      - key
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      description: Key value tag pair
-    SearchCriteriaFilterBean:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        operator:
-          type: string
-          enum:
-          - bool_eq
-          - eq
-          - neq
-          - gt
-          - gte
-          - lt
-          - lte
-          - like
-    UserSearchResult:
-      type: object
-      properties:
-        username:
-          type: string
-        fullName:
-          type: string
-    SearchResultsBeanRoleBean:
+        current:
+          type: boolean
+    SearchResultsBeanApiSummaryBean:
       type: object
       properties:
         beans:
           type: array
           items:
-            $ref: '#/components/schemas/RoleBean'
+            $ref: '#/components/schemas/ApiSummaryBean'
         totalSize:
-          type: integer
-          format: int32
-    SearchResultsBeanOrganizationSummaryBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationSummaryBean'
-        totalSize:
-          type: integer
-          format: int32
-    SearchResultsBeanClientSummaryBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClientSummaryBean'
-        totalSize:
-          type: integer
-          format: int32
-    SearchResultsBeanAvailableApiBean:
-      type: object
-      properties:
-        beans:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvailableApiBean'
-        totalSize:
-          type: integer
-          format: int32
-    ApiSummaryBean:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        image:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueTagDto'
-    PagingBean:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
           type: integer
           format: int32

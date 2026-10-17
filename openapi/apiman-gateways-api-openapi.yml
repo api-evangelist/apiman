@@ -141,9 +141,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NewGatewayBean:
+    GatewaySummaryBean:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         description:
@@ -152,7 +154,17 @@ components:
           type: string
           enum:
           - REST
-        configuration:
+    GatewayTestResultBean:
+      type: object
+      properties:
+        success:
+          type: boolean
+        detail:
+          type: string
+    GatewayEndpointSummaryBean:
+      type: object
+      properties:
+        endpoint:
           type: string
     UpdateGatewayBean:
       type: object
@@ -165,17 +177,18 @@ components:
           - REST
         configuration:
           type: string
-    GatewayTestResultBean:
+    NewGatewayBean:
       type: object
       properties:
-        success:
-          type: boolean
-        detail:
+        name:
           type: string
-    GatewayEndpointSummaryBean:
-      type: object
-      properties:
-        endpoint:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - REST
+        configuration:
           type: string
     GatewayBean:
       type: object
@@ -202,16 +215,3 @@ components:
           - REST
         configuration:
           type: string
-    GatewaySummaryBean:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - REST
