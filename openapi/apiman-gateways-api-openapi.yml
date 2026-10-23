@@ -215,3 +215,9 @@ components:
           - REST
         configuration:
           type: string
+x-provenance:
+  method: harvested
+  publisher: Apiman
+  source: https://www.apiman.io/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
