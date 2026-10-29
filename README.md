@@ -1,4 +1,4 @@
-# Apiman (apiman)
+# Apiman
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,62 +66,217 @@
 
 Apiman is an open source API management platform featuring a REST API, manager UI, and standalone developer portal with multi-tenancy, events, notifications, permissions, and approval workflows. It provides extensible API gateway capabilities through a simple Java plugin architecture with support for policies, plans, organizations, and client management.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apiman/refs/heads/main/apis.yml)
+**Areas:** API Gateway · API Management · Developer Portal · Java · Open Source
 
-## Scope
+## Apiman on APIs.io
 
-- **Type:** Index
+Everything profiled for Apiman is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apiman/](https://apis.io/providers/apiman/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (16)
 
-- API Gateway
-- API Management
-- Developer Portal
-- Java
-- Open Source
+- [Apiman](https://apis.io/apis/apiman/apiman/) — Apiman is an open source API management platform with a developer portal, API gateway, and management UI supporting policies, plans, organizations,…
+- [Apiman Actions API](https://apis.io/apis/apiman/apiman-actions-api/) — The Actions API from Apiman — 2 operation(s) for actions.
+- [Apiman Blobs API](https://apis.io/apis/apiman/apiman-blobs-api/) — The Blobs API from Apiman — 2 operation(s) for blobs.
+- [Apiman Developers API](https://apis.io/apis/apiman/apiman-developers-api/) — The Developers API from Apiman — 8 operation(s) for developers.
+- [Apiman Devportal API](https://apis.io/apis/apiman/apiman-devportal-api/) — The Devportal API from Apiman — 22 operation(s) for devportal.
+- [Apiman Downloads API](https://apis.io/apis/apiman/apiman-downloads-api/) — The Downloads API from Apiman — 1 operation(s) for downloads.
+- [Apiman Events API](https://apis.io/apis/apiman/apiman-events-api/) — The Events API from Apiman — 1 operation(s) for events.
+- [Apiman Experimental API](https://apis.io/apis/apiman/apiman-experimental-api/) — The Experimental API from Apiman — 22 operation(s) for experimental.
+- [Apiman Gateways API](https://apis.io/apis/apiman/apiman-gateways-api/) — The Gateways API from Apiman — 3 operation(s) for gateways.
+- [Apiman Organizations API](https://apis.io/apis/apiman/apiman-organizations-api/) — The Organizations API from Apiman — 57 operation(s) for organizations.
+- [Apiman Plugins API](https://apis.io/apis/apiman/apiman-plugins-api/) — The Plugins API from Apiman — 5 operation(s) for plugins.
+- [Apiman Policy Definitions API](https://apis.io/apis/apiman/apiman-policy-definitions-api/) — The Policy Definitions API from Apiman — 2 operation(s) for policy definitions.
+- [Apiman Roles API](https://apis.io/apis/apiman/apiman-roles-api/) — The Roles API from Apiman — 2 operation(s) for roles.
+- [Apiman Search API](https://apis.io/apis/apiman/apiman-search-api/) — The Search API from Apiman — 7 operation(s) for search.
+- [Apiman System API](https://apis.io/apis/apiman/apiman-system-api/) — The System API from Apiman — 3 operation(s) for system.
+- [Apiman Users API](https://apis.io/apis/apiman/apiman-users-api/) — The Users API from Apiman — 13 operation(s) for users.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-25
-- **Modified:** 2026-04-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Apiman
+Model Context Protocol servers that expose the API to agents.
 
-Apiman is an open source API management platform with a developer portal, API gateway, and management UI supporting policies, plans, organizations, multi-tenancy, and extensible Java-based plugin architecture.
+- [apiman](https://apis.io/servers/apiman/apiman/)
 
-- **Human URL:** [https://github.com/apiman/apiman](https://github.com/apiman/apiman)
-- **Base URL:** `https://localhost:8080/apiman`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- API Gateway
-- API Management
-- Developer Portal
-- Open Source
+- [Apiman Agentic Access](https://apis.io/agentic-access/apiman/apiman-agentic-access/)
 
-#### Properties
+#### JSON Schema (2)
 
-- [Documentation](https://www.apiman.io/api-manager/latest/index.html)
-- [GitHub Repository](https://github.com/apiman/apiman)
-- [JSON Schema](json-schema/apiman-api-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/apiman-plan-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/apiman-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Postman Collection](collections/apiman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apiman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-## Common Properties
+- [Apiman API](https://apis.io/schemas/apiman/apiman-api/)
+- [Apiman Plan](https://apis.io/schemas/apiman/apiman-plan/)
+
+#### JSON Structure (2)
+
+Data models expressed in JSON Structure.
+
+- [Apiman Api Structure](https://apis.io/json-structure/apiman/apiman-api-structure/)
+- [Apiman Plan Structure](https://apis.io/json-structure/apiman/apiman-plan-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apiman Context](https://apis.io/jsonld/apiman/apiman-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Apiman Vocabulary](https://apis.io/vocabularies/apiman/apiman-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Apiman Api Example](https://apis.io/examples/apiman/apiman-api-example/)
+- [Apiman Plan Example](https://apis.io/examples/apiman/apiman-plan-example/)
+
+#### Collections (16)
+
+Postman and Open Collection request collections.
+
+- [API Manager REST API](https://apis.io/collections/apiman/open-apiman/)
+- [API Manager REST Actions API](https://apis.io/collections/apiman/open-apiman-actions-api/)
+- [API Manager REST Actions Blobs API](https://apis.io/collections/apiman/open-apiman-blobs-api/)
+- [API Manager REST Actions Developers API](https://apis.io/collections/apiman/open-apiman-developers-api/)
+- [API Manager REST Actions Devportal API](https://apis.io/collections/apiman/open-apiman-devportal-api/)
+- [API Manager REST Actions Downloads API](https://apis.io/collections/apiman/open-apiman-downloads-api/)
+- [API Manager REST Actions Events API](https://apis.io/collections/apiman/open-apiman-events-api/)
+- [API Manager REST Actions Experimental API](https://apis.io/collections/apiman/open-apiman-experimental-api/)
+- [API Manager REST Actions Gateways API](https://apis.io/collections/apiman/open-apiman-gateways-api/)
+- [API Manager REST Actions Organizations API](https://apis.io/collections/apiman/open-apiman-organizations-api/)
+- [API Manager REST Actions Plugins API](https://apis.io/collections/apiman/open-apiman-plugins-api/)
+- [API Manager REST Actions Policy Definitions API](https://apis.io/collections/apiman/open-apiman-policy-definitions-api/)
+- [API Manager REST Actions Roles API](https://apis.io/collections/apiman/open-apiman-roles-api/)
+- [API Manager REST Actions Search API](https://apis.io/collections/apiman/open-apiman-search-api/)
+- [API Manager REST Actions System API](https://apis.io/collections/apiman/open-apiman-system-api/)
+- [API Manager REST Actions Users API](https://apis.io/collections/apiman/open-apiman-users-api/)
+
+#### Overlays (15)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Apiman Actions Api Overlay](https://apis.io/overlays/apiman/apiman-actions-api-overlay/)
+- [Apiman Blobs Api Overlay](https://apis.io/overlays/apiman/apiman-blobs-api-overlay/)
+- [Apiman Developers Api Overlay](https://apis.io/overlays/apiman/apiman-developers-api-overlay/)
+- [Apiman Devportal Api Overlay](https://apis.io/overlays/apiman/apiman-devportal-api-overlay/)
+- [Apiman Downloads Api Overlay](https://apis.io/overlays/apiman/apiman-downloads-api-overlay/)
+- [Apiman Events Api Overlay](https://apis.io/overlays/apiman/apiman-events-api-overlay/)
+- [Apiman Experimental Api Overlay](https://apis.io/overlays/apiman/apiman-experimental-api-overlay/)
+- [Apiman Gateways Api Overlay](https://apis.io/overlays/apiman/apiman-gateways-api-overlay/)
+- [Apiman Organizations Api Overlay](https://apis.io/overlays/apiman/apiman-organizations-api-overlay/)
+- [Apiman Plugins Api Overlay](https://apis.io/overlays/apiman/apiman-plugins-api-overlay/)
+- [Apiman Policy Definitions Api Overlay](https://apis.io/overlays/apiman/apiman-policy-definitions-api-overlay/)
+- [Apiman Roles Api Overlay](https://apis.io/overlays/apiman/apiman-roles-api-overlay/)
+- [Apiman Search Api Overlay](https://apis.io/overlays/apiman/apiman-search-api-overlay/)
+- [Apiman System Api Overlay](https://apis.io/overlays/apiman/apiman-system-api-overlay/)
+- [Apiman Users Api Overlay](https://apis.io/overlays/apiman/apiman-users-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Apiman — jsonschema rules](https://apis.io/rules/apiman/apiman-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apiman Authentication](https://apis.io/security/apiman/apiman-authentication/)
+- [Apiman Domain Security](https://apis.io/security/apiman/apiman-domain-security/)
+- [Apiman Vulnerability Disclosure](https://apis.io/security/apiman/apiman-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apiman Plans Pricing](https://apis.io/plans/apiman/apiman-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apiman Rate Limits](https://apis.io/rate-limits/apiman/apiman-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apiman Finops](https://apis.io/finops/apiman/apiman-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.apiman.io)
-- [Documentation](https://www.apiman.io/api-manager/latest/index.html)
-- [GitHub Organization](https://github.com/apiman)
-- [GitHub Repository](https://github.com/apiman/apiman)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Solutions](undefined)
+- [Documentation](https://www.apiman.io/apiman-docs/guides/latest/index.html)
+- [Getting started](https://www.apiman.io/apiman-docs/installation-guide/latest/quickstart.html)
+- [API reference](https://www.apiman.io/rest-api-docs.html)
+- [Support](https://www.apiman.io/support.html)
+- [Changelog](https://www.apiman.io/changelog.html)
+- [Blog](https://www.apiman.io/blog)
+- [GitHub](https://github.com/apiman)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 44.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 48.4 |
+| Contract governance | 28.0 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 0.0 |
+
+**Agent readiness 20.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apiman/](https://apis.io/providers/apiman/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apiman: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apiman/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
